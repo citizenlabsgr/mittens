@@ -1,0 +1,47 @@
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { observer } from 'mobx-react';
+
+// Components
+import { Button } from 'button/button';
+
+// CSS
+import { styles, vars, css } from 'styles/css';
+
+
+export interface {{ pascalCase name }}Props {
+
+};
+
+export class {{ pascalCase name }} extends React.Component<{{ pascalCase name}}Props, {}> {
+  names = ["Alicia", "Bob", "Candace"]
+  state = {
+    nameIndex: 0
+  }
+  
+  next() {
+    this.setState({
+      nameIndex: (c.state.nameIndex + 1) % c.names.length
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          Hello {this.names[this.state.nameIndex]}!
+        </div>
+        <Button action={this.next} theme="action">Next</Button>
+      </div>
+    );
+  }
+}
+
+let style = styles({
+  header: {
+    color: 'red',
+    ':hover': {
+      color: 'blue'
+    }
+  }
+});

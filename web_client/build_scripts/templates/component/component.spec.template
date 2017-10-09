@@ -1,0 +1,12 @@
+import * as React from 'react';
+import { shallow, ShallowWrapper } from 'enzyme';
+
+import { {{ pascalCase name }} } from './{{ dashCase name }}';
+
+describe("{{ pascalCase name }}", () => {
+  const elt = <{{ pascalCase name }} />
+
+  it("renders", () => {
+    pending();
+  });
+});

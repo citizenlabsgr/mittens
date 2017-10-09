@@ -1,0 +1,5 @@
+export class {{ pascalCase name }} {
+  constructor() {
+
+  }
+}

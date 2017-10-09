@@ -1,0 +1,13 @@
+import { {{ pascalCase name }} } from './{{ dashCase name }}';
+
+describe("{{ pascalCase name }}", () => {
+  let {{ camelCase name }}: {{ pascalCase name }};
+
+  beforeEach(() => {
+    {{ camelCase name }} = new {{ pascalCase name }}();
+  });
+
+  it("is there", () => {
+    expect({{ camelCase name }}).toExist();
+  });
+});

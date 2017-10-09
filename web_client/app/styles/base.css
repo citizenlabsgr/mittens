@@ -1,0 +1,56 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #333;
+  background-color: #0E3D59;
+  height: 100%;
+}
+
+#container, #container > div {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 300;
+}
+@media(max-width: 600px) {
+  h1 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+ul {
+  padding-left: 25px;
+}
+
+/* IT IS CRITICAL THAT YOU GIVE THINGS VISUAL FOCUS STATES. */
+*:focus {
+  outline: none;
+}
+
+input {
+  font-family: 'Source Sans Pro', sans-serif;
+}
