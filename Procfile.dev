@@ -1,0 +1,3 @@
+py: python manage.py runserver 5000
+#js: echo "TODO: rebuild JS"
+#css: echo "TODO: rebuild CSS"
