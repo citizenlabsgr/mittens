@@ -1,4 +1,4 @@
-# template-repo
+# Voter Engagement
 Clone or download this repo with labels and milestones commonly used by Citizen Labs. Intended to provide an easy and consistent format that will encourage contributions from others.
 
 ## Voter Engagement:
