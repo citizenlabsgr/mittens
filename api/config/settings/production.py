@@ -1,7 +1,6 @@
 import os
 
 import dj_database_url
-# import rollbar
 
 from .base import *
 
@@ -17,7 +16,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    '.voterengagement.com',
+    # TODO: Prevent access from herokuapp.com when domain is registered
+    # '.voterengagement.com',
+    '.herokuapp.com',
 ]
 
 ###############################################################################
