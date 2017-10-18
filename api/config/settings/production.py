@@ -1,7 +1,7 @@
 import os
 
-# import dj_database_url
-import rollbar
+import dj_database_url
+# import rollbar
 
 from .base import *
 
