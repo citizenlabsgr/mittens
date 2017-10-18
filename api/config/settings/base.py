@@ -60,6 +60,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api.config.wsgi.application'
 
+SITE_ID = 1
+
 ###############################################################################
 # Internationalization
 
