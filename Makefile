@@ -63,6 +63,13 @@ endif
 run: install ## Run the applicaiton
 	pipenv run honcho start --procfile=Procfile.dev
 
+.PHONY: run-prod
+run-prod: install ## Run the application (simulate production)
+	pipenv shell -c "bin/pre_compile; exit \$$?"
+	pipenv shell -c "bin/post_compile; exit \$$?"
+	pipenv shell -c "heroku local release; exit \$$?"
+	pipenv shell -c "heroku local web; exit \$$?"
+
 # HELP ########################################################################
 
 .PHONY: help
