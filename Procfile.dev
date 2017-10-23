@@ -1,3 +1,2 @@
-py: python manage.py runserver 5000
-#js: echo "TODO: rebuild JS"
-#css: echo "TODO: rebuild CSS"
+py: PYTHONUNBUFFERED=true python manage.py runserver 5000
+js: cd web_client && yarn start

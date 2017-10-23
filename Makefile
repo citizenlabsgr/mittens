@@ -1,5 +1,5 @@
 .PHONY: all
-all: install build
+all: install
 
 .PHONY: ci
 ci: check test ## CI | Run all validation targets
@@ -12,27 +12,33 @@ doctor: ## Check for required system dependencies
 
 # PROJECT DEPENDENCIES ########################################################
 
-DEPENDENCIES := tmp/.installed
+BACKEND_DEPENDENCIES := tmp/.backend-installed
+FRONTEND_DEPENDENCIES := web_client/node_modules
 
 .PHONY: install
-install: $(DEPENDENCIES) ## Install project dependencies
+install: $(BACKEND_DEPENDENCIES) $(FRONTEND_DEPENDENCIES) ## Install project dependencies
 
-$(DEPENDENCIES): Pipfile*
+$(BACKEND_DEPENDENCIES): Pipfile*
 	mkdir -p tmp
 	pipenv install --dev
 	@ touch $@
+
+$(FRONTEND_DEPENDENCIES): web_client/package.json
+	cd web_client && yarn install
+	@ touch  $@
 
 # BUILD TARGETS ###############################################################
 
 .PHONY: build
 build:
-	echo "TODO: Compile frontend here..."
-	@ touch $@
+	cd web_client && yarn build
 
 .PHONY: clean
 clean:
+	rm -rf tmp
 	rm -rf staticfiles
 	rm -rf .coverage htmlcov
+	rm -rf web_client/node_modules
 	- pipenv --rm
 
 # RUNTIME DEPENDENCIES ########################################################
@@ -55,7 +61,13 @@ endif
 
 # VALIDATION TARGETS ##########################################################
 
-# TODO: Add validation targets
+.PHONY: check
+check: install
+	echo "TODO: Add static analysis"
+
+.PHONY: test
+test: install
+	echo "TODO: Run tests"
 
 # SERVER TARGETS ##############################################################
 
@@ -63,12 +75,13 @@ endif
 run: install ## Run the applicaiton
 	pipenv run honcho start --procfile=Procfile.dev
 
-.PHONY: run-prod
-run-prod: install ## Run the application (simulate production)
-	pipenv shell -c "bin/pre_compile; exit \$$?"
-	pipenv shell -c "bin/post_compile; exit \$$?"
-	pipenv shell -c "heroku local release; exit \$$?"
-	pipenv shell -c "heroku local web; exit \$$?"
+# TODO: Emulate the production server
+# .PHONY: run-prod
+# run-prod: install ## Run the application (emulate production)
+# 	pipenv shell -c "bin/pre_compile; exit \$$?"
+# 	pipenv shell -c "bin/post_compile; exit \$$?"
+# 	pipenv shell -c "heroku local release; exit \$$?"
+# 	pipenv shell -c "heroku local web; exit \$$?"
 
 # HELP ########################################################################
 
