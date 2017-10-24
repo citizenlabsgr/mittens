@@ -1,5 +1,5 @@
-from django.shortcuts import render
+from django.contrib.staticfiles.views import serve
 
 
 def index(request):
-    return render(request, 'index.html')
+    return serve(request, 'index.html')

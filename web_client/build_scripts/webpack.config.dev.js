@@ -14,7 +14,9 @@ function root(args) {
 var dev = _.merge({}, base, {
   devtool: 'eval-source-map',
   output: {
-    publicPath: 'http://localhost:3000/'
+    publicPath: '/compiled/',
+    path: root('/build'),
+    filename: 'app.js'
   },
   devServer: {
     port: 3000,
@@ -31,8 +33,8 @@ dev.plugins.push(new webpack.HotModuleReplacementPlugin());
 dev.plugins.push(new webpack.NamedModulesPlugin());
 dev.plugins.push(new CheckerPlugin());
 dev.plugins.push(
-  new webpack.DefinePlugin({ 
-    PRODUCTION: false, 
+  new webpack.DefinePlugin({
+    PRODUCTION: false,
   })
 );
 

@@ -38,7 +38,7 @@ clean:
 	rm -rf tmp
 	rm -rf staticfiles
 	rm -rf .coverage htmlcov
-	rm -rf web_client/node_modules
+	rm -rf web_client/node_modules web_client/build
 	- pipenv --rm
 
 # RUNTIME DEPENDENCIES ########################################################
