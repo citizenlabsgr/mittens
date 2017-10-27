@@ -61,6 +61,13 @@ $ make install
 
 ## Development
 
+Create a development database and seed it with data:
+
+```sh
+$ createdb voterengagement_dev
+$ make data
+```
+
 To run the backend/frontend development server:
 
 ```sh
