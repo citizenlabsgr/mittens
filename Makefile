@@ -35,7 +35,7 @@ $(FRONTEND_DEPENDENCIES): package.json
 
 .PHONY: build
 build:
-	cd web_client && yarn build
+	yarn build
 
 .PHONY: clean
 clean:

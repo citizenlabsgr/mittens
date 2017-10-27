@@ -1,11 +1,5 @@
 {
   "env": {
-    "PIPENV_COLORBLIND" : {
-      "value": "true"
-    },
-    "PIPENV_NOSPIN" : {
-      "value": "true"
-    },
     "HEROKU_APP_NAME": {
       "required": true
     },
@@ -18,6 +12,9 @@
     }
   },
   "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
     {
       "url": "heroku/python"
     }

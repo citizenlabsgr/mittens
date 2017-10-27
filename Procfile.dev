@@ -1,2 +1,2 @@
 py: PYTHONUNBUFFERED=true python manage.py runserver 5000
-js: cd web_client && yarn watch
+js: yarn watch
