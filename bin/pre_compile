@@ -9,3 +9,6 @@ indent() {
 puts-step() {
   echo "-----> $@"
 }
+
+puts-step "Compiling frontend..."
+make build | indent

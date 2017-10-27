@@ -10,6 +10,10 @@ ci: check test ## CI | Run all validation targets
 doctor: ## Check for required system dependencies
 	bin/verchew
 
+.env:
+	echo SECRET_KEY=local >> $@
+	echo DATABASE_URL=postgresql://localhost/mediavouch_dev >> $@
+
 # PROJECT DEPENDENCIES ########################################################
 
 BACKEND_DEPENDENCIES := tmp/.backend-installed
@@ -75,13 +79,13 @@ test: install
 run: install ## Run the applicaiton
 	pipenv run honcho start --procfile=Procfile.dev
 
-# TODO: Emulate the production server
-# .PHONY: run-prod
-# run-prod: install ## Run the application (emulate production)
-# 	pipenv shell -c "bin/pre_compile; exit \$$?"
-# 	pipenv shell -c "bin/post_compile; exit \$$?"
-# 	pipenv shell -c "heroku local release; exit \$$?"
-# 	pipenv shell -c "heroku local web; exit \$$?"
+TODO: Emulate the production server
+.PHONY: run-prod
+run-prod: .env install ## Run the application (emulate production)
+	pipenv shell "bin/pre_compile; exit \$$?"
+	pipenv shell "bin/post_compile; exit \$$?"
+	pipenv shell "heroku local release; exit \$$?"
+	pipenv shell "heroku local web; exit \$$?"
 
 # HELP ########################################################################
 
