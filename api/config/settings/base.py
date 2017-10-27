@@ -82,6 +82,10 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
+STATICFILES_DIRS = [
+    os.path.join(os.path.dirname(PROJECT_ROOT), 'web_client', 'build'),
+]
+
 ###############################################################################
 # Django REST Framework
 

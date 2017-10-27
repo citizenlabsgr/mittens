@@ -9,6 +9,7 @@
   "scripts": {
     "build-dev": "webpack --display-error-details --config build_scripts/webpack.config.dev.js",
     "build": "webpack --display-error-details --config build_scripts/webpack.config.prod.js",
+    "watch": "webpack --watch --config build_scripts/webpack.config.dev.js",
     "generate": "plop --plopfile build_scripts/plopfile.js",
     "start": "webpack-dev-server --config build_scripts/webpack.config.dev.js --progress --colors",
     "test": "jest",
