@@ -11,4 +11,5 @@ puts-step() {
 }
 
 puts-step "Compiling frontend..."
-make build | indent
+yarn install | indent
+yarn build | indent
