@@ -11,7 +11,7 @@
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "jsx": "react",
-    "baseUrl": "./app"
+    "baseUrl": "./web_client/app"
   },
   "awesomeTypescriptLoaderOptions": {
     "forkCheckerSilent": true

@@ -1,4 +1,7 @@
 /tmp/
+/web_client/build
+/node_modules
+/typings
+npm-debug.log
 .env
-
 /staticfiles/

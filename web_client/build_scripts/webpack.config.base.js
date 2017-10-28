@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    './polyfills.ts',
-    './app/main.tsx'
+    './web_client/polyfills.ts',
+    './web_client/app/main.tsx'
   ],
 
   output: {
@@ -15,7 +15,7 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    modules: ['./app', './node_modules']
+    modules: ['./web_client/app', './node_modules']
   },
 
   module: {
@@ -56,7 +56,7 @@ module.exports = {
   plugins: [
     // This takes the index.html file and injects our scripts.
     new HtmlWebpackPlugin({
-      template: './app/index.html',
+      template: './web_client/app/index.html',
       inject: 'head'
     }),
   ]
