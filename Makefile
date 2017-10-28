@@ -17,7 +17,7 @@ doctor: ## Check for required system dependencies
 # PROJECT DEPENDENCIES ########################################################
 
 BACKEND_DEPENDENCIES := tmp/.backend-installed
-FRONTEND_DEPENDENCIES := web_client/node_modules
+FRONTEND_DEPENDENCIES := node_modules
 
 .PHONY: install
 install: $(BACKEND_DEPENDENCIES) $(FRONTEND_DEPENDENCIES) ## Install project dependencies
@@ -27,8 +27,8 @@ $(BACKEND_DEPENDENCIES): Pipfile*
 	pipenv install --dev
 	@ touch $@
 
-$(FRONTEND_DEPENDENCIES): web_client/package.json
-	cd web_client && yarn install
+$(FRONTEND_DEPENDENCIES): package.json
+	yarn install
 	@ touch  $@
 
 # BUILD TARGETS ###############################################################
@@ -42,7 +42,7 @@ clean:
 	rm -rf tmp
 	rm -rf staticfiles
 	rm -rf .coverage htmlcov
-	rm -rf web_client/node_modules web_client/build
+	rm -rf ./node_modules web_client/build
 	- pipenv --rm
 
 # RUNTIME DEPENDENCIES ########################################################

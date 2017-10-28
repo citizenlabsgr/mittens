@@ -1,19 +1,18 @@
 {
-  "name": "climatum-react-seed",
+  "name": "voter-engagement",
   "version": "0.0.1",
-  "description": "A React Seed app",
-  "author": "Sam Bleckley <sam@climatum.com>",
+  "description": "An app to improve voter turnout",
+  "author": "Citizen Labs",
   "homepage": "https://gitlab.com/climatum/kepler.git",
   "license": "UNLICENSED",
   "repository": "https://",
   "scripts": {
-    "build-dev": "webpack --display-error-details --config build_scripts/webpack.config.dev.js",
-    "build": "webpack --display-error-details --config build_scripts/webpack.config.prod.js",
-    "watch": "webpack --watch --config build_scripts/webpack.config.dev.js",
-    "generate": "plop --plopfile build_scripts/plopfile.js",
-    "start": "webpack-dev-server --config build_scripts/webpack.config.dev.js --progress --colors",
-    "test": "jest",
-    "deploy": "./build_scripts/deploy.sh"
+    "build-dev": "webpack --display-error-details --config web_client/build_scripts/webpack.config.dev.js",
+    "build": "webpack --display-error-details --config web_client/build_scripts/webpack.config.prod.js",
+    "watch": "webpack --watch --config web_client/build_scripts/webpack.config.dev.js",
+    "generate": "plop --plopfile web_client/build_scripts/plopfile.js",
+    "start": "webpack-dev-server --config web_client/build_scripts/webpack.config.dev.js --progress --colors",
+    "test": "jest"
   },
   "dependencies": {
     "@types/react-dom": "^15.5.4",
