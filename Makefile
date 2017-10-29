@@ -16,18 +16,18 @@ doctor: ## Check for required system dependencies
 
 # PROJECT DEPENDENCIES ########################################################
 
-BACKEND_DEPENDENCIES := tmp/.backend-installed
-FRONTEND_DEPENDENCIES := node_modules
+BACKEND_DEPENDENCIES := tmp/.pipenv-$(shell bin/checksum Pipfile.lock)
+FRONTEND_DEPENDENCIES := tmp/.yarn-$(shell bin/checksum yarn.lock)
 
 .PHONY: install
 install: $(BACKEND_DEPENDENCIES) $(FRONTEND_DEPENDENCIES) ## Install project dependencies
 
-$(BACKEND_DEPENDENCIES): Pipfile*
+$(BACKEND_DEPENDENCIES):
 	mkdir -p tmp
 	pipenv install --dev
 	@ touch $@
 
-$(FRONTEND_DEPENDENCIES): package.json
+$(FRONTEND_DEPENDENCIES):
 	yarn install
 	@ touch  $@
 
