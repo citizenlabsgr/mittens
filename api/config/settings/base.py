@@ -12,6 +12,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django.contrib.sites',
@@ -80,10 +81,39 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+BUILD_ROOT = os.path.join(PROJECT_ROOT, 'web_client', 'build')
 
-STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'web_client', 'build'),
-]
+STATICFILES_DIRS = [BUILD_ROOT]
+
+###############################################################################
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['console'],
+            'level':'DEBUG',
+        },
+        'api': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    }
+}
 
 ###############################################################################
 # Django REST Framework

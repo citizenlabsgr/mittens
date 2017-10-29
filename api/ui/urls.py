@@ -5,7 +5,6 @@ from django.conf import settings
 from . import views
 
 
-urlpatterns = static('/compiled/',
-                     document_root=settings.STATICFILES_DIRS[0]) + [
+urlpatterns = static('/compiled/', document_root=settings.BUILD_ROOT) + [
     url('^', views.index, name='index'),
 ]

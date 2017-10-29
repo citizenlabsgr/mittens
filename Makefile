@@ -31,18 +31,12 @@ $(FRONTEND_DEPENDENCIES): package.json
 	yarn install
 	@ touch  $@
 
-# BUILD TARGETS ###############################################################
-
-.PHONY: build
-build:
-	yarn build
-
 .PHONY: clean
 clean:
 	rm -rf tmp
 	rm -rf staticfiles
 	rm -rf .coverage htmlcov
-	rm -rf ./node_modules web_client/build
+	rm -rf node_modules web_client/build
 	- pipenv --rm
 
 # RUNTIME DEPENDENCIES ########################################################

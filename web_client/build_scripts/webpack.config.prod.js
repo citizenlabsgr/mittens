@@ -13,6 +13,7 @@ function root(args) {
 
 var dev = _.merge({}, base, {
   output: {
+    publicPath: '/static/',
     path: root('/build'),
     filename: 'app.[hash:6].js'
   }
@@ -21,8 +22,8 @@ var dev = _.merge({}, base, {
 dev.plugins.push(
   new webpack.DefinePlugin({
     PRODUCTION: true,
-    "process.env": { 
-      NODE_ENV: JSON.stringify("production") 
+    "process.env": {
+      NODE_ENV: JSON.stringify("production")
     }})//,
   //new UglifyJSPlugin()
 );
