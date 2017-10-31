@@ -1,23 +1,52 @@
-machine:
-  python:
-    version: 3.6.1
-  environment:
-    RANDOM_SEED: 0
-    PIPENV_NOSPIN: true
+version: 2
 
-dependencies:
-  pre:
-    - pip install pipenv==8.2.7
-    - make doctor
-  override:
-    - make install
-    - make build
-  cache_directories:
-    - ~/.cache/pip
-    - ~/virtualenvs/venv-3.6.1
-    - ~/.m2
-    - api/ui/static/compiled
+jobs:
+  build:
+    working_directory: ~/voter-engagement
 
-test:
-  override:
-    - exit 0
+    docker:
+      - image: maketested/python-node:latest
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+          PIPENV_NOSPIN: true
+          PIPENV_HIDE_EMOJIS: true
+          RANDOM_SEED: 0
+      - image: circleci/postgres:9.6-alpine-ram
+        environment:
+          - POSTGRES_USER=circleci
+          - POSTGRES_DB=voterengagement_test
+
+    steps:
+      # Get code
+      - checkout
+
+      # Check system dependencies
+      - run: make doctor
+
+      # Restore cache
+      - type: cache-restore
+        key: pipenv-{{ checksum "Pipfile.lock" }}
+      - type: cache-restore
+        key: yarn-{{ checksum "yarn.lock" }}
+
+      # Install project dependencies
+      - run: make install
+
+      # Store cache
+      - type: cache-save
+        key: pipenv-{{ checksum "Pipfile.lock" }}
+        paths:
+          - .venv
+          - tmp
+      - type: cache-save
+        key: yarn-{{ checksum "yarn.lock" }}
+        paths:
+          - node_modules
+          - tmp
+
+      # Backend tests
+      - run: make test
+      - run: make check
+
+      # Frontend tests
+      # - run:
