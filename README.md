@@ -1,5 +1,7 @@
 # Voter Engagement
 
+[![CircleCI](https://circleci.com/gh/citizenlabsgr/voter-engagement.svg?style=svg)](https://circleci.com/gh/citizenlabsgr/voter-engagement)
+
 **Slack channel:** #project-voter_engage
 
 **Project Description:**
