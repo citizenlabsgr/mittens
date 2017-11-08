@@ -71,7 +71,7 @@ let style = styles({
     lineHeight: 1.6
   },
   required: {
-    color: vars.color.themeLight,
+    color: vars.color.theme,
     paddingLeft: 1,
   },
 });

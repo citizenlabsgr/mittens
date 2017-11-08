@@ -46,8 +46,3 @@ function unObservify(x: any) {
   // objects. TODO performance
   return x ? JSON.parse(JSON.stringify(x)) : x
 }
-
-// Other people might also be reordering, etc -- so add a little bit of a jiggle
-export function perturbedAverage(a: number, b: number) {
-  return (a + b) / 2 + Math.random() * Math.abs(a - b) / 16;
-}

@@ -94,25 +94,25 @@ let style = styles({
   first: {
     animationDelay: '0s',
     '> div': {
-      background: vars.color.themeLight
+      background: vars.color.success
     }
   },
   second: {
     animationDelay: '1s',
     '> div': {
-      background: vars.color.background
+      background: vars.color.theme
     }
   },
   third: {
     animationDelay: '2s',
     '> div': {
-      background: vars.color.themeLight
+      background: vars.color.success
     }
   },
   fourth: {
     animationDelay: '3s',
     '> div': {
-      background: vars.color.background
+      background: vars.color.theme
     },
   },
   dark: {

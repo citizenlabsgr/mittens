@@ -1,11 +1,4 @@
-import * as chroma from 'chroma-js'
 
-export const themeGradient = chroma.scale(["#E37B40", "#F5F5F5"]).mode('lab');
-export function themeSteps(i: number): string {
-  return themeGradient(i / 9).hex();
-}
-
-// Breakpoints
 const radius = 10;
 const focusColor = "rgba(133, 191, 253, 1)";
 export const vars = {
@@ -16,22 +9,20 @@ export const vars = {
   spacing: 24,
   smallSpacing: 12,
   color: {
-    themeSteps: themeSteps,
     focus: focusColor,
     font: "#333",
     fontLight: "#777",
-    theme: themeSteps(0),
-    themeLight: themeSteps(3),
-    background: themeSteps(6),
-    lightest: themeSteps(9),
-    action: "#324D5C",
-    actionLight: "#537E96",
-    warn: "#DE5B49",
-    warnLight: "#DE9B92",
-    success: "#88B298",
-    successLight: "#AFE5C3",
+    theme: "#7EBB41",
+    themeLight: "#ACE572",
+    lightest: "#f5f5f5",
+    action: "#FF803A",
+    actionight: "#FF9861",
+    warn: "#F8342D",
+    warnLight: "#F86761",
+    success: "#B2FF55",
+    successLight: "#ACE572",
     white: "#fff",
-    whiteLight: themeSteps(8)
+    whiteLight: "#EEFFDE"
   },
   border: {
     borderColor: "#ddd",

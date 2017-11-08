@@ -19,10 +19,17 @@ export class Home extends React.Component<HomeProps, {}> {
   render() {
     return (
       <MainContentWrapper>
-        <div {...css(centeredBox)}>
+        <div {...css(style.box)}>
           Hello, world!
         </div>
       </MainContentWrapper>
     );
   }
 }
+
+const style = styles({
+  box: {
+    ...centeredBox,
+    padding: vars.spacing
+  }
+});
