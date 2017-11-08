@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'api.core',
     'api.voters',
     'api.elections',
+    'api.ballots',
 
     'api.ui',
     'api.api',

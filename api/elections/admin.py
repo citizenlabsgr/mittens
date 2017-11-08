@@ -5,13 +5,9 @@ from . import models
 
 class RegionPartAdmin(admin.ModelAdmin):
 
-    search_fields = [
-        'name',
-    ]
+    search_fields = ['name']
 
-    list_display = [
-        'name',
-    ]
+    list_display = ['name']
 
 
 admin.site.register(models.County)
@@ -39,11 +35,6 @@ class RegionAdmin(admin.ModelAdmin):
 @admin.register(models.Election)
 class ElectionAdmin(admin.ModelAdmin):
 
-    search_fields = [
-        'name',
-    ]
+    search_fields = ['name']
 
-    list_display = [
-        'name',
-        'date',
-    ]
+    list_display = ['name', 'date']
