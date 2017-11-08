@@ -17,4 +17,4 @@ DATABASES = {
     }
 }
 
-LOGGING['loggers']['backend']['level'] = 'DEBUG'
+LOGGING['loggers']['api']['level'] = 'DEBUG'

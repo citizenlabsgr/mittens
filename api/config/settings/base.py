@@ -7,6 +7,8 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(CONFIG_ROOT))
 # Core
 
 INSTALLED_APPS = [
+    'grappelli',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -17,17 +19,15 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django.contrib.sites',
 
-    'api.api',
     'api.core',
-    'api.ui',
+    'api.voters',
+    'api.elections',
+    'api.ballots',
 
-    # 'allauth',
-    # 'allauth.account',
+    'api.ui',
+    'api.api',
+
     'rest_framework',
-    # 'rest_framework.authtoken',
-    # 'rest_auth',
-    # 'rest_auth.registration',
-    # 'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +54,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
             ],
+            'string_if_invalid': "(missing: %s)",
         },
     },
 ]
@@ -105,8 +106,8 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers':['console'],
-            'level':'DEBUG',
+            'handlers': ['console'],
+            'level': 'DEBUG',
         },
         'api': {
             'handlers': ['console'],
@@ -114,6 +115,11 @@ LOGGING = {
         },
     }
 }
+
+###############################################################################
+# Grappelli
+
+GRAPPELLI_ADMIN_TITLE = "Voter Engagement Administration"
 
 ###############################################################################
 # Django REST Framework

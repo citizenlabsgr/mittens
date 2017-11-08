@@ -1,0 +1,17 @@
+[MASTER]
+
+ignore=migrations
+
+
+[MESSAGES CONTROL]
+
+disable=
+    # Generally useless for this project:
+    fixme,
+    global-statement,
+    invalid-name,
+    missing-docstring,
+    redefined-outer-name,
+    too-few-public-methods,
+    # Disable false positives due to 'faker':
+    no-member,

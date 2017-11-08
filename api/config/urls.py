@@ -13,6 +13,7 @@ urlpatterns = [
 
     url('^api/', include('api.api.urls')),
     url('^admin/', admin.site.urls),
+    url('^grappelli/', include('grappelli.urls')),
 
     url('^(?!(?:api|admin))', include('api.ui.urls')),
 ]

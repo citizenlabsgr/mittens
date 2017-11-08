@@ -52,20 +52,34 @@ migrate: install ## Database | Run database migrations
 .PHONY: data
 ifdef HEROKU_APP_NAME
 data: ## Database | Seed data for manual testing
+	python manage.py gendata
 else
 data: install migrate
+	pipenv run python manage.py gendata
 endif
-	echo "TODO: Seed data for review apps"
+
+.PHONY: reset
+reset: install ## Database | Create a new database, migrate, and seed it
+	- dropdb voterengagement_dev
+	- createdb voterengagement_dev
+	make data
 
 # VALIDATION TARGETS ##########################################################
 
 .PHONY: check
 check: install
-	echo "TODO: Add static analysis"
+	pipenv run pycodestyle api
+	@ echo
+	pipenv run pylint api
 
 .PHONY: test
 test: install
-	echo "TODO: Run tests"
+	pipenv run pytest api
+
+.PHONY: watch
+watch: install
+	@ sleep 2 && make ci &
+	pipenv run watchmedo tricks .watchdog.yml
 
 # SERVER TARGETS ##############################################################
 

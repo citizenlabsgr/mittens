@@ -1,0 +1,12 @@
+tricks:
+  - watchdog.tricks.ShellCommandTrick:
+      patterns:
+        - "*.py"
+        - "*.cfg"
+        - "*.ini"
+      shell_command: >
+        echo && clear &&
+        make test &&
+        echo &&
+        make check
+      wait_for_process: true
