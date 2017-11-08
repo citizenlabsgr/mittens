@@ -6,6 +6,8 @@ import pytest
 from expecter import expect
 import arrow
 
+from api.elections.models import Election
+
 from .. import models
 
 
@@ -30,6 +32,7 @@ def voter(info):
 def status(voter):
     return models.Status(
         voter=voter,
+        election=Election(name="Sample Election"),
     )
 
 
@@ -59,4 +62,4 @@ def describe_status():
     def describe_str():
 
         def is_based_on_voter_and_election(status):
-            expect(str(status)) == "Placeholder Election: John Doe"
+            expect(str(status)) == "Sample Election: John Doe"

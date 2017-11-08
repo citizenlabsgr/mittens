@@ -2,6 +2,8 @@ from django.db import models
 
 import arrow
 
+from api.elections.models import Election
+
 
 class RegistrationInfo(models.Model):
     """Data needed to determine MI voter registration status."""
@@ -42,8 +44,7 @@ class Status(models.Model):
         verbose_name_plural = "Statuses"
 
     voter = models.ForeignKey(Voter)
-
-    # election = models.Foreignkey(Election)
+    election = models.ForeignKey(Election)
 
     registered = models.NullBooleanField()
     read_sample_ballot = models.NullBooleanField()
@@ -51,7 +52,7 @@ class Status(models.Model):
     voted = models.NullBooleanField()
 
     def __str__(self):
-        return f"Placeholder Election: {self.voter}"
+        return f"{self.election}: {self.voter}"
 
     @property
     def progress(self):

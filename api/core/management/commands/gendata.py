@@ -9,6 +9,7 @@ from django.db.utils import IntegrityError
 
 from faker import Faker
 
+from api.elections.models import Election
 from api.voters.models import Voter, Status
 
 
@@ -97,10 +98,20 @@ class Command(BaseCommand):
                 )
                 self.stdout.write(f"Created voter: {voter}")
 
+        while Election.objects.count() < 5:
+            with suppress(IntegrityError):
+                name, date = self.fake_election()
+                election = Election.objects.create(
+                    name=name,
+                    date=date,
+                )
+                self.stdout.write(f"Created election: {election}")
+
         while Status.objects.count() < 50:
             with suppress(IntegrityError):
                 status = Status.objects.create(
                     voter=self.random_voter(),
+                    election=self.random_election(),
 
                     registered=True if p(0.90) else None,
                     read_sample_ballot=True if p(0.80) else None,
@@ -110,5 +121,15 @@ class Command(BaseCommand):
                 self.stdout.write(f"Created status: {status}")
 
     @staticmethod
+    def fake_election():
+        date = fake.future_date(end_date="+2y")
+        kind = random.choice(["General", "Midterm", "Special"])
+        return f"{date.year} {kind} Election", date
+
+    @staticmethod
     def random_voter():
         return random.choice(Voter.objects.all())
+
+    @staticmethod
+    def random_election():
+        return random.choice(Election.objects.all())

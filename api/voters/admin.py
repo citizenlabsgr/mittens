@@ -27,13 +27,13 @@ class StatusAdmin(admin.ModelAdmin):
         'voter__first_name',
         'voter__last_name',
 
-        # 'election__name',
+        'election__name',
     ]
 
     list_display = [
         'id',
         'voter',
-        # 'election',
+        'election',
 
         'registered',
         'read_sample_ballot',
@@ -42,7 +42,7 @@ class StatusAdmin(admin.ModelAdmin):
     ]
 
     list_filter = [
-        # 'election',
+        'election',
 
         'registered',
         'read_sample_ballot',
