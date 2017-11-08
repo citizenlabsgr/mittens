@@ -19,17 +19,14 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django.contrib.sites',
 
-    'api.api',
     'api.core',
-    'api.ui',
+    'api.voters',
+    'api.elections',
 
-    # 'allauth',
-    # 'allauth.account',
+    'api.ui',
+    'api.api',
+
     'rest_framework',
-    # 'rest_framework.authtoken',
-    # 'rest_auth',
-    # 'rest_auth.registration',
-    # 'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -108,8 +105,8 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers':['console'],
-            'level':'DEBUG',
+            'handlers': ['console'],
+            'level': 'DEBUG',
         },
         'api': {
             'handlers': ['console'],

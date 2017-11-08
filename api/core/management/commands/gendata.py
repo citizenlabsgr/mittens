@@ -9,13 +9,15 @@ from django.db.utils import IntegrityError
 
 from faker import Faker
 
+from api.voters.models import Voter, Status
+
 
 User = get_user_model()
 fake = Faker()
 
 
 def p(value):
-    return value < random.random()
+    return value > random.random()
 
 
 class Command(BaseCommand):
@@ -29,7 +31,7 @@ class Command(BaseCommand):
             default=[],
         )
 
-    def handle(self, *, emails, **_options):
+    def handle(self, *, emails, **_options):  # pylint: disable=arguments-differ
         self.update_site()
         admin = self.get_or_create_superuser()
         users = [self.get_or_create_user(email) for email in emails]
@@ -76,9 +78,37 @@ class Command(BaseCommand):
             with suppress(IntegrityError):
                 username = fake.name().replace(' ', '')
                 user = User.objects.create(
-                    username=username.lower() if p(0.3) else username,
+                    username=username.lower() if p(0.30) else username,
                     email=fake.email(),
                     first_name=fake.first_name(),
                     last_name=fake.last_name(),
                 )
                 self.stdout.write(f"Created user: {user}")
+
+        while Voter.objects.count() < 50:
+            with suppress(IntegrityError):
+                voter = Voter.objects.create(
+                    first_name=fake.first_name(),
+                    last_name=fake.last_name(),
+                    birth_date=fake.date(),
+                    zip_code=fake.zipcode(),
+
+                    email=fake.email(),
+                )
+                self.stdout.write(f"Created voter: {voter}")
+
+        while Status.objects.count() < 50:
+            with suppress(IntegrityError):
+                status = Status.objects.create(
+                    voter=self.random_voter(),
+
+                    registered=True if p(0.90) else None,
+                    read_sample_ballot=True if p(0.80) else None,
+                    located_polling_location=True if p(0.70) else None,
+                    voted=True if p(0.60) else None,
+                )
+                self.stdout.write(f"Created status: {status}")
+
+    @staticmethod
+    def random_voter():
+        return random.choice(Voter.objects.all())
