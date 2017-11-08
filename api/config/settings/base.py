@@ -7,6 +7,8 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(CONFIG_ROOT))
 # Core
 
 INSTALLED_APPS = [
+    'grappelli',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,6 +56,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
             ],
+            'string_if_invalid': "(missing: %s)",
         },
     },
 ]
@@ -114,6 +117,11 @@ LOGGING = {
         },
     }
 }
+
+###############################################################################
+# Grappelli
+
+GRAPPELLI_ADMIN_TITLE = "Voter Engagement Administration"
 
 ###############################################################################
 # Django REST Framework

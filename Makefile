@@ -55,7 +55,7 @@ data: ## Database | Seed data for manual testing
 else
 data: install migrate
 endif
-	echo "TODO: Seed data for review apps"
+	pipenv run python manage.py gendata
 
 # VALIDATION TARGETS ##########################################################
 
