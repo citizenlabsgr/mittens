@@ -57,15 +57,28 @@ data: install migrate
 endif
 	pipenv run python manage.py gendata
 
+.PHONY: reset
+reset: install ## Database | Create a new database, migrate, and seed it
+	- dropdb voterengagement_dev
+	- createdb voterengagement_dev
+	make data
+
 # VALIDATION TARGETS ##########################################################
 
 .PHONY: check
 check: install
-	echo "TODO: Add static analysis"
+	pipenv run pycodestyle api
+	@ echo
+	pipenv run pylint api
 
 .PHONY: test
 test: install
-	echo "TODO: Run tests"
+	pipenv run pytest api
+
+.PHONY: watch
+watch: install
+	@ sleep 2 && make ci &
+	pipenv run watchmedo tricks .watchdog.yml
 
 # SERVER TARGETS ##############################################################
 

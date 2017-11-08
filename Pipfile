@@ -23,7 +23,8 @@ djangorestframework = "*"
 dj_database_url = "*"
 psycopg2 = "*"
 
-# Scripts
+# Utilities
+arrow = "*"
 faker = "*"
 
 # Server
@@ -33,5 +34,18 @@ gunicorn = "*"
 
 [dev-packages]
 
+# Static analysis
+pylint = "*"
+pycodestyle = "*"
+
+# Testing
+pytest = "*"
+pytest-django = "*"
+pytest-describe = "*"
+pytest-expecter = "*"
+pytest-catchlog = "*"
+pytest-cov = "*"
+
 # Tooling
 honcho = "*"
+watchdog = "*"
