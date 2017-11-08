@@ -51,8 +51,8 @@ class Region(models.Model):
         if self.county:
             return f"{self.county} County"
         if self.city and self.ward:
-            return f"{self.city} - Ward {self.ward}"
-        return str(self.city)
+            return f"City of {self.city} - Ward {self.ward}"
+        return f"City of {self.city}"
 
     def clean(self):
         super().clean()

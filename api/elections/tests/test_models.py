@@ -36,7 +36,7 @@ def describe_region():
             expect(str(region_county)) == "Kent County"
 
         def when_city(region_city):
-            expect(str(region_city)) == "Grand Rapids"
+            expect(str(region_city)) == "City of Grand Rapids"
 
         def when_ward(region_ward):
-            expect(str(region_ward)) == "Grand Rapids - Ward 3"
+            expect(str(region_ward)) == "City of Grand Rapids - Ward 3"
