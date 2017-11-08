@@ -2,7 +2,7 @@ from django.db import models
 
 import arrow
 
-from api.elections.models import Election
+from api.elections.models import Region, Election
 
 
 class RegistrationInfo(models.Model):
@@ -29,6 +29,7 @@ class RegistrationInfo(models.Model):
 class Voter(RegistrationInfo):
 
     email = models.EmailField()
+    regions = models.ManyToManyField(Region, blank=True)
 
     def __str__(self):
         return self.name

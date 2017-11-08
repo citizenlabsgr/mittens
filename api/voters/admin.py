@@ -19,6 +19,14 @@ class VoterAdmin(admin.ModelAdmin):
         'zip_code',
     ]
 
+    list_filter = [
+        'regions',
+    ]
+
+    filter_horizontal = [
+        'regions'
+    ]
+
 
 @admin.register(models.Status)
 class StatusAdmin(admin.ModelAdmin):
