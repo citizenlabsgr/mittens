@@ -52,10 +52,11 @@ migrate: install ## Database | Run database migrations
 .PHONY: data
 ifdef HEROKU_APP_NAME
 data: ## Database | Seed data for manual testing
+	python manage.py gendata
 else
 data: install migrate
-endif
 	pipenv run python manage.py gendata
+endif
 
 .PHONY: reset
 reset: install ## Database | Create a new database, migrate, and seed it
