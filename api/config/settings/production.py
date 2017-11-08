@@ -16,9 +16,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    # TODO: Prevent access from herokuapp.com when domain is registered
-    # '.voterengagement.com',
-    '.herokuapp.com',
+    '.citizenlabs.org',
 ]
 
 ###############################################################################
