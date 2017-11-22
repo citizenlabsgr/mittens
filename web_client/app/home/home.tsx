@@ -6,6 +6,7 @@ import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
 import { ShortInput } from 'forms/short-input/short-input';
+import { Button } from 'button/button';
 
 
 export type HomeProps = {
@@ -15,7 +16,10 @@ export type HomeProps = {
 
 export class Home extends React.Component<HomeProps, {}> {
   state = {
-    voterName: "",
+    voterFirstName: "",
+    voterLastName: "",
+    voterBirthMonth: "",
+    voterBirthYear: "",
     zip: ""
   } 
 
@@ -25,12 +29,20 @@ export class Home extends React.Component<HomeProps, {}> {
     }
   }
 
+  submit(){
+    console.log("hooray!");
+  }
+  
   render() {
     return (
       <MainContentWrapper>
         <div {...css(style.box)}>
-          <ShortInput label="Name" onChange={this.setter('voterName')} value={this.state.voterName}/>
+          <ShortInput label="First Name" onChange={this.setter('voterFirstName')} value={this.state.voterFirstName}/>
+          <ShortInput label="Last Name" onChange={this.setter('voterLastName')} value={this.state.voterLastName}/>
+          <ShortInput label="Birth Month" onChange={this.setter('voterBirthMonth')} value={this.state.voterBirthMonth}/>
+          <ShortInput label="Birth Year" onChange={this.setter('voterBirthYear')} value={this.state.voterBirthYear}/>
           <ShortInput label="Zip Code" onChange={this.setter('zip')} value={this.state.zip}/>
+          <Button action={this.submit}> FIND ME!</Button>
         </div>
       </MainContentWrapper>
     );
