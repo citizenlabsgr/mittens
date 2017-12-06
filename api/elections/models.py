@@ -37,9 +37,12 @@ class Region(models.Model):
     class Meta:
         unique_together = ('county', 'city', 'ward')
 
-    county = models.ForeignKey(County, blank=True, null=True)
-    city = models.ForeignKey(City, blank=True, null=True)
-    ward = models.ForeignKey(Ward, blank=True, null=True)
+    county = models.ForeignKey(County, blank=True, null=True,
+                               on_delete=models.PROTECT)
+    city = models.ForeignKey(City, blank=True, null=True,
+                             on_delete=models.PROTECT)
+    ward = models.ForeignKey(Ward, blank=True, null=True,
+                             on_delete=models.PROTECT)
 
     # geo = models.JSONField()
 

@@ -8,7 +8,7 @@ class Proposal(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
-    election = models.ForeignKey(Election)
+    election = models.ForeignKey(Election, on_delete=models.CASCADE)
     regions = models.ManyToManyField(Region)
 
     def __str__(self):
@@ -29,7 +29,8 @@ class Party(models.Model):
 class Candidate(models.Model):
 
     name = models.CharField(max_length=100)
-    party = models.ForeignKey(Party, blank=True, null=True)
+    party = models.ForeignKey(Party, blank=True, null=True,
+                              on_delete=models.SET_NULL)
     website = models.URLField(blank=True, null=True)
 
     def __str__(self):
@@ -40,8 +41,8 @@ class Position(models.Model):
 
     name = models.CharField(max_length=200)
 
-    election = models.ForeignKey(Election)
-    region = models.ForeignKey(Region)
+    election = models.ForeignKey(Election, on_delete=models.CASCADE)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
 
     candidates = models.ManyToManyField(Candidate, blank=True)
     seats = models.PositiveIntegerField(default=1)

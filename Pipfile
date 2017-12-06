@@ -13,7 +13,7 @@ python_version = "3.6.3"
 [packages]
 
 # Django
-django = "~=1.11"
+django = "~=2.0"
 django-grappelli = "*"
 
 # Django REST Framework
@@ -30,6 +30,9 @@ faker = "*"
 # Server
 whitenoise = "*"
 gunicorn = "*"
+
+# Tracking
+bugsnag = "*"
 
 
 [dev-packages]

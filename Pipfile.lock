@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "568cdd7decadf630ad87bd89b2c9c01c7009a369bf72e91be1df9783928a6347"
+            "sha256": "ac880addedc81c871fb70a5ceee7123f02ddcc1ac47baf1bb1c47c08bc436e05"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -35,6 +35,14 @@
             ],
             "version": "==0.12.0"
         },
+        "bugsnag": {
+            "hashes": [
+                "sha256:fe48c1f94c4b115707c8a8425a224447737e94c261e8e5a0a73f4dd78a5d9954",
+                "sha256:c75313bd10a48979bad6287d45ee36fe060b9721df3aef94ab74161def81dd86",
+                "sha256:574c54ac334b5f59c0e3bf203579d3904c9c4dd819f2ac9a47c00076b8f0285e"
+            ],
+            "version": "==3.3.0"
+        },
         "dj-database-url": {
             "hashes": [
                 "sha256:e16d94c382ea0564c48038fa7fe8d9c890ef1ab1a8ec4cb48e732c124b9482fd",
@@ -44,10 +52,10 @@
         },
         "django": {
             "hashes": [
-                "sha256:fad46f44f6f4de66aacaa92e7753dbc4fe3ae834aa2daffaca0bf16c64798186",
-                "sha256:fed3e79bb5a3a8d5eb054c7a1ec1de229ef3f43335a67821cc3e489e9582f711"
+                "sha256:af18618ce3291be5092893d8522fe3919661bf3a1fb60e3858ae74865a4f07c2",
+                "sha256:9614851d4a7ff8cbd32b73c6076441f377c45a5bbff7e771798fb02c43c31f47"
             ],
-            "version": "==1.11.8"
+            "version": "==2.0"
         },
         "django-grappelli": {
             "hashes": [
@@ -147,6 +155,13 @@
                 "sha256:d0afd5e8a7ac69bfb1372e1bbfa3c63c22e3db8ae1284690e96b45c4430d08d0"
             ],
             "version": "==1.1"
+        },
+        "webob": {
+            "hashes": [
+                "sha256:63f4220492476c5c716b615baed7bf3d27040b3105014375787160dee0943115",
+                "sha256:8d10af182fda4b92193113ee1edeb687ab9dc44336b37d6804e413f0240d40d9"
+            ],
+            "version": "==1.7.4"
         },
         "whitenoise": {
             "hashes": [
