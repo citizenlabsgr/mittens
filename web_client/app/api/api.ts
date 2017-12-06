@@ -1,8 +1,6 @@
 import { merge } from 'lodash';
 import { apiPath } from 'environments/current';
 import { go } from 'router';
-import * as ActionCable from 'actioncable';
-const uuid = require('uuid/v4') as () => string;
 
 class API {
   // Need to set which api url we're going for
@@ -13,15 +11,16 @@ class API {
   }
 
   fetch(method: string, url: string, body?: {}, headers = {}) {
-    let request: RequestInit = {
+    let request: {method: string, headers: {}, credentials: string, body?: string} = { 
       method,
-      headers: merge({}, this.defaultHeaders, headers),
+      headers: Object.assign({}, this.defaultHeaders, headers),
       credentials: 'include'
     };
+
     if (method != 'GET' && body) {
       request.body = JSON.stringify(body);
     }
-    return fetch(this.apiURL + url, request);
+    return (fetch as any)(this.apiURL + url, request);
   }
 
   authFetch(method: string, url: string, body?: {}): Promise<any> {

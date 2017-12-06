@@ -1,13 +1,11 @@
 declare const PRODUCTION: boolean;
 
 if (PRODUCTION) {
-  var { apiPath, stripeKey, cablePath } = require('../environments/prod');
+  var { apiPath } = require('../environments/prod');
 } else {
-  var { apiPath, stripeKey, cablePath } = require('../environments/dev');
+  var { apiPath } = require('../environments/dev');
 }
 
 export {
-  apiPath,
-  stripeKey,
-  cablePath
+  apiPath
 }
