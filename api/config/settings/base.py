@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'bugsnag.django.middleware.BugsnagMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -97,13 +98,12 @@ LOGGING = {
             'format': '%(levelname)s: %(message)s'
         },
     },
-    'handlers': {
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-        },
+
+    'root': {
+        'level': 'ERROR',
+        'handlers': ['bugsnag'],
     },
+
     'loggers': {
         'django': {
             'handlers': ['console'],
@@ -113,7 +113,19 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
-    }
+    },
+
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'bugsnag': {
+            'level': 'INFO',
+            'class': 'bugsnag.handlers.BugsnagHandler',
+        },
+    },
 }
 
 ###############################################################################

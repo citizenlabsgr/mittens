@@ -46,8 +46,8 @@ class Status(models.Model):
     class Meta:
         verbose_name_plural = "statuses"
 
-    voter = models.ForeignKey(Voter)
-    election = models.ForeignKey(Election)
+    voter = models.ForeignKey(Voter, on_delete=models.CASCADE)
+    election = models.ForeignKey(Election, on_delete=models.CASCADE)
 
     registered = models.NullBooleanField()
     read_sample_ballot = models.NullBooleanField()
