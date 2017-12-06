@@ -26,6 +26,7 @@ psycopg2 = "*"
 # Utilities
 arrow = "*"
 faker = "*"
+requests = "*"
 
 # Server
 whitenoise = "*"
@@ -39,7 +40,7 @@ pylint = "*"
 pycodestyle = "*"
 
 # Testing
-pytest = "*"
+pytest = "< 3.3"
 pytest-django = "*"
 pytest-describe = "*"
 pytest-expecter = "*"
