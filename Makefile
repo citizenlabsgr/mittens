@@ -81,6 +81,13 @@ watch: install
 	@ sleep 2 && make ci &
 	pipenv run watchmedo tricks .watchdog.yml
 
+# DOCUMENTATION ###############################################################
+
+.PHONY: uml
+uml: install
+	mkdir -p design_documents/UML
+	pipenv run python manage.py graph_models -a -g -o design_documents/UML/ERD.png
+
 # SERVER TARGETS ##############################################################
 
 .PHONY: run

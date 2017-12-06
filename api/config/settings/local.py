@@ -9,6 +9,8 @@ DEBUG = True
 
 SECRET_KEY = 'dev'
 
+INSTALLED_APPS += ['django_extensions']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
