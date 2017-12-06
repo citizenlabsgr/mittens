@@ -48,5 +48,7 @@ pytest-catchlog = "*"
 pytest-cov = "*"
 
 # Tooling
+django-extensions = "*"
+pygraphviz = "*"
 honcho = "*"
 watchdog = "*"

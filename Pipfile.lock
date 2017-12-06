@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4833c6a1a8f532dedea2f0e273bbf889df358b00be19560817bf75f7ae328271"
+            "sha256": "db5c5a65e3a4b7854b5870733e204e61d227e73f4025233fa10aa2bb2c093b40"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -251,6 +251,13 @@
             ],
             "version": "==4.4.2"
         },
+        "django-extensions": {
+            "hashes": [
+                "sha256:7776b6c5f3807997c1459e96f4eed4af2b571fd6bebf61462242fa957166df30",
+                "sha256:9f1c314cfd4b974f03c5589f46f33051aa1d6b5a38cfb7f8824f59e9337768ae"
+            ],
+            "version": "==1.9.8"
+        },
         "honcho": {
             "hashes": [
                 "sha256:af5806bf13e3b20acdcb9ff8c0beb91eee6fe07393c3448dfad89667e6ac7576",
@@ -326,6 +333,13 @@
             ],
             "version": "==2.3.1"
         },
+        "pygraphviz": {
+            "hashes": [
+                "sha256:7c294cbc9d88946be671cc0d8602aac176d8c56695c0a7d871eadea75a958408",
+                "sha256:1aabe3efabe3691e889aec6d10ae28e7e10f3c153fa1235a4cd58b0724481fca"
+            ],
+            "version": "==1.3.1"
+        },
         "pylint": {
             "hashes": [
                 "sha256:948679535a28afc54afb9210dabc6973305409042ece8e5768ca1409910c1ed8",
@@ -399,6 +413,14 @@
                 "sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
             ],
             "version": "==1.11.0"
+        },
+        "typing": {
+            "hashes": [
+                "sha256:349b1f9c109c84b53ac79ac1d822eaa68fc91d63b321bd9392df15098f746f53",
+                "sha256:63a8255fe7c6269916baa440eb9b6a67139b0b97a01af632e7bd2842e1e02f15",
+                "sha256:d514bd84b284dd3e844f0305ac07511f097e325171f6cc4a20878d11ad771849"
+            ],
+            "version": "==3.6.2"
         },
         "watchdog": {
             "hashes": [
