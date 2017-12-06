@@ -1,1 +1,1 @@
-export { Organization } from './organization/organization';
+export { Voter } from './voter/voter';

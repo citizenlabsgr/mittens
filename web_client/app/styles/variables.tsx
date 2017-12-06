@@ -1,5 +1,5 @@
 
-const radius = 10;
+const radius = 3;
 const focusColor = "rgba(133, 191, 253, 1)";
 export const vars = {
   smallScreen: 500,
