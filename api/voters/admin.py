@@ -1,3 +1,5 @@
+# pylint: disable=no-self-use
+
 from django.contrib import admin
 
 from . import models
@@ -31,6 +33,10 @@ class VoterAdmin(admin.ModelAdmin):
 @admin.register(models.Status)
 class StatusAdmin(admin.ModelAdmin):
 
+    def fetch_and_update_registration(self, _request, queryset):
+        for status in queryset:
+            status.fetch_and_update_registration()
+
     search_fields = [
         'voter__first_name',
         'voter__last_name',
@@ -57,3 +63,5 @@ class StatusAdmin(admin.ModelAdmin):
         'located_polling_location',
         'voted',
     ]
+
+    actions = [fetch_and_update_registration]

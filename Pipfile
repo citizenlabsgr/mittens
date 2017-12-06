@@ -26,6 +26,7 @@ psycopg2 = "*"
 # Utilities
 arrow = "*"
 faker = "*"
+requests = "*"
 
 # Server
 whitenoise = "*"

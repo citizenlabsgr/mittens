@@ -4,6 +4,8 @@ import arrow
 
 from api.elections.models import Region, Election
 
+from . import helpers
+
 
 class RegistrationInfo(models.Model):
     """Data needed to determine MI voter registration status."""
@@ -42,7 +44,7 @@ class Voter(RegistrationInfo):
 class Status(models.Model):
 
     class Meta:
-        verbose_name_plural = "Statuses"
+        verbose_name_plural = "statuses"
 
     voter = models.ForeignKey(Voter, on_delete=models.CASCADE)
     election = models.ForeignKey(Election, on_delete=models.CASCADE)
@@ -63,3 +65,6 @@ class Status(models.Model):
             ("Located Polling Location", self.located_polling_location),
             ("Voted", self.voted),
         ]
+
+    def fetch_and_update_registration(self):
+        helpers.fetch_and_update_registration(self)
