@@ -7,7 +7,7 @@ from api.elections.models import Region, Election
 from . import helpers
 
 
-class RegistrationInfo(models.Model):
+class Identity(models.Model):
     """Data needed to determine MI voter registration status."""
 
     class Meta:
@@ -28,7 +28,7 @@ class RegistrationInfo(models.Model):
         return self.birth_date.year
 
 
-class Voter(RegistrationInfo):
+class Voter(Identity):
 
     email = models.EmailField()
     regions = models.ManyToManyField(Region, blank=True)
@@ -67,4 +67,5 @@ class Status(models.Model):
         ]
 
     def fetch_and_update_registration(self):
-        helpers.fetch_and_update_registration(self)
+        helpers.fetch_and_update_registration(self.voter, self)
+        self.save()

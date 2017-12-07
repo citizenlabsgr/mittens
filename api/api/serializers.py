@@ -4,6 +4,21 @@ from api.voters.models import Voter, Status
 from api.elections.models import Election
 
 
+class IdentitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Voter
+        # All the fields from the 'Identity' abstract base:
+        fields = ['first_name', 'last_name', 'birth_date', 'zip_code']
+
+
+class StatusSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Status
+        fields = ['registered']
+
+
 class VoterSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -18,7 +33,7 @@ class ElectionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class StatusSerializer(serializers.ModelSerializer):
+class TimelineSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Status
