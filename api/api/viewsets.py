@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 
 from api.voters.models import Identity, Status
 from api.voters.helpers import fetch_and_update_registration
@@ -11,6 +12,7 @@ from . import serializers
 
 class RegistrationViewSet(viewsets.ViewSet):
     serializer_class = serializers.StatusSerializer
+    permission_classes = [AllowAny]
 
     def list(self, request):
         if request.query_params:
@@ -36,7 +38,8 @@ class RegistrationViewSet(viewsets.ViewSet):
 
     @staticmethod
     def _get_status_from_auth(user):
-        return get_object_or_404(Status, voter__email=user.email)
+        email = getattr(user, 'email', None)
+        return get_object_or_404(Status, voter__email=email)
 
 
 class TimelineViewSet(viewsets.ModelViewSet):
