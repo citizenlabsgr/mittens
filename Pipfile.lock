@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cffee3c8d6b63347671f82fcb200655d7ce2ecbb378f990bd0fe91772c1f1bdb"
+            "sha256": "3896bfc77be71ac987b7f9e69b18e1969ed07c05d1330e79b98ba4537304d5ae"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -348,19 +348,12 @@
             ],
             "version": "==2.3.1"
         },
-        "pygraphviz": {
-            "hashes": [
-                "sha256:7c294cbc9d88946be671cc0d8602aac176d8c56695c0a7d871eadea75a958408",
-                "sha256:1aabe3efabe3691e889aec6d10ae28e7e10f3c153fa1235a4cd58b0724481fca"
-            ],
-            "version": "==1.3.1"
-        },
         "pylint": {
             "hashes": [
-                "sha256:948679535a28afc54afb9210dabc6973305409042ece8e5768ca1409910c1ed8",
-                "sha256:1f65b3815c3bf7524b845711d54c4242e4057dd93826586620239ecdfe591fb1"
+                "sha256:fbe0dca27639feefa2b8274289d3de827eea80c830f578c4fcb0fe70093a484f",
+                "sha256:dd20d6f17e7ea9d3a3a35c5d56ba2c50fdfdb7192096a1095f1791d072bc59a1"
             ],
-            "version": "==1.7.4"
+            "version": "==1.7.5"
         },
         "pytest": {
             "hashes": [
@@ -385,9 +378,9 @@
         },
         "pytest-describe": {
             "hashes": [
-                "sha256:c592f1294e4455cebe88f162a1475e347c0668ce256c4d1a4ccd21d6c5f51827"
+                "sha256:bd6be131452b7822c872735ffe53ce3931b3b80cbbad1647c2b482cc9ef3d00e"
             ],
-            "version": "==0.11.0"
+            "version": "==0.11.1"
         },
         "pytest-django": {
             "hashes": [

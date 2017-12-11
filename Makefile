@@ -85,6 +85,7 @@ watch: install
 
 .PHONY: uml
 uml: install
+	pipenv run pip install pygraphviz
 	mkdir -p design_documents/UML
 	pipenv run python manage.py graph_models -a -g -o design_documents/UML/ERD.png
 
