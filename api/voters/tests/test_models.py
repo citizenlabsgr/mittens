@@ -13,7 +13,7 @@ from .. import models
 
 @pytest.fixture
 def info():
-    return models.RegistrationInfo(
+    return models.Identity(
         first_name="John",
         last_name="Doe",
         birth_date=arrow.get("1985-06-19"),
