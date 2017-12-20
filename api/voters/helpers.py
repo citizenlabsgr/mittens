@@ -35,30 +35,30 @@ def fetch_and_update_registration(voter, status):
 
 
 def _find_county(data):
-    value = data['county']
-    name = value.replace(" County", "")
+    value = data.get('county') or "<missing>"
+    name = value.replace(" County", "").strip()
     try:
         County.objects.get(name=name)
     except County.DoesNotExist:
-        log.error(f"No such county: {name} ({value!r})")
+        log.error(f"No such county: {name} (raw: {value!r})")
 
 
 def _find_city(data):
-    value = data['jurisdiction']
-    name = value.replace("City of ", "")
+    value = data.get('jurisdiction') or "<missing>"
+    name = value.replace("City of ", "").strip()
     try:
         City.objects.get(name=name)
     except City.DoesNotExist:
-        log.error(f"No such city: {name} ({value!r})")
+        log.error(f"No such city: {name} (raw: {value!r})")
 
 
 def _find_ward(data):
-    value = data['ward']
-    name = value
+    value = data.get('ward') or "<missing>"
+    name = value.strip()
     try:
         Ward.objects.get(name=name)
     except Ward.DoesNotExist:
-        log.error(f"No such ward: {name} ({value!r})")
+        log.error(f"No such ward: {name} (raw: {value!r})")
 
 
 def _prettify(data: dict):
