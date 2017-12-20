@@ -10,9 +10,13 @@ ci: check test ## CI | Run all validation targets
 doctor: ## Check for required system dependencies
 	bin/verchew
 
-.env:
+.envrc:
 	echo SECRET_KEY=local >> $@
 	echo DATABASE_URL=postgresql://localhost/voterengagement_dev >> $@
+	echo >> $@
+	echo ROLLBAR_ENVIRONMENT=local >> $@
+	echo ROLLBAR_ACCESS_TOKEN=??? >> $@
+	direnv allow
 
 # PROJECT DEPENDENCIES ########################################################
 
@@ -97,7 +101,7 @@ run: install ## Run the applicaiton
 
 TODO: Emulate the production server
 .PHONY: run-prod
-run-prod: .env install ## Run the application (emulate production)
+run-prod: .envrc install ## Run the application (emulate production)
 	pipenv shell "bin/pre_compile; exit \$$?"
 	pipenv shell "bin/post_compile; exit \$$?"
 	pipenv shell "heroku local release; exit \$$?"
