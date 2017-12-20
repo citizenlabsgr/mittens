@@ -1,3 +1,5 @@
+import os
+
 import dj_database_url
 
 from .base import *
@@ -10,6 +12,8 @@ DEBUG = True
 SECRET_KEY = 'dev'
 
 INSTALLED_APPS += ['django_extensions']
+
+LOGGING['loggers']['api']['level'] = os.getenv('LOG_LEVEL', 'INFO')
 
 DATABASES = {
     'default': {

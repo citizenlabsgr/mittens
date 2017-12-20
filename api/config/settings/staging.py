@@ -12,3 +12,6 @@ ALLOWED_HOSTS += [
 ]
 
 DEFAULT_FROM_EMAIL = f"Voter Engagement {BASE_NAME} <noreply@{BASE_DOMAIN}>"
+
+ROLLBAR['environment'] = os.getenv('ROLLBAR_ENVIRONMENT', 'staging')
+LOGGING['handlers']['rollbar']['environment'] = os.getenv('ROLLBAR_ENVIRONMENT', 'staging')

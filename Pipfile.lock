@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3896bfc77be71ac987b7f9e69b18e1969ed07c05d1330e79b98ba4537304d5ae"
+            "sha256": "1c9501e4bf8f004730656b4945ad5020a37937ec7da7a64ee75e1d02ef9aee70"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -9,9 +9,9 @@
             "os_name": "posix",
             "platform_machine": "x86_64",
             "platform_python_implementation": "CPython",
-            "platform_release": "17.2.0",
+            "platform_release": "17.3.0",
             "platform_system": "Darwin",
-            "platform_version": "Darwin Kernel Version 17.2.0: Fri Sep 29 18:27:05 PDT 2017; root:xnu-4570.20.62~3/RELEASE_X86_64",
+            "platform_version": "Darwin Kernel Version 17.3.0: Thu Nov  9 18:09:22 PST 2017; root:xnu-4570.31.3~1/RELEASE_X86_64",
             "python_full_version": "3.6.3",
             "python_version": "3.6",
             "sys_platform": "darwin"
@@ -34,14 +34,6 @@
                 "sha256:a15ecfddf334316e3ac8695e48c15d1be0d6038603b33043930dcf0e675c86ee"
             ],
             "version": "==0.12.0"
-        },
-        "bugsnag": {
-            "hashes": [
-                "sha256:fe48c1f94c4b115707c8a8425a224447737e94c261e8e5a0a73f4dd78a5d9954",
-                "sha256:c75313bd10a48979bad6287d45ee36fe060b9721df3aef94ab74161def81dd86",
-                "sha256:574c54ac334b5f59c0e3bf203579d3904c9c4dd819f2ac9a47c00076b8f0285e"
-            ],
-            "version": "==3.3.0"
         },
         "certifi": {
             "hashes": [
@@ -87,10 +79,10 @@
         },
         "faker": {
             "hashes": [
-                "sha256:f5529ff519a4bed0c0c8ccbbf7ca0d918ed0a9826fe8adc60f58d5b052a946dc",
-                "sha256:bf7dabcd6807c8829da28a4de491adf7998af506b8571db6a6eb58161157248a"
+                "sha256:2f6ccc9da046d4cd20401734cf6a1ac73a4e4d8256e7b283496ee6827ad2eb60",
+                "sha256:e928cf853ef69d7471421f2a3716a1239e43de0fa9855f4016ee0c9f1057328a"
             ],
-            "version": "==0.8.7"
+            "version": "==0.8.8"
         },
         "gunicorn": {
             "hashes": [
@@ -170,6 +162,12 @@
             ],
             "version": "==2.18.4"
         },
+        "rollbar": {
+            "hashes": [
+                "sha256:a4b368e90951aeb372f3d12e31a6fbdf579d57c646f7688705ac555b1e414a2e"
+            ],
+            "version": "==0.13.17"
+        },
         "six": {
             "hashes": [
                 "sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb",
@@ -191,13 +189,6 @@
             ],
             "version": "==1.22"
         },
-        "webob": {
-            "hashes": [
-                "sha256:63f4220492476c5c716b615baed7bf3d27040b3105014375787160dee0943115",
-                "sha256:8d10af182fda4b92193113ee1edeb687ab9dc44336b37d6804e413f0240d40d9"
-            ],
-            "version": "==1.7.4"
-        },
         "whitenoise": {
             "hashes": [
                 "sha256:15f43b2e701821b95c9016cf469d29e2a546cb1c7dead584ba82c36f843995cf",
@@ -216,10 +207,10 @@
         },
         "astroid": {
             "hashes": [
-                "sha256:39a21dd2b5d81a6731dc0ac2884fa419532dffd465cdd43ea6c168d36b76efb3",
-                "sha256:492c2a2044adbf6a84a671b7522e9295ad2f6a7c781b899014308db25312dd35"
+                "sha256:badf6917ef7eb0ade0ea6eae347aed1e3f8f4c9375a02916f5cc450b3c8a64c0",
+                "sha256:71dadba2110008e2c03f9fde662ddd2053db3c0489d0e03c94e828a0399edd4f"
             ],
-            "version": "==1.5.3"
+            "version": "==1.6.0"
         },
         "coverage": {
             "hashes": [
@@ -350,10 +341,10 @@
         },
         "pylint": {
             "hashes": [
-                "sha256:fbe0dca27639feefa2b8274289d3de827eea80c830f578c4fcb0fe70093a484f",
-                "sha256:dd20d6f17e7ea9d3a3a35c5d56ba2c50fdfdb7192096a1095f1791d072bc59a1"
+                "sha256:c8e59da0f2f9990eb00aad1c1de16cd7809315842ebccc3f65ca9df46213df3b",
+                "sha256:3035e44e37cd09919e9edad5573af01d7c6b9c52a0ebb4781185ae7ab690458b"
             ],
-            "version": "==1.7.5"
+            "version": "==1.8.1"
         },
         "pytest": {
             "hashes": [
