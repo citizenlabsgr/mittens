@@ -36,7 +36,7 @@ DATABASES['default'] = dj_database_url.config()
 ROLLBAR = {
     'access_token': os.environ['ROLLBAR_ACCESS_TOKEN'],
     'environment': os.getenv('ROLLBAR_ENVIRONMENT', 'production'),
-    'root': BASE_DIR,
+    'root': PROJECT_ROOT,
     'patch_debugview': False,
 }
 
