@@ -25,8 +25,7 @@ def fetch_and_update_registration(voter, status):
     assert response.status_code == 200, response
 
     data = response.json()
-    formatted_data = pprint.pformat(data)
-    log.info(f"Voter registration data:\n{formatted_data}")
+    log.info(f"Voter registration data: {_prettify(data)}")
 
     _find_county(data)
     _find_city(data)
@@ -41,7 +40,7 @@ def _find_county(data):
     try:
         County.objects.get(name=name)
     except County.DoesNotExist:
-        log.error(f"No such county: {name} ({value})")
+        log.error(f"No such county: {name} ({value!r})")
 
 
 def _find_city(data):
@@ -50,7 +49,7 @@ def _find_city(data):
     try:
         City.objects.get(name=name)
     except City.DoesNotExist:
-        log.error(f"No such city: {name} ({value})")
+        log.error(f"No such city: {name} ({value!r})")
 
 
 def _find_ward(data):
@@ -59,4 +58,8 @@ def _find_ward(data):
     try:
         Ward.objects.get(name=name)
     except Ward.DoesNotExist:
-        log.error(f"No such ward: {name} ({value})")
+        log.error(f"No such ward: {name} ({value!r})")
+
+
+def _prettify(data: dict):
+    return "{\n " + pprint.pformat(data, indent=2)[1:-1] + ",\n}"

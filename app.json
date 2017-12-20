@@ -10,6 +10,12 @@
     "DJANGO_SETTINGS_MODULE": {
       "required": true
     },
+    "ROLLBAR_ENVIRONMENT": {
+          "value": "review"
+    },
+    "ROLLBAR_ACCESS_TOKEN": {
+      "required": true
+    },
     "SECRET_KEY": {
       "generator": "secret"
     }
