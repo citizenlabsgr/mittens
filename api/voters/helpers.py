@@ -1,9 +1,13 @@
+import pprint
 import logging
 
 import requests
 
 
 REGISTRATION_API = "https://4gw9vvs9j1.execute-api.us-east-2.amazonaws.com/prod/checkRegistration"
+
+
+log = logging.getLogger(__name__)
 
 
 def fetch_and_update_registration(voter, status):
@@ -19,5 +23,6 @@ def fetch_and_update_registration(voter, status):
     assert response.status_code == 200, response
 
     data = response.json()
-    logging.info(f"Voter registration data: {data}")
+    formatted_data = pprint.pformat(data)
+    log.info(f"Voter registration data:\n{formatted_data}")
     status.registered = data['registered']
