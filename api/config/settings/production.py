@@ -46,4 +46,4 @@ LOGGING['handlers']['rollbar'] = {
     'environment': os.getenv('ROLLBAR_ENVIRONMENT', 'production'),
     'class': 'rollbar.logger.RollbarHandler'
 }
-LOGGING['loggers']['backend']['handlers'].append('rollbar')
+LOGGING['loggers']['api']['handlers'].append('rollbar')
