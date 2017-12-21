@@ -97,6 +97,7 @@ uml: install
 
 .PHONY: run
 run: install ## Run the applicaiton
+	cp web_client/app/index.html web_client/build/index.html
 	pipenv run honcho start --procfile=Procfile.dev
 
 TODO: Emulate the production server
