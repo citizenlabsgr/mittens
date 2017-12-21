@@ -39,7 +39,8 @@ rollbar = "*"
 [dev-packages]
 
 # Static analysis
-pylint = "*"
+pylint = "~=1.7.5"
+astroid = "~=1.5.3" # temporary to work around apparent regression in 1.6
 pycodestyle = "*"
 
 # Testing

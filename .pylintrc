@@ -16,3 +16,5 @@ disable=
     too-many-ancestors,
     # Disable false positives due to 'faker':
     no-member,
+    # Just noise during the early stages:
+    duplicate-code,
