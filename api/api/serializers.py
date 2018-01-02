@@ -8,8 +8,9 @@ class IdentitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Voter
-        # All the fields from the 'Identity' abstract base:
-        fields = ['first_name', 'last_name', 'birth_date', 'zip_code']
+        exclude = ['regions']
+
+    email = serializers.EmailField(default=None)
 
 
 class StatusSerializer(serializers.ModelSerializer):
