@@ -28,6 +28,10 @@ class Election(models.Model):
 
     name = models.CharField(max_length=100)
     date = models.DateField()
+    reference_url = models.URLField(blank=True, null=True)
+
+    class Meta:
+        unique_together = ['name', 'date']
 
     def __str__(self):
         return self.name
