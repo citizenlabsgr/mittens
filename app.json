@@ -10,8 +10,14 @@
     "DJANGO_SETTINGS_MODULE": {
       "required": true
     },
+    "SENDGRID_USERNAME": {
+      "required": true
+    },
+    "SENDGRID_PASSWORD": {
+      "required": true
+    },
     "ROLLBAR_ENVIRONMENT": {
-          "value": "review"
+      "value": "review"
     },
     "ROLLBAR_ACCESS_TOKEN": {
       "required": true

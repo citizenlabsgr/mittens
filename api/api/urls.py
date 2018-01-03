@@ -8,7 +8,9 @@ from . import viewsets
 root = routers.DefaultRouter()
 
 root.register('registration', viewsets.RegistrationViewSet, base_name='registration')
-root.register('timelines', viewsets.TimelineViewSet)
+root.register('timelines', viewsets.TimelineViewSet, base_name='timelines')
+
+root.register('login-email', viewsets.LoginEmailViewSet, base_name='login-email')
 
 urlpatterns = [
     path('', include(root.urls)),

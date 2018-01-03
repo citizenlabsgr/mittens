@@ -1,11 +1,13 @@
 import logging
 
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 
+from api.core.helpers import send_login_email
 from api.voters.models import Identity, Voter, Status
 from api.voters.helpers import fetch_and_update_registration
 
@@ -21,17 +23,17 @@ class RegistrationViewSet(viewsets.ViewSet):
 
     def list(self, request):
         if request.query_params:
-            status = self._get_status_from_query(request.query_params)
+            status = self._get_status_from_query(request)
         else:
-            status = self._get_status_from_auth(request.user)
+            status = self._get_status_from_auth(request)
 
         serializer = self.serializer_class(status)
 
         return Response(serializer.data)
 
     @staticmethod
-    def _get_status_from_query(params):
-        serializer = serializers.IdentitySerializer(data=params)
+    def _get_status_from_query(request):
+        serializer = serializers.IdentitySerializer(data=request.query_params)
         serializer.is_valid(raise_exception=True)
 
         email = serializer.validated_data.pop('email')
@@ -45,14 +47,16 @@ class RegistrationViewSet(viewsets.ViewSet):
                 email=email,
                 defaults=serializer.validated_data,
             )
-            if not created:
+            if created:
+                send_login_email(voter.user, request)
+            else:
                 log.warning(f"Updated exiting voter: {voter}")
 
         return status
 
     @staticmethod
-    def _get_status_from_auth(user):
-        email = getattr(user, 'email', None)
+    def _get_status_from_auth(request):
+        email = getattr(request.user, 'email', None)
         return get_object_or_404(Status, voter__email=email)
 
 
@@ -67,3 +71,20 @@ class TimelineViewSet(viewsets.ModelViewSet):
             status.fetch_and_update_registration()
 
         return super().retrieve(request, pk)
+
+
+class LoginEmailViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.LoginEmailSerializer
+    permission_classes = [AllowAny]
+    http_method_names = ['post']
+
+    def create(self, request):  # pylint: disable=arguments-differ
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        email = serializer.validated_data['email']
+        user = get_object_or_404(User, email=email)
+        count = send_login_email(user, request)
+        assert count == 1, f"Failed to email {email}"
+
+        return Response({'message': f"Email sent: {email}"})
