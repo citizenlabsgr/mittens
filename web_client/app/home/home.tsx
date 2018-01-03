@@ -50,8 +50,8 @@ export class Home extends React.Component<HomeProps, {}> {
           <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>
           <Button action={this.submit}> FIND ME!</Button>
         </div>
-        { this.state.voter.registered && <div {...style.registered}>YOU IS ARE BE REGISTRATED.</div> }
-        { (this.state.voter.registered === false) && <div {...style.notRegistered}>YOU IS NOT REGISTRATED.</div> }
+        { this.state.voter.registered && <div {...style.registered}>YOU ARE REGISTERED.</div> }
+        { (this.state.voter.registered === false) && <div {...style.notRegistered}>YOU ARE NOT REGISTERED.</div> }
       </MainContentWrapper>
     );
   }
