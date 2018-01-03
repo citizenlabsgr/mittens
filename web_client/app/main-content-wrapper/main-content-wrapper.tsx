@@ -15,13 +15,7 @@ export class MainContentWrapper extends React.Component<MainContentWrapperProps,
   render() {
     return (
       <div {...style.wrapper}>
-        <nav {...style.nav}>
-          <div {...style.navMaxWidth}>
-            <a href="/home">Voter Engagement</a>
-          </div>
-        </nav>
         <main {...css(style.content, this.props.flex && { display: 'flex' }) }>{this.props.children}</main>
-        <footer {...style.footer} />
       </div>
     );
   }

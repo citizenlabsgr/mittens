@@ -43,15 +43,18 @@ export class Home extends React.Component<HomeProps, {}> {
   render() {
     return (
       <MainContentWrapper>
-        <div {...css(style.box)}>
-          <ShortInput label="First Name" onChange={this.setter('firstName')} value={this.state.firstName}/>
-          <ShortInput label="Last Name" onChange={this.setter('lastName')} value={this.state.lastName}/>
+        <div {...style.box}>
+        <div {...style.maxWidth}>
+        <h1 {...style.heading}>Are you registered?</h1>
+          <ShortInput label="First Name" onChange={this.setter('firstName')} placeholder="Susan" value={this.state.firstName}/>
+          <ShortInput label="Last Name" onChange={this.setter('lastName')} placeholder="Anthony" value={this.state.lastName}/>
           <ShortInput label="Birthday" onChange={this.setter('birthDate')} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
           <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>
-          <Button action={this.submit}> FIND ME!</Button>
+          <Button action={this.submit}> FIND ME!</Button> 
         </div>
         { this.state.voter.registered && <div {...style.registered}>YOU ARE REGISTERED.</div> }
         { (this.state.voter.registered === false) && <div {...style.notRegistered}>YOU ARE NOT REGISTERED.</div> }
+        </div>
       </MainContentWrapper>
     );
   }
@@ -59,8 +62,15 @@ export class Home extends React.Component<HomeProps, {}> {
 
 const style = styles({
   box: {
-    ...centeredBox,
-    padding: vars.spacing
+    padding: vars.spacing,
+    backgroundColor: vars.color.action
+  },
+  heading: {
+    marginBottom: vars.spacing
+  },
+  maxWidth: {
+    maxWidth: 400,
+    margin: '0 auto'
   },
   registered: {
     ...centeredBox,
