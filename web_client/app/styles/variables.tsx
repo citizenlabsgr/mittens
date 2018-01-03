@@ -9,21 +9,23 @@ export const vars = {
   textTransform: "capitalize",
   spacing: 24,
   smallSpacing: 12,
+  justifyContent: "center",
+  flexDirection: "column",
   color: {
     focus: focusColor,
     font: "#333",
     fontLight: "#777",
-    theme: "#7EBB41",
-    themeLight: "#ACE572",
+    theme: "#475B6E",
+    themeLight: "#475B6E",
     lightest: "#f5f5f5",
     action: "#FF803A",
     actionight: "#FF9861",
     warn: "#F8342D",
     warnLight: "#F86761",
     success: "#B2FF55",
-    successLight: "#ACE572",
-    white: "#fff",
-    whiteLight: "#EEFFDE"
+    successLight: "#475B6E",
+    white: "#788595",
+    whiteLight: "#FFF"
   },
   border: {
     borderColor: "#ddd",
@@ -76,7 +78,6 @@ export const centeredBox = {
   margin: `${vars.spacing}px auto`,
   maxWidth: 600,
   backgroundColor: vars.color.white,
-  ...vars.border,
   ...vars.clearFix,
 }
 

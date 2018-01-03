@@ -89,7 +89,6 @@ export function buttonStyle(theme: string, disabled?: boolean) {
 
   return css({
     padding: vars.smallSpacing,
-    display: 'inline-block',
     textAlign: 'center',
     backgroundColor: backgroundColor,
     color: fontColor,
@@ -100,6 +99,9 @@ export function buttonStyle(theme: string, disabled?: boolean) {
     border: 0,
     fontSize: 20,
     cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     ...hover,
     ':focus': {
       ...vars.focus[':focus'],

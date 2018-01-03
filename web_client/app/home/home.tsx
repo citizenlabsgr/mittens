@@ -60,7 +60,7 @@ export class Home extends React.Component<HomeProps, {}> {
 const style = styles({
   box: {
     ...centeredBox,
-    padding: vars.spacing
+    padding: vars.spacing,
   },
   registered: {
     ...centeredBox,
