@@ -9,8 +9,6 @@ export const vars = {
   textTransform: "capitalize",
   spacing: 24,
   smallSpacing: 12,
-  justifyContent: "center",
-  flexDirection: "column",
   color: {
     focus: focusColor,
     font: "#333",

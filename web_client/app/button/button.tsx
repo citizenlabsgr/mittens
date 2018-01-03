@@ -99,9 +99,7 @@ export function buttonStyle(theme: string, disabled?: boolean) {
     border: 0,
     fontSize: 20,
     cursor: 'pointer',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    display: 'inline-block',
     ...hover,
     ':focus': {
       ...vars.focus[':focus'],
