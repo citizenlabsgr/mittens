@@ -24,12 +24,19 @@ class RegistrationViewSet(viewsets.ViewSet):
     def list(self, request):
         if request.query_params:
             status = self._get_status_from_query(request)
-        else:
+        elif request.user.is_authenticated:
             status = self._get_status_from_auth(request)
+        else:
+            status = self._get_status_from_query(request)
 
         serializer = self.serializer_class(status)
 
         return Response(serializer.data)
+
+    @staticmethod
+    def _get_status_from_auth(request):
+        email = getattr(request.user, 'email', None)
+        return get_object_or_404(Status, voter__email=email)
 
     @staticmethod
     def _get_status_from_query(request):
@@ -53,11 +60,6 @@ class RegistrationViewSet(viewsets.ViewSet):
                 log.warning(f"Updated exiting voter: {voter}")
 
         return status
-
-    @staticmethod
-    def _get_status_from_auth(request):
-        email = getattr(request.user, 'email', None)
-        return get_object_or_404(Status, voter__email=email)
 
 
 class TimelineViewSet(viewsets.ModelViewSet):
