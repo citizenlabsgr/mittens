@@ -8,6 +8,8 @@ from . import models
 @admin.register(models.Voter)
 class VoterAdmin(admin.ModelAdmin):
 
+    # List
+
     search_fields = [
         'first_name',
         'last_name',
@@ -28,6 +30,13 @@ class VoterAdmin(admin.ModelAdmin):
     filter_horizontal = [
         'regions'
     ]
+
+    # Detail
+
+    raw_id_fields = ['user']
+    related_lookup_fields = {
+        'fk': ['user']
+    }
 
 
 @admin.register(models.Status)

@@ -32,7 +32,8 @@ class Identity(models.Model):
 class Voter(Identity):
 
     email = models.EmailField(unique=True)
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, blank=True, null=True,
+                                on_delete=models.CASCADE)
     regions = models.ManyToManyField(Region, blank=True)
 
     def __str__(self):
@@ -52,8 +53,8 @@ class Voter(Identity):
         self.user.save()
 
     def save(self, *args, **kwargs):  # pylint: disable=arguments-differ
-        super().save(*args, **kwargs)
         self.update_user()
+        super().save(*args, **kwargs)
 
 
 class Status(models.Model):
