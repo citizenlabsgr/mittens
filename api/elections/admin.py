@@ -3,32 +3,38 @@ from django.contrib import admin
 from . import models
 
 
-class RegionPartAdmin(admin.ModelAdmin):
+@admin.register(models.Kind)
+class KindAdmin(admin.ModelAdmin):
 
-    search_fields = ['name']
+    list_display = [
+        'name',
+    ]
 
-    list_display = ['name']
-
-
-admin.site.register(models.County)
-admin.site.register(models.City)
-admin.site.register(models.Ward)
+    ordering = [
+        'name',
+    ]
 
 
 @admin.register(models.Region)
 class RegionAdmin(admin.ModelAdmin):
 
     search_fields = [
-        'county__name',
-        'city__name',
-        'ward__name',
+        'name',
     ]
 
     list_display = [
         'name',
-        'county',
-        'city',
-        'ward',
+        'kind',
+        'verified',
+    ]
+
+    list_filter = [
+        'kind',
+        'verified',
+    ]
+
+    ordering = [
+        'name',
     ]
 
 

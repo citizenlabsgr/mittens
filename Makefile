@@ -53,12 +53,18 @@ migrations: install  ## Database | Generate database migrations
 migrate: install ## Database | Run database migrations
 	pipenv run python manage.py migrate
 
+.PHONY: dump
+dump: install
+	pipenv run python manage.py dumpdata elections.Kind --indent=2 --output=api/elections/fixtures/kinds.json
+
 .PHONY: data
 ifdef HEROKU_APP_NAME
 data: ## Database | Seed data for manual testing
+	python manage.py loaddata kinds
 	python manage.py gendata
 else
 data: install migrate
+	pipenv run python manage.py loaddata kinds
 	pipenv run python manage.py gendata
 endif
 
@@ -97,6 +103,7 @@ uml: install
 
 .PHONY: run
 run: install ## Run the applicaiton
+	cp web_client/app/index.html web_client/build/index.html
 	pipenv run honcho start --procfile=Procfile.dev
 
 TODO: Emulate the production server

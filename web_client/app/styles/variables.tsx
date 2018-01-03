@@ -4,7 +4,7 @@ const focusColor = "rgba(133, 191, 253, 1)";
 export const vars = {
   smallScreen: 500,
   fontFamily: '"Open Sans", sans',
-  fontSize: 14,
+  fontSize: 18,
   lineHeight: 1.5,
   textTransform: "capitalize",
   spacing: 24,
@@ -21,9 +21,10 @@ export const vars = {
     warn: "#F8342D",
     warnLight: "#F86761",
     success: "#B2FF55",
-    successLight: "#475B6E",
-    white: "#788595",
-    whiteLight: "#FFF"
+    successLight: "#ACE572",
+    white: "#fff",
+    whiteLight: "#EEFFDE",
+    whiteTransparent: "rgba(255, 255, 255, 0.2)"
   },
   border: {
     borderColor: "#ddd",
@@ -46,11 +47,10 @@ export const vars = {
       zIndex: 1
     }
   },
-
   inputFocus: {
     ':focus': {
       outline: "none",
-      boxShadow: `inset 2px 2px 3px rgba(0,0,0, 0.1), 0 0 10px ${focusColor}, 0 0 1px ${focusColor}, 0 0 0px ${focusColor}`,
+      border: `2px solid #fff`,
       zIndex: 1
     }
   },

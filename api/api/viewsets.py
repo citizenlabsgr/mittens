@@ -1,13 +1,18 @@
+import logging
+
 from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 
-from api.voters.models import Identity, Status
+from api.voters.models import Identity, Voter, Status
 from api.voters.helpers import fetch_and_update_registration
 
 from . import serializers
+
+
+log = logging.getLogger(__name__)
 
 
 class RegistrationViewSet(viewsets.ViewSet):
@@ -29,10 +34,19 @@ class RegistrationViewSet(viewsets.ViewSet):
         serializer = serializers.IdentitySerializer(data=params)
         serializer.is_valid(raise_exception=True)
 
+        email = serializer.validated_data.pop('email')
         identity = Identity(**serializer.validated_data)
         status = Status()
 
         fetch_and_update_registration(identity, status)
+
+        if email:
+            voter, created = Voter.objects.update_or_create(
+                email=email,
+                defaults=serializer.validated_data,
+            )
+            if not created:
+                log.warning(f"Updated exiting voter: {voter}")
 
         return status
 

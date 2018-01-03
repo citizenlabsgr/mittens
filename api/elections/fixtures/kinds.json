@@ -1,0 +1,142 @@
+[
+{
+  "model": "elections.kind",
+  "pk": 1,
+  "fields": {
+    "name": "Circuit Court"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 2,
+  "fields": {
+    "name": "Community College District"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 3,
+  "fields": {
+    "name": "County"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 4,
+  "fields": {
+    "name": "County Commissioner District"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 5,
+  "fields": {
+    "name": "Court of Appeals"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 6,
+  "fields": {
+    "name": "District Court"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 7,
+  "fields": {
+    "name": "Intermediate School District"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 8,
+  "fields": {
+    "name": "Jurisdiction"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 9,
+  "fields": {
+    "name": "Library District"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 10,
+  "fields": {
+    "name": "Metropolitan District"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 11,
+  "fields": {
+    "name": "Municipal Court"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 12,
+  "fields": {
+    "name": "Precinct"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 13,
+  "fields": {
+    "name": "Probate Court"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 14,
+  "fields": {
+    "name": "Probate District Court"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 15,
+  "fields": {
+    "name": "School District"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 16,
+  "fields": {
+    "name": "State House District"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 17,
+  "fields": {
+    "name": "State Senate District"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 18,
+  "fields": {
+    "name": "US Congress District"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 19,
+  "fields": {
+    "name": "Village"
+  }
+},
+{
+  "model": "elections.kind",
+  "pk": 20,
+  "fields": {
+    "name": "Ward"
+  }
+}
+]

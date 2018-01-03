@@ -3,11 +3,11 @@ import logging
 
 import requests
 
-from api.elections.models import County, City, Ward
+from api.elections.models import Kind, Region
 
 
 REGISTRATION_API = "https://4gw9vvs9j1.execute-api.us-east-2.amazonaws.com/prod/checkRegistration"
-
+MISSING = "<missing>"
 
 log = logging.getLogger(__name__)
 
@@ -27,38 +27,57 @@ def fetch_and_update_registration(voter, status):
     data = response.json()
     log.info(f"Voter registration data: {_prettify(data)}")
 
-    _find_county(data)
-    _find_city(data)
+    status.registered = data.pop('registered')
+
+    _find_precinct(data)
     _find_ward(data)
-
-    status.registered = data['registered']
-
-
-def _find_county(data):
-    value = data.get('county') or "<missing>"
-    name = value.replace(" County", "").strip()
-    try:
-        County.objects.get(name=name)
-    except County.DoesNotExist:
-        log.error(f"No such county: {name} (raw: {value!r})")
+    _find_regions(data)
 
 
-def _find_city(data):
-    value = data.get('jurisdiction') or "<missing>"
-    name = value.replace("City of ", "").strip()
-    try:
-        City.objects.get(name=name)
-    except City.DoesNotExist:
-        log.error(f"No such city: {name} (raw: {value!r})")
+def _find_precinct(data):
+    jurisdiction = data.get('jurisdiction')
+    ward = data.get('ward')
+    precinct = data.pop('precinct', None)
+
+    if not (jurisdiction and ward and precinct):
+        log.warning(f"Unable to build precinct: {_prettify(data)}")
+        return
+
+    name = f"{jurisdiction}, Ward {ward}, Precinct {precinct}"
+    _get_region('Precinct', name)
 
 
 def _find_ward(data):
-    value = data.get('ward') or "<missing>"
-    name = value.strip()
-    try:
-        Ward.objects.get(name=name)
-    except Ward.DoesNotExist:
-        log.error(f"No such ward: {name} (raw: {value!r})")
+    jurisdiction = data.get('jurisdiction')
+    ward = data.pop('ward', None)
+
+    if not (jurisdiction and ward):
+        log.warning(f"Unable to build ward: {_prettify(data)}")
+        return
+
+    name = f"{jurisdiction}, Ward {ward}"
+    _get_region('Ward', name)
+
+
+def _find_regions(data):
+    for key, value in data.items():
+        kind_name = key.replace('_', ' ').strip()
+        region_name = value.strip()
+        if kind_name and region_name:
+            _get_region(kind_name, region_name)
+
+
+def _get_region(kind_name, region_name):
+    kind = Kind.objects.get(name__iexact=kind_name)
+    region, created = Region.objects.get_or_create(
+        kind=kind,
+        name=region_name,
+    )
+    if created:
+        log.info(f"Added new region: {region}")
+    if not region.verified:
+        log.error(f"Unverified region: {region}")
+    return region
 
 
 def _prettify(data: dict):

@@ -7,24 +7,10 @@ from .. import models
 
 
 @pytest.fixture
-def region_county():
+def region():
     return models.Region(
-        county=models.County(name="Kent"),
-    )
-
-
-@pytest.fixture
-def region_city():
-    return models.Region(
-        city=models.City(name="Grand Rapids")
-    )
-
-
-@pytest.fixture
-def region_ward():
-    return models.Region(
-        city=models.City(name="Grand Rapids"),
-        ward=models.Ward(name="3"),
+        kind=models.Kind(name="City"),
+        name="Grand Rapids",
     )
 
 
@@ -32,11 +18,5 @@ def describe_region():
 
     def describe_str():
 
-        def when_county(region_county):
-            expect(str(region_county)) == "Kent County"
-
-        def when_city(region_city):
-            expect(str(region_city)) == "City of Grand Rapids"
-
-        def when_ward(region_ward):
-            expect(str(region_ward)) == "City of Grand Rapids - Ward 3"
+        def it_includes_kind(region):
+            expect(str(region)) == "City: Grand Rapids"

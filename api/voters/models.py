@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 import arrow
 
@@ -30,7 +31,8 @@ class Identity(models.Model):
 
 class Voter(Identity):
 
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     regions = models.ManyToManyField(Region, blank=True)
 
     def __str__(self):
@@ -39,6 +41,19 @@ class Voter(Identity):
     @property
     def name(self):
         return f"{self.first_name} {self.last_name}"
+
+    def update_user(self):
+        self.user, created = User.objects.get_or_create(email=self.email)
+        if created:
+            self.user.username = self.email
+            self.user.password = "<unset>"
+        self.user.first_name = self.first_name
+        self.user.last_name = self.last_name
+        self.user.save()
+
+    def save(self, *args, **kwargs):  # pylint: disable=arguments-differ
+        super().save(*args, **kwargs)
+        self.update_user()
 
 
 class Status(models.Model):
