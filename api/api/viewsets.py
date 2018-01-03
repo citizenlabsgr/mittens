@@ -36,7 +36,12 @@ class RegistrationViewSet(viewsets.ViewSet):
     @staticmethod
     def _get_status_from_auth(request):
         email = getattr(request.user, 'email', None)
-        return get_object_or_404(Status, voter__email=email)
+        voter = get_object_or_404(Voter, email=email)
+        status = Status()
+
+        fetch_and_update_registration(voter, status)
+
+        return status
 
     @staticmethod
     def _get_status_from_query(request):
