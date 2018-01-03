@@ -39,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'sesame.middleware.AuthenticationMiddleware',
     'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
@@ -119,6 +120,23 @@ LOGGING = {
         },
     },
 }
+
+###############################################################################
+# Authentication
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'sesame.backends.ModelBackend',
+]
+
+###############################################################################
+# Email
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = os.getenv('SENDGRID_USERNAME')
+EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_PASSWORD')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 ###############################################################################
 # Grappelli

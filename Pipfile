@@ -4,11 +4,9 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [requires]
 
 python_version = "3.6.3"
-
 
 [packages]
 
@@ -23,6 +21,9 @@ djangorestframework = "*"
 dj_database_url = "*"
 psycopg2 = "*"
 
+# Email
+django-sesame = "*"
+
 # Utilities
 arrow = "*"
 faker = "*"
@@ -34,7 +35,6 @@ gunicorn = "*"
 
 # Tracking
 rollbar = "*"
-
 
 [dev-packages]
 

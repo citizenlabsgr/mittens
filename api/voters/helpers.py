@@ -1,8 +1,8 @@
-import pprint
 import logging
 
 import requests
 
+from api.core.helpers import prettify
 from api.elections.models import Kind, Region
 
 
@@ -25,7 +25,7 @@ def fetch_and_update_registration(voter, status):
     assert response.status_code == 200, response
 
     data = response.json()
-    log.info(f"Voter registration data: {_prettify(data)}")
+    log.info(f"Voter registration data: {prettify(data)}")
 
     status.registered = data.pop('registered')
 
@@ -40,7 +40,7 @@ def _find_precinct(data):
     precinct = data.pop('precinct', None)
 
     if not (jurisdiction and ward and precinct):
-        log.warning(f"Unable to build precinct: {_prettify(data)}")
+        log.warning(f"Unable to build precinct: {prettify(data)}")
         return
 
     name = f"{jurisdiction}, Ward {ward}, Precinct {precinct}"
@@ -52,7 +52,7 @@ def _find_ward(data):
     ward = data.pop('ward', None)
 
     if not (jurisdiction and ward):
-        log.warning(f"Unable to build ward: {_prettify(data)}")
+        log.warning(f"Unable to build ward: {prettify(data)}")
         return
 
     name = f"{jurisdiction}, Ward {ward}"
@@ -78,7 +78,3 @@ def _get_region(kind_name, region_name):
     if not region.verified:
         log.error(f"Unverified region: {region}")
     return region
-
-
-def _prettify(data: dict):
-    return "{\n " + pprint.pformat(data, indent=2)[1:-1] + ",\n}"

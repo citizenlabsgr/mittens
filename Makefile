@@ -11,11 +11,16 @@ doctor: ## Check for required system dependencies
 	bin/verchew
 
 .envrc:
-	echo SECRET_KEY=local >> $@
-	echo DATABASE_URL=postgresql://localhost/voterengagement_dev >> $@
+	echo export SECRET_KEY=local >> $@
+	echo export DATABASE_URL=postgresql://localhost/voterengagement_dev >> $@
 	echo >> $@
-	echo ROLLBAR_ENVIRONMENT=local >> $@
-	echo ROLLBAR_ACCESS_TOKEN=??? >> $@
+	echo export SENDGRID_USERNAME=copy-from-staging >> $@
+	echo export SENDGRID_PASSWORD=copy-from-staging >> $@
+	echo >> $@
+	echo export ROLLBAR_ENVIRONMENT=local >> $@
+	echo export ROLLBAR_ACCESS_TOKEN=copy-from-staging >> $@
+	echo >> $@
+	echo export LOG_LEVEL=DEBUG >> $@
 	direnv allow
 
 # PROJECT DEPENDENCIES ########################################################
