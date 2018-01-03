@@ -22,7 +22,7 @@ export class Home extends React.Component<HomeProps, {}> {
     birthDate: "",
     zipCode: "",
     voter: null as Voter
-  } 
+  }
 
   componentWillMount() {
     this.setState({voter: new Voter()});
@@ -39,7 +39,7 @@ export class Home extends React.Component<HomeProps, {}> {
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
     voter.checkRegistration();
   }
-  
+
   render() {
     return (
       <MainContentWrapper>
@@ -48,7 +48,7 @@ export class Home extends React.Component<HomeProps, {}> {
           <ShortInput label="Last Name" onChange={this.setter('lastName')} value={this.state.lastName}/>
           <ShortInput label="Birthday" onChange={this.setter('birthDate')} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
           <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>
-          <Button action={this.submit}> FIND ME!</Button>
+          <Button action={this.submit}> Find Me!</Button>
         </div>
         { this.state.voter.registered && <div {...style.registered}>YOU IS ARE BE REGISTRATED.</div> }
         { (this.state.voter.registered === false) && <div {...style.notRegistered}>YOU IS NOT REGISTRATED.</div> }

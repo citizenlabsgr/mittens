@@ -14,7 +14,7 @@ export interface AnyButtonProps {
   square?: boolean
   testName?: string
   disabled?: boolean
-  // Aria hint if the button makes a popup menu. 
+  // Aria hint if the button makes a popup menu.
   hasPopup?: boolean
 }
 
@@ -95,9 +95,10 @@ export function buttonStyle(theme: string, disabled?: boolean) {
     color: fontColor,
     userSelect: 'none',
     textDecoration: 'none',
+    textTransform: 'capitalize',
     borderRadius: vars.border.borderRadius,
     border: 0,
-    fontSize: 14,
+    fontSize: 20,
     cursor: 'pointer',
     ...hover,
     ':focus': {
