@@ -15,13 +15,7 @@ export class MainContentWrapper extends React.Component<MainContentWrapperProps,
   render() {
     return (
       <div {...style.wrapper}>
-        <nav {...style.nav}>
-          <div {...style.navMaxWidth}>
-            <a href="/home">Voter Engagement</a>
-          </div>
-        </nav>
         <main {...css(style.content, this.props.flex && { display: 'flex' }) }>{this.props.children}</main>
-        <footer {...style.footer} />
       </div>
     );
   }
@@ -51,7 +45,7 @@ let style = styles({
   content: {
     flex: '1 0 auto',
     position: 'relative',
-    backgroundColor: vars.color.white,
+    backgroundColor: vars.color.background,
   },
   wrapper: {
     minHeight: '100vh',

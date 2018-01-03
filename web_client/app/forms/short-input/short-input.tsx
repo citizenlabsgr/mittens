@@ -72,15 +72,18 @@ let style = styles({
   input: {
     width: '100%',
     display: 'block',
+    backgroundColor: vars.color.whiteTransparent,
+    color: vars.color.white,
     padding: vars.smallSpacing - 2,
     marginTop: vars.smallSpacing / 2 - 2,
     marginBottom: vars.smallSpacing / 2,
-    fontSize: 16,
+    fontSize: vars.fontSize,
     ...vars.border,
-    boxShadow: vars.shadow.insetBoxShadow,
+    borderColor: 'transparent',
+    boxShadow: 'none',
     ...vars.inputFocus,
     '::-webkit-input-placeholder': {
-      color: "#ddd"
+      color: 'rgba(255,255,255,0.75)',
     }
   },
   icon: {

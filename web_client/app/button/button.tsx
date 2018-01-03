@@ -14,7 +14,7 @@ export interface AnyButtonProps {
   square?: boolean
   testName?: string
   disabled?: boolean
-  // Aria hint if the button makes a popup menu. 
+  // Aria hint if the button makes a popup menu.
   hasPopup?: boolean
 }
 
@@ -88,17 +88,18 @@ export function buttonStyle(theme: string, disabled?: boolean) {
   }
 
   return css({
-    padding: vars.smallSpacing,
-    display: 'inline-block',
+    padding: `${vars.smallSpacing + 2}px ${vars.smallSpacing + 6}px`,
     textAlign: 'center',
     backgroundColor: backgroundColor,
     color: fontColor,
     userSelect: 'none',
     textDecoration: 'none',
+    textTransform: 'capitalize',
     borderRadius: vars.border.borderRadius,
     border: 0,
-    fontSize: 14,
+    fontSize: 20,
     cursor: 'pointer',
+    display: 'inline-block',
     ...hover,
     ':focus': {
       ...vars.focus[':focus'],
@@ -117,5 +118,6 @@ const linkStyle = css({
 
   ':hover': {
     color: vars.color.theme,
+
   }
 });
