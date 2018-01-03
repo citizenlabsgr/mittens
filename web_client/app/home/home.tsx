@@ -22,7 +22,7 @@ export class Home extends React.Component<HomeProps, {}> {
     birthDate: "",
     zipCode: "",
     voter: null as Voter
-  } 
+  }
 
   componentWillMount() {
     this.setState({voter: new Voter()});
@@ -39,21 +39,21 @@ export class Home extends React.Component<HomeProps, {}> {
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
     voter.checkRegistration();
   }
-  
+
   render() {
     return (
       <MainContentWrapper>
         <div {...style.box}>
-        <div {...style.maxWidth}>
-        <h1 {...style.heading}>Are you registered?</h1>
-          <ShortInput label="First Name" onChange={this.setter('firstName')} placeholder="Susan" value={this.state.firstName}/>
-          <ShortInput label="Last Name" onChange={this.setter('lastName')} placeholder="Anthony" value={this.state.lastName}/>
-          <ShortInput label="Birthday" onChange={this.setter('birthDate')} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
-          <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>
-          <Button action={this.submit}> FIND ME!</Button> 
-        </div>
-        { this.state.voter.registered && <div {...style.registered}>YOU ARE REGISTERED.</div> }
-        { (this.state.voter.registered === false) && <div {...style.notRegistered}>YOU ARE NOT REGISTERED.</div> }
+          <div {...style.maxWidth}>
+            <h1 {...style.heading}>Are you registered?</h1>
+            <ShortInput label="First Name" onChange={this.setter('firstName')} placeholder="Susan" value={this.state.firstName}/>
+            <ShortInput label="Last Name" onChange={this.setter('lastName')} placeholder="Anthony" value={this.state.lastName}/>
+            <ShortInput label="Birthday" onChange={this.setter('birthDate')} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
+            <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>
+            <Button action={this.submit} css={style.button}> Find Me!</Button>
+            { this.state.voter.registered && <div {...style.registered}>YOU ARE REGISTERED.</div> }
+            { (this.state.voter.registered === false) && <div {...style.notRegistered}>YOU ARE NOT REGISTERED.</div> }
+          </div>
         </div>
       </MainContentWrapper>
     );
@@ -61,9 +61,12 @@ export class Home extends React.Component<HomeProps, {}> {
 }
 
 const style = styles({
+  button: {
+    margin: '0 auto',
+    display: 'block'
+  },
   box: {
-    padding: vars.spacing,
-    backgroundColor: vars.color.action
+    padding: vars.spacing
   },
   heading: {
     marginBottom: vars.spacing
@@ -73,13 +76,15 @@ const style = styles({
     margin: '0 auto'
   },
   registered: {
-    ...centeredBox,
+    borderRadius: vars.border.borderRadius,
+    marginTop: vars.spacing,
     padding: vars.spacing,
     backgroundColor: vars.color.theme,
     color: vars.color.white
   },
   notRegistered: {
-    ...centeredBox,
+    borderRadius: vars.border.borderRadius,
+    marginTop: vars.spacing,
     padding: vars.spacing,
     backgroundColor: vars.color.warn,
     color: vars.color.white
