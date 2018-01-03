@@ -88,7 +88,7 @@ export function buttonStyle(theme: string, disabled?: boolean) {
   }
 
   return css({
-    padding: vars.smallSpacing,
+    padding: `${vars.smallSpacing + 2}px ${vars.smallSpacing + 6}px`,
     textAlign: 'center',
     backgroundColor: backgroundColor,
     color: fontColor,
@@ -118,6 +118,6 @@ const linkStyle = css({
 
   ':hover': {
     color: vars.color.theme,
-    
+
   }
 });

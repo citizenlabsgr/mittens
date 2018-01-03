@@ -1,6 +1,6 @@
 
 const radius = 10;
-const focusColor = "rgba(133, 191, 253, 1)";
+const focusColor = "#45BFFE";
 export const vars = {
   smallScreen: 500,
   fontFamily: '"Open Sans", sans',
@@ -19,7 +19,7 @@ export const vars = {
     lightest: "#f5f5f5",
     action: "#FF803A",
     actionight: "#FF9861",
-    warn: "#F8342D",
+    warn: "#F17B26",
     warnLight: "#F86761",
     success: "#B2FF55",
     successLight: "#ACE572",
