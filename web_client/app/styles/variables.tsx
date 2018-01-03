@@ -10,11 +10,12 @@ export const vars = {
   spacing: 24,
   smallSpacing: 12,
   color: {
+    background: "#788595",
     focus: focusColor,
     font: "#333",
     fontLight: "#777",
     theme: "#475B6E",
-    themeLight: "#475B6E",
+    themeLight: "#516476",
     lightest: "#f5f5f5",
     action: "#FF803A",
     actionight: "#FF9861",
@@ -23,7 +24,7 @@ export const vars = {
     success: "#B2FF55",
     successLight: "#ACE572",
     white: "#fff",
-    whiteLight: "#EEFFDE",
+    whiteLight: "#EFEFEF",
     whiteTransparent: "rgba(255, 255, 255, 0.2)"
   },
   border: {

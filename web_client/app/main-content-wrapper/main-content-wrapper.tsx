@@ -45,7 +45,7 @@ let style = styles({
   content: {
     flex: '1 0 auto',
     position: 'relative',
-    backgroundColor: vars.color.white,
+    backgroundColor: vars.color.background,
   },
   wrapper: {
     minHeight: '100vh',

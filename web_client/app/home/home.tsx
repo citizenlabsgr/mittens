@@ -50,7 +50,7 @@ export class Home extends React.Component<HomeProps, {}> {
           <ShortInput label="Last Name" onChange={this.setter('lastName')} placeholder="Anthony" value={this.state.lastName}/>
           <ShortInput label="Birthday" onChange={this.setter('birthDate')} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
           <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>
-          <Button action={this.submit}> Find Me!</Button> 
+          <Button action={this.submit}> Find Me!</Button>
         </div>
         { this.state.voter.registered && <div {...style.registered}>YOU ARE REGISTERED.</div> }
         { (this.state.voter.registered === false) && <div {...style.notRegistered}>YOU ARE NOT REGISTERED.</div> }
@@ -62,8 +62,7 @@ export class Home extends React.Component<HomeProps, {}> {
 
 const style = styles({
   box: {
-    padding: vars.spacing,
-    backgroundColor: vars.color.action
+    padding: vars.spacing
   },
   heading: {
     marginBottom: vars.spacing

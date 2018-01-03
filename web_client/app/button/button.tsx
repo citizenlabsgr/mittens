@@ -118,5 +118,6 @@ const linkStyle = css({
 
   ':hover': {
     color: vars.color.theme,
+    
   }
 });
