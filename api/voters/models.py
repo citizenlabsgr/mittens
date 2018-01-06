@@ -47,7 +47,7 @@ class Voter(Identity):
         self.user, created = User.objects.get_or_create(email=self.email)
         if created:
             self.user.username = self.email
-            self.user.password = "<unset>"
+            self.user.set_unusable_password()
         self.user.first_name = self.first_name
         self.user.last_name = self.last_name
         self.user.save()
