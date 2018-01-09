@@ -146,7 +146,7 @@ The easiest method of "installing" Make for Windows is to resort to a bit of dan
 
 Check to see if the above operation was successful:
 
-1) Launch Git Bash.  Access the voter engagement folder:
+Launch Git Bash.  Access the voter engagement folder:
 
 ```sh
 $ cd citizen-labs/voter-engagement
