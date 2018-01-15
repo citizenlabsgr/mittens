@@ -6,6 +6,7 @@ import * as React from 'react';
 import { routes } from 'routes';
 import { Router } from 'router';
 import { NotFound } from 'not-found/not-found';
+import { RegistrationVerified } from 'registration-verified/registration-verified';
 import * as DocumentTitle from 'react-document-title';
 
 // Components
