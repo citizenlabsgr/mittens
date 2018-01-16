@@ -7,6 +7,7 @@ import { Button } from 'button/button';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
+import { addLeadingSlash } from 'history/PathUtils';
 
 export type NotRegisteredProps = {
 
@@ -29,9 +30,9 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
     return (
       <div {...style.box}>
         <div {...style.maxWidth}>
-          <img {style.tempImage} src="http://www.slothwerks.com/citizen-labs/orange-x.jpg" alt="X"/>
-          <p {style.result}>You're not registered.</h1>
-          <p {style.note}>Find how to register near you.</p>
+          <img {...style.tempImage} src="http://www.slothwerks.com/citizen-labs/orange-x.jpg" alt="X"/>
+          <h1 {...style.result}>You're not registered.</h1>
+          <p>Find how to register near you.</p>
           <Button action={this.submit} css={style.howToRegisterButton}>How to Register</Button>
           <Button action={this.return} css={style.backButton}>Back</Button>
         </div>
@@ -52,26 +53,26 @@ const style = styles({
     width: 108,
     height: 108,
     marginBottom: 20
-  }
+  },
   result: {
     fontSize: '2.5em',
     margin: 0,
     textTransform: 'uppercase',
     textAlign: 'center',
     fontWeight: 'bold',
-  }
+  },
   note: {
     fontWeight: 'bold',    
     padding: '10px'
-  }
+  },
   howToRegisterButton: {
     width: '60%',
-    margin: '0 auto'
+    margin: '0 auto',
     display: 'block',
     backgroundColor: '#F5A623',
     marginBottom: 200,
     fontWeight: 'bold',
-  }
+  },
   backButton: {
     width: '45%',
     border: '2px solid #F5A623',
@@ -79,7 +80,7 @@ const style = styles({
     display: 'inline-block',
     float: 'left',
     fontWeight: 'bold',
-  }
+  },
   box: {
     padding: vars.spacing,
     backgroundColor: '#F17B26'
