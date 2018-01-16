@@ -8,28 +8,17 @@ import { Button } from 'button/button';
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
 
-export type RegistrationVerifiedProps = {
+export type NotRegisteredProps = {
 
 };
 
 @observer
-export class RegistrationVerified extends React.Component<RegistrationVerifiedProps, {}> {
-  state = {
-    email: "",
-    phoneNumber: "",
-  }
-
-  setter(name: string) {
-    return (value: string) => {
-      this.setState({[name]: value});
-    }
-  }
+export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
 
   // Need to define action(s) associated with form buttons
 
   submit = () => {
-    console.log('Email: ' + this.state.email);
-    console.log('Phone Number: ' + this.state.phoneNumber);
+    console.log("Go to registration instructions.");
   }
 
   return = () => {
@@ -40,12 +29,10 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
     return (
       <div {...style.box}>
         <div {...style.maxWidth}>
-          <img {style.tempImage} src="http://www.slothwerks.com/citizen-labs/green-checkmark.jpg" alt="Checkmark"/>
-          <p {style.result}>You're registered!</h1>
-          <p {style.note}>Sign up for notifications to be reminded to vote.  We'll automatically create an account you can use to encourage your friends to vote.</p>
-          <ShortInput label="" css={style.formInput} onChange={this.setter('email')} placeholder="Email" value={this.state.email}/>
-          <ShortInput label="" css={style.formInput} onChange={this.setter('phoneNumber')} placeholder="Phone Number" value={this.state.phoneNumber}/>
-          <Button action={this.submit} css={style.signUpButton}>Sign Up</Button>
+          <img {style.tempImage} src="http://www.slothwerks.com/citizen-labs/orange-x.jpg" alt="X"/>
+          <p {style.result}>You're not registered.</h1>
+          <p {style.note}>Find how to register near you.</p>
+          <Button action={this.submit} css={style.howToRegisterButton}>How to Register</Button>
           <Button action={this.return} css={style.backButton}>Back</Button>
         </div>
       </div>
@@ -54,9 +41,8 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
 } 
 
 // Colors from wireframe...
-// Green form background: #6EB047
-// Form input element background: #99C77E
-// Button highlighted background and border: #85CE5A
+// Orange form background: #F17B26
+// Button highlighted background and border: #F5A623
 // Text: #FFFFFF (white)
 
 const style = styles({
@@ -78,17 +64,17 @@ const style = styles({
     fontWeight: 'bold',    
     padding: '10px'
   }
-  signUpButton: {
+  howToRegisterButton: {
     width: '60%',
     margin: '0 auto'
     display: 'block',
-    backgroundColor: '#85CE5A',
-    marginBottom: 50,
+    backgroundColor: '#F5A623',
+    marginBottom: 200,
     fontWeight: 'bold',
   }
   backButton: {
     width: '45%',
-    border: '2px solid #85CE5A',
+    border: '2px solid #F5A623',
     backgroundColor: 'transparent',
     display: 'inline-block',
     float: 'left',
@@ -96,7 +82,7 @@ const style = styles({
   }
   box: {
     padding: vars.spacing,
-    backgroundColor: '#6EB047'
+    backgroundColor: '#F17B26'
   },
   heading: {
     marginBottom: vars.spacing

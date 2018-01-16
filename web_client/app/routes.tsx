@@ -4,6 +4,7 @@ import { go, RouteDeclaration, history } from 'router';
 // Components
 import { Home } from 'home/home';
 import { RegistrationVerified } from 'registration-verified/registration-verified';
+import { NotRegistered } from 'not-registered/not-registered';
 
 import API from './api/api';
 
@@ -23,6 +24,7 @@ export const routes: RouteDeclaration = {
   children: [
     { path: 'home', component: Home },
     { path: 'registration-verified', component: RegistrationVerified },
+    { path: 'not-registered', component: NotRegistered },
     { path: '/', preFilter: redirect('/home'), component: Home}
   ],
 };
