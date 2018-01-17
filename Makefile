@@ -108,6 +108,7 @@ uml: install
 
 .PHONY: run
 run: install ## Run the applicaiton
+	mkdir -p web_client/build
 	cp web_client/app/index.html web_client/build/index.html
 	pipenv run honcho start --procfile=Procfile.dev
 
