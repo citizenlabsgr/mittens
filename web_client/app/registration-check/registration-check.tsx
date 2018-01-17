@@ -38,10 +38,16 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     }
   }
 
-  submit = () => {
+  submit = () => {   
     const { voter, firstName, lastName, birthDay, birthMonth, birthYear, zipCode } = this.state;
-    
-    Object.assign(voter, { firstName, lastName, birthDay, birthMonth, birthYear, zipCode });
+    const birthMonthNum = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'].indexOf(birthMonth.toLowerCase());
+    if (birthMonthNum === -1) {
+      // temporary alert, replace with form error state/form validation function
+      alert('Please enter a valid month.');
+      return;
+    };
+    const birthDate = new Date(birthYear, birthMonthNum, birthDay);
+    Object.assign(voter, { firstName, lastName, birthDate, zipCode });
     voter.checkRegistration().then(r => {
       if (r) {
         go('/registration-verified');
@@ -64,8 +70,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
                 <div {...style.monthInput}>
                   <ShortInput label="" onChange={this.setter('birthMonth')} value={this.state.birthMonth} placeholder="Month" />
                 </div>
-                <ShortInput label="" onChange={this.setter('birthDay')} value={this.state.birthDay} placeholder="Day" />
-                <ShortInput label="" onChange={this.setter('birthYear')} value={this.state.birthYear} placeholder="Year" />
+                <ShortInput label="" onChange={this.setter('birthDay')} value={this.state.birthDay} placeholder="Day" type="number"/>
+                <ShortInput label="" onChange={this.setter('birthYear')} value={this.state.birthYear} placeholder="Year" type="number"/>
               </div>
             </Labelled>
             <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>

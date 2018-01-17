@@ -12,7 +12,7 @@ import { styles, vars, css } from 'styles/css';
 
 
 export interface ShortInputProps {
-  onChange(v: string): void
+  onChange(v: string|number): void
   label: string
   autofocus?: boolean
   errors?: string[]
@@ -40,6 +40,14 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
     this.input.focus();
   }
 
+  onChange(value: string) {
+    if (this.props.type === "number") {
+      this.props.onChange(parseInt(value));
+    } else {
+      this.props.onChange(value);
+    }
+  }
+
   render() {
     const { label, note, type, errors, value, required, flex } = this.props
     return (
@@ -57,7 +65,7 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
           aria-required={required}
           type={type}
           value={value}
-          onChange={(e: any) => this.props.onChange(e.target.value)} />
+          onChange={(e: any) => this.onChange(e.target.value)} />
         <div {...style.icon}>{this.props.children}</div>
       </Labelled>
     );

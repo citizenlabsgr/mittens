@@ -10,7 +10,7 @@ export class Voter {
 
   @action
   checkRegistration() {
-    return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDate.toISOString(), this.zipCode).then(
+    return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDate.toISOString().slice(0, 10), this.zipCode).then(
       result => {
         Object.assign(this, result);
         return this.registered;
