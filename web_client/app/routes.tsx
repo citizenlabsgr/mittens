@@ -2,6 +2,7 @@ import * as React from 'react';
 import { go, RouteDeclaration, history } from 'router';
 
 // Components
+import { Login } from 'home/login';
 import { RegistrationCheck } from 'registration-check/registration-check';
 import { RegistrationVerified } from 'registration-verified/registration-verified';
 import { NotRegistered } from 'not-registered/not-registered';
@@ -22,6 +23,7 @@ function redirect(path: string) {
 export const routes: RouteDeclaration = {
   path: '/',
   children: [
+    { path: 'login', component: Login },
     { path: 'registration-check', component: RegistrationCheck },
     { path: 'registration-verified', component: RegistrationVerified },
     { path: 'not-registered', component: NotRegistered },

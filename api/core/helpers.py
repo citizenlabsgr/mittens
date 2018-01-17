@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 def send_login_email(user, request):
     assert user.email, f"User has no email: {user}"
 
-    base = reverse('redirector', args=["api/registration"], request=request)
+    base = reverse('redirector', args=["login"], request=request)
     token = get_query_string(user)
     url = base + token
 
