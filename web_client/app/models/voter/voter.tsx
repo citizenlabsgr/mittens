@@ -11,7 +11,10 @@ export class Voter {
   @action
   checkRegistration() {
     return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDate, this.zipCode).then(
-      result => Object.assign(this, result)
+      result => {
+        Object.assign(this, result);
+        return this.registered;
+      }
     );
   }
 }
