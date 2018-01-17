@@ -29,7 +29,7 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
           <div {...style.maxWidth}>
             <div {...style.icon}><BigX size={100} color={vars.color.white} /></div>
             <h1 {...style.result}>You&rsquo;re not registered.</h1>
-            <div {...style.note}><p>Sorry! We couldn't find you using that information. You may not be registered. Find how to register yourself, or try checking again.</p></div>
+            <p>Sorry! We couldn't find you using that information. You may not be registered. Find how to register yourself, or try checking again.</p>
             <div {...style.buttons}>
               <Link to="/registration-check" theme="transparent" css={style.button}>Try Again</Link>
               <Button action={this.submit} theme="warn" css={style.button}>Register to Vote</Button>
@@ -49,10 +49,6 @@ const style = styles({
   },
   result: {
     textAlign: 'center',
-  },
-  note: {  
-    paddingLeft: vars.smallSpacing,
-    paddingRight: vars.smallSpacing
   },
   button: {
     marginBottom: vars.spacing

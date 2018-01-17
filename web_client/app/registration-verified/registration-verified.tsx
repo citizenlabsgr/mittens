@@ -46,8 +46,8 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
             <div {...style.icon}>
               <CheckMark size={100} color={vars.color.white} />
             </div>
-            <h1 {...style.result}>You&rsquo;re registered!</h1>
-            <p>Sign up to be reminded to vote! Once you sign up, we can aslo help you encourage your friends to vote.</p>
+            <h1 {...style.result}>You&rsquo;re already registered&nbsp;to&nbsp;vote!</h1>
+            <p>Sign up to be reminded to vote in local elections. Once you sign up, we'll help you encourage your friends to vote, too.</p>
             <ShortInput label="Email" onChange={this.setter('email')} value={this.state.email}/>
             <ShortInput label="Phone number" onChange={this.setter('phoneNumber')} value={this.state.phoneNumber}/>
             <div {...style.buttons}>
