@@ -24,16 +24,19 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
 
   render() {
     return (
-      <div {...style.box}>
-        <div {...style.maxWidth}>
-          <div {...style.icon}><BigX size={100} color={vars.color.white} /></div>
-          <h1 {...style.result}>You&rsquo;re not registered.</h1>
-          <p>We couldn't find you using that information; you may not be registered. Find how to register near you, or try checking again.</p>
-          <div {...style.buttons}><Button action={this.submit} theme="warn" css={style.button}>Register to Vote</Button>
-          <Link to="/registration-check" theme="transparent" css={style.button}>Try Again</Link>
+      <MainContentWrapper background={vars.color.warnDark}>
+        <div {...style.box}>
+          <div {...style.maxWidth}>
+            <div {...style.icon}><BigX size={100} color={vars.color.white} /></div>
+            <h1 {...style.result}>You&rsquo;re not registered.</h1>
+            <div {...style.note}><p>Sorry! We couldn't find you using that information. You may not be registered. Find how to register yourself, or try checking again.</p></div>
+            <div {...style.buttons}>
+              <Link to="/registration-check" theme="transparent" css={style.button}>Try Again</Link>
+              <Button action={this.submit} theme="warn" css={style.button}>Register to Vote</Button>
+            </div>
           </div>
         </div>
-      </div>
+      </MainContentWrapper>
     );
   }
 } 
@@ -45,33 +48,26 @@ const style = styles({
     marginBottom:vars.spacing
   },
   result: {
-    fontSize: '2.5em',
-    margin: 0,
-    textTransform: 'uppercase',
     textAlign: 'center',
-    fontWeight: 'bold',
   },
-  note: {
-    fontWeight: 'bold',    
-    padding: '10px'
+  note: {  
+    paddingLeft: vars.smallSpacing,
+    paddingRight: vars.smallSpacing
   },
   button: {
     marginBottom: vars.spacing
   },
   buttons: {
+    marginTop: vars.spacing * 2,
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between'
   },
   box: {
-    padding: vars.spacing,
-    backgroundColor: '#F17B26'
-  },
-  heading: {
-    marginBottom: vars.spacing
+    padding: vars.spacing
   },
   maxWidth: {
-    maxWidth: 350,
+    maxWidth: 400,
     margin: '0 auto'
   },
 });
