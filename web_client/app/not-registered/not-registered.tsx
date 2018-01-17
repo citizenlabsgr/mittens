@@ -8,6 +8,7 @@ import { Button } from 'button/button';
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
 import { addLeadingSlash } from 'history/PathUtils';
+import { BigX } from 'icons/big-x';
 
 export type NotRegisteredProps = {
 
@@ -30,11 +31,12 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
     return (
       <div {...style.box}>
         <div {...style.maxWidth}>
-          <img {...style.tempImage} src="http://www.slothwerks.com/citizen-labs/orange-x.jpg" alt="X"/>
+          <div {...style.icon}><BigX size={100} color={vars.color.white} /></div>
           <h1 {...style.result}>You're not registered.</h1>
-          <p>Find how to register near you.</p>
-          <Button action={this.submit} css={style.howToRegisterButton}>How to Register</Button>
-          <Button action={this.return} css={style.backButton}>Back</Button>
+          <p>We couldn't find you using that information; you may not be registered. Find how to register near you, or try checking again.</p>
+          <div {...style.buttons}><Button action={this.submit} theme="warn" css={style.button}>Register to Vote</Button>
+          <Button action={this.return} theme="transparent" css={style.button}>Try Again</Button>
+          </div>
         </div>
       </div>
     );
@@ -47,12 +49,10 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
 // Text: #FFFFFF (white)
 
 const style = styles({
-  tempImage: {
+  icon: {
     margin: '0 auto',
-    display: 'block',
-    width: 108,
-    height: 108,
-    marginBottom: 20
+    width: 100,
+    marginBottom:vars.spacing
   },
   result: {
     fontSize: '2.5em',
@@ -65,21 +65,13 @@ const style = styles({
     fontWeight: 'bold',    
     padding: '10px'
   },
-  howToRegisterButton: {
-    width: '60%',
-    margin: '0 auto',
-    display: 'block',
-    backgroundColor: '#F5A623',
-    marginBottom: 200,
-    fontWeight: 'bold',
+  button: {
+    marginBottom: vars.spacing
   },
-  backButton: {
-    width: '45%',
-    border: '2px solid #F5A623',
-    backgroundColor: 'transparent',
-    display: 'inline-block',
-    float: 'left',
-    fontWeight: 'bold',
+  buttons: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
   },
   box: {
     padding: vars.spacing,

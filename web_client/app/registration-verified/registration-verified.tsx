@@ -8,6 +8,7 @@ import { Button } from 'button/button';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
+import { CheckMark } from 'icons/checkmark';
 
 export type RegistrationVerifiedProps = {
 
@@ -34,20 +35,22 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
   }
 
   return = () => {
-    console.log("Go back to previous screen.");
+    go('/registration-check')
   }
 
   render() {
     return (
       <div {...style.box}>
         <div {...style.maxWidth}>
-          <img {...style.tempImage} src="http://www.slothwerks.com/citizen-labs/green-checkmark.jpg" alt="Checkmark"/>
-          <h1 {...style.result}>You're registered!</h1>
+          <div {...style.icon}>
+            <CheckMark size={100} color={vars.color.white} />
+          </div>
+          <h1 {...style.result}>You&rsquo;re registered!</h1>
           <p {...style.note}>Sign up for notifications to be reminded to vote.  We'll automatically create an account you can use to encourage your friends to vote.</p>
           <ShortInput label="" onChange={this.setter('email')} placeholder="Email" value={this.state.email}/>
           <ShortInput label="" onChange={this.setter('phoneNumber')} placeholder="Phone Number" value={this.state.phoneNumber}/>
-          <Button action={this.submit} css={style.signUpButton}>Sign Up</Button>
-          <Button action={this.return} css={style.backButton}>Back</Button>
+          <div><Button action={this.submit} theme="success" css={style.signUpButton}>Sign Up</Button></div>
+          <Button action={this.return} theme="transparent" css={style.backButton}>Back</Button>
         </div>
       </div>
     );
@@ -61,11 +64,10 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
 // Text: #FFFFFF (white)
 
 const style = styles({
-  tempImage: {
+  icon: {
     margin: '0 auto',
     display: 'block',
-    width: 108,
-    height: 108,
+    width: 100,
     marginBottom: 20
   },
   result: {
@@ -75,25 +77,14 @@ const style = styles({
     textAlign: 'center',
     fontWeight: 'bold',
   },
-  note: {
-    fontWeight: 'bold',    
+  note: {  
     padding: '10px'
   },
   signUpButton: {
-    width: '60%',
-    margin: '0 auto',
-    display: 'block',
-    backgroundColor: '#85CE5A',
-    marginBottom: 50,
-    fontWeight: 'bold',
+    float: 'right'
   },
   backButton: {
-    width: '45%',
-    border: '2px solid #85CE5A',
-    backgroundColor: 'transparent',
-    display: 'inline-block',
-    float: 'left',
-    fontWeight: 'bold',
+    float: 'left'
   },
   box: {
     padding: vars.spacing,
@@ -107,3 +98,4 @@ const style = styles({
     margin: '0 auto'
   },
 });
+

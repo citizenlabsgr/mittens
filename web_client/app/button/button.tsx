@@ -57,7 +57,7 @@ export class Button extends React.Component<ButtonProps & AnyButtonProps, {}> {
         role={this.props.role}
         disabled={this.props.disabled}
         className={this.props.testName}
-        has-popup={this.props.hasPopup}
+        aria-haspopup={this.props.hasPopup}
         ref={this.setRef}>
         {this.props.children}
       </button>
@@ -66,6 +66,7 @@ export class Button extends React.Component<ButtonProps & AnyButtonProps, {}> {
 }
 
 export function buttonStyle(theme: string, disabled?: boolean) {
+  if (theme === "transparent") return transparentStyle;
   if (theme === "link") return linkStyle;
   var fontColor: string;
   switch (theme) {
@@ -97,7 +98,7 @@ export function buttonStyle(theme: string, disabled?: boolean) {
     textTransform: 'capitalize',
     borderRadius: vars.border.borderRadius,
     border: 0,
-    fontSize: 20,
+    fontSize: 18,
     cursor: 'pointer',
     display: 'inline-block',
     ...hover,
@@ -119,5 +120,28 @@ const linkStyle = css({
   ':hover': {
     color: vars.color.theme,
 
+  }
+});
+
+const transparentStyle = css({
+  label: 'transparent-button-style',
+  padding: `${vars.smallSpacing + 1}px ${vars.smallSpacing + 6}px`,
+  textAlign: 'center',
+  backgroundColor: 'transparent',
+  border: `1px solid ${vars.color.whiteLight}`,
+  color: vars.color.whiteLight,
+  userSelect: 'none',
+  textDecoration: 'none',
+  textTransform: 'capitalize',
+  borderRadius: vars.border.borderRadius,
+  fontSize: 18,
+  cursor: 'pointer',
+  display: 'inline-block',
+  ':hover': {
+    color: vars.color.white,
+    border: `1px solid ${vars.color.white}`,
+  },
+  ':focus': {
+    ...vars.focus[':focus'],
   }
 });
