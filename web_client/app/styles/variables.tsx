@@ -21,7 +21,7 @@ export const vars = {
     actionight: "#FF9861",
     warnDark: "#F17B26",
     warn: "#F5A623",
-    warnLight: "#F86761",
+    warnLight: "#de600a",
     success: "#87CC60",
     successDark: "#6EB047",
     successLight: "#8DBF71",
