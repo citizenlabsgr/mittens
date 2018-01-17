@@ -33,6 +33,9 @@ class API {
         if (response.status === 204) {
           return Promise.resolve({});
         }
+        if (response.status > 299) {
+          return response.json().then(e => {throw e})
+        }
         return response.json();
       }).then((response: { errors?: any }) => {
         if (response.errors)

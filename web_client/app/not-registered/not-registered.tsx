@@ -19,7 +19,7 @@ export type NotRegisteredProps = {
 export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
 
   submit = () => {
-    console.log("Go to registration instructions.");
+    alert("Not implemented.")
   }
 
   render() {

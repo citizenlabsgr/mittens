@@ -22,7 +22,13 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     lastName: "",
     birthDate: "",
     zipCode: "",
-    voter: null as Voter
+    voter: null as Voter,
+    errors: {} as {
+      first_name: string[],
+      last_name: string[],
+      zip_code: string[],
+      birth_date: string[] 
+    }
   }
 
   componentWillMount() {
@@ -37,6 +43,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
 
   submit = () => {
     const { voter, firstName, lastName, birthDate, zipCode } = this.state;
+    this.setState({errors: {}});
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
     voter.checkRegistration().then(r => {
       if (r) {
@@ -44,6 +51,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
       } else {
         go('/not-registered');
       }
+    }).catch(e => {
+      this.setState({errors: e})
     })
   }
 
@@ -51,15 +60,15 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     return (
       <MainContentWrapper>
         <div {...style.box}>
-          <div {...style.maxWidth}>
+          <form {...style.maxWidth} onSubmit={e => { this.submit(); e.preventDefault(); }}>
             <h1 {...style.heading}>First, let's check if you&rsquo;re registered to vote.</h1>
-            <ShortInput label="First Name" onChange={this.setter('firstName')} value={this.state.firstName}/>
-            <ShortInput label="Last Name" onChange={this.setter('lastName')} value={this.state.lastName}/>
-            <ShortInput label="Birthday" onChange={this.setter('birthDate')} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
-            <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>
+            <ShortInput label="First Name" onChange={this.setter('firstName')} errors={this.state.errors.first_name} value={this.state.firstName}/>
+            <ShortInput label="Last Name" onChange={this.setter('lastName')} errors={this.state.errors.last_name} value={this.state.lastName}/>
+            <ShortInput label="Birthday" onChange={this.setter('birthDate')} errors={this.state.errors.birth_date} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
+            <ShortInput label="Zip Code" onChange={this.setter('zipCode')} errors={this.state.errors.zip_code} value={this.state.zipCode}/>
             <div {...css(vars.clearFix)}><Button action={this.submit} css={style.button}>Check!</Button></div>
             <div {...style.note}><p>You can also use the <a href="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</a></p></div>
-          </div>
+          </form>
         </div>
       </MainContentWrapper>
     );
