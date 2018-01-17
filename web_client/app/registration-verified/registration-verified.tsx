@@ -5,10 +5,12 @@ import { go } from 'router';
 import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'forms/short-input/short-input';
 import { Button } from 'button/button';
+import { Link } from 'link/link';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
 import { CheckMark } from 'icons/checkmark';
+import { lang } from 'glamor';
 
 export type RegistrationVerifiedProps = {
 
@@ -30,12 +32,7 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
   // Need to define action(s) associated with form buttons
 
   submit = () => {
-    console.log('Email: ' + this.state.email);
-    console.log('Phone Number: ' + this.state.phoneNumber);
-  }
-
-  return = () => {
-    go('/registration-check')
+    alert("Not implemented")
   }
 
   render() {
@@ -51,7 +48,7 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
             <ShortInput label="Email" onChange={this.setter('email')} value={this.state.email}/>
             <ShortInput label="Phone number" onChange={this.setter('phoneNumber')} value={this.state.phoneNumber}/>
             <div {...style.buttons}>
-              <Button action={this.return} theme="transparent">Back</Button>
+              <Link to="/registration-check" theme="transparent">Back</Link>
               <Button action={this.submit} theme="success">Sign Up</Button>
             </div>
           </div>
