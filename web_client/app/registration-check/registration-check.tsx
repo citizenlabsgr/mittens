@@ -52,12 +52,13 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
       <MainContentWrapper>
         <div {...style.box}>
           <div {...style.maxWidth}>
-            <h1 {...style.heading}>Are you registered?</h1>
-            <ShortInput label="First Name" onChange={this.setter('firstName')} placeholder="Susan" value={this.state.firstName}/>
-            <ShortInput label="Last Name" onChange={this.setter('lastName')} placeholder="Anthony" value={this.state.lastName}/>
+            <h1 {...style.heading}>First, let's check if you&rsquo;re registered to vote.</h1>
+            <ShortInput label="First Name" onChange={this.setter('firstName')} value={this.state.firstName}/>
+            <ShortInput label="Last Name" onChange={this.setter('lastName')} value={this.state.lastName}/>
             <ShortInput label="Birthday" onChange={this.setter('birthDate')} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
             <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>
-            <Button action={this.submit} css={style.button}> Find Me!</Button>
+            <div {...css(vars.clearFix)}><Button action={this.submit} css={style.button}>Check!</Button></div>
+            <div {...style.note}><p>You can also use the <a href="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</a></p></div>
           </div>
         </div>
       </MainContentWrapper>
@@ -66,32 +67,23 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
 }
 
 const style = styles({
+  heading: {
+    textAlign: 'center'
+  },
   button: {
-    margin: '0 auto',
-    display: 'block'
+    float: 'right',
+    marginTop: vars.smallSpacing
+  },
+  note: {
+    marginTop: vars.spacing,
+    borderTop: vars.borderSimple,
+    fontSize: 16
   },
   box: {
     padding: vars.spacing
   },
-  heading: {
-    marginBottom: vars.spacing
-  },
   maxWidth: {
     maxWidth: 400,
     margin: '0 auto'
-  },
-  registered: {
-    borderRadius: vars.border.borderRadius,
-    marginTop: vars.spacing,
-    padding: vars.spacing,
-    backgroundColor: vars.color.theme,
-    color: vars.color.white
-  },
-  notRegistered: {
-    borderRadius: vars.border.borderRadius,
-    marginTop: vars.spacing,
-    padding: vars.spacing,
-    backgroundColor: vars.color.warn,
-    color: vars.color.white
   }
 });
