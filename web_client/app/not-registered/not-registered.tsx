@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'forms/short-input/short-input';
 import { Button } from 'button/button';
+import { Link } from 'link/link';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
@@ -32,21 +33,16 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
       <div {...style.box}>
         <div {...style.maxWidth}>
           <div {...style.icon}><BigX size={100} color={vars.color.white} /></div>
-          <h1 {...style.result}>You're not registered.</h1>
+          <h1 {...style.result}>You&rsquo;re not registered.</h1>
           <p>We couldn't find you using that information; you may not be registered. Find how to register near you, or try checking again.</p>
           <div {...style.buttons}><Button action={this.submit} theme="warn" css={style.button}>Register to Vote</Button>
-          <Button action={this.return} theme="transparent" css={style.button}>Try Again</Button>
+          <Link to="/registration-check" theme="transparent" css={style.button}>Try Again</Link>
           </div>
         </div>
       </div>
     );
   }
 } 
-
-// Colors from wireframe...
-// Orange form background: #F17B26
-// Button highlighted background and border: #F5A623
-// Text: #FFFFFF (white)
 
 const style = styles({
   icon: {
