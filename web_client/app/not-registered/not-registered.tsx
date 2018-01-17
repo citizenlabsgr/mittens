@@ -18,14 +18,8 @@ export type NotRegisteredProps = {
 @observer
 export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
 
-  // Need to define action(s) associated with form buttons
-
   submit = () => {
     console.log("Go to registration instructions.");
-  }
-
-  return = () => {
-    console.log("Go back to previous screen.");
   }
 
   render() {
