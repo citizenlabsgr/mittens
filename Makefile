@@ -82,14 +82,24 @@ reset: install ## Database | Create a new database, migrate, and seed it
 # VALIDATION TARGETS ##########################################################
 
 .PHONY: check
-check: install
+check: check-backend
+
+.PHONY: check-backend
+check-backend: install
 	pipenv run pycodestyle api
 	@ echo
 	pipenv run pylint api
 
 .PHONY: test
-test: install
+test: test-backend test-frontend
+
+.PHONY: test-backend
+test-backend: install
 	pipenv run pytest api
+
+.PHONY: test-frontend
+test-frontend: install
+	yarn build
 
 .PHONY: watch
 watch: install
@@ -112,7 +122,6 @@ run: install ## Run the applicaiton
 	cp web_client/app/index.html web_client/build/index.html
 	pipenv run honcho start --procfile=Procfile.dev
 
-TODO: Emulate the production server
 .PHONY: run-prod
 run-prod: .envrc install ## Run the application (emulate production)
 	pipenv shell "bin/pre_compile; exit \$$?"
