@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { go, RouteDeclaration, history } from 'router';
+import { Voter } from 'models';
 
 // Components
 import { Login } from 'login/login';

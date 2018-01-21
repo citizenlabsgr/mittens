@@ -21,7 +21,10 @@ export type NotRegisteredProps = {
 export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
   state = {
     email: "",
-    awaitingConfirmation: false
+    awaitingConfirmation: false,
+    errors: {} as {
+      email: string[]
+    }
   }
 
   setter(name: string) {
@@ -36,7 +39,9 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
     Voter.currentUser.email = this.state.email;
     Voter.currentUser.signUp().then(
       () => go('/awaiting-confirmation')
-    )
+    ).catch(
+      errors => this.setState({errors: errors})
+    );
   }
 
   register = () => {
@@ -56,7 +61,7 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
             </div>
             {!Voter.currentUser.signedUp && <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
               <p>You can also sign up to be reminded to vote in local elections.</p>
-              <ShortInput label="Email" onChange={this.setter('email')} type="email" value={this.state.email}/>
+              <ShortInput label="Email" onChange={this.setter('email')} errors={this.state.errors.email} type="email" value={this.state.email}/>
               <div {...style.buttons}>
                 <Link to="/registration-check" theme="transparent">Back</Link>
                 <Button action={this.submit} theme="warn">Sign Up</Button>

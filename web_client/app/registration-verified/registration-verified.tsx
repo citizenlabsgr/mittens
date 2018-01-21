@@ -21,6 +21,9 @@ export type RegistrationVerifiedProps = {
 export class RegistrationVerified extends React.Component<RegistrationVerifiedProps, {}> {
   state = {
     email: "",
+    errors: {} as {
+      email: string[]
+    }
   }
 
   setter(name: string) {
@@ -35,7 +38,9 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
     Voter.currentUser.email = this.state.email;
     Voter.currentUser.signUp().then(
       () => go("/awaiting-confirmation")
-    )
+    ).catch(
+      errors => this.setState({errors: errors})
+    );
   }
 
   render() {
@@ -49,7 +54,7 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
             <h1 {...style.result}>You&rsquo;re already registered&nbsp;to&nbsp;vote!</h1>
             {!Voter.currentUser.signedUp && <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
               <p>Sign up to be reminded to vote in local elections.</p>
-              <ShortInput label="Email" onChange={this.setter('email')} type="email" value={this.state.email}/>
+              <ShortInput label="Email" onChange={this.setter('email')} errors={this.state.errors.email} type="email" value={this.state.email}/>
               <div {...style.buttons}>
                 <Link to="/registration-check" theme="transparent">Back</Link>
                 <Button action={this.submit} theme="success">Sign Up</Button>
