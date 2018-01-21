@@ -36,7 +36,7 @@ const style = styles({
     padding: vars.spacing
   },
   maxWidth: {
-    textAlign: 'center'
+    textAlign: 'center',
     maxWidth: 400,
     margin: '0 auto'
   },
