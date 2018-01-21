@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { go } from 'router';
+import { Voter } from 'models';
 
 import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'forms/short-input/short-input';
@@ -18,29 +19,21 @@ export type LoginProps = {
 @observer
 export class Login extends React.Component<LoginProps, {}> {
   state = {
-    email: "",
-    errors: {} as {
-      email: string[],
-    }
+    ready: false,
+    email: ""
   }
 
   componentWillMount() {
-    this.setState({});
-  }
-
-  componentDidMount() {
-    API.get('registration/').then(data => {
-      const registered = data['registered'];
-      console.log("Registered: " + registered);
-      if (registered === true) {
+    Voter.fetchMe().then(voter => {
+      if (voter.registered === true) {
         go('/registration-verified');
-      } else if (registered === false) {
+      } else if (voter.registered === false) {
         go('/not-registered');
       } else {
         go('/');
       }
     }).catch(e => {
-      this.setState({errors: e})
+      this.setState({errors: e, ready: true})
     })
   }
 
@@ -52,20 +45,25 @@ export class Login extends React.Component<LoginProps, {}> {
 
   submit = () => {
     const { email } = this.state;
-    console.log("Sending email: " + email);
-    return API.post('login-email/', {email: email});
+    return API.post('login-email/', {email: email}).then(
+      () => go("/awaiting-confirmation")
+    );
   }
 
   render() {
+    if (!this.state.ready) return null;
+
     return (
       <MainContentWrapper>
         <div {...style.box}>
           <div {...style.maxWidth}>
             <h1 {...style.heading}>Welcome Back!</h1>
             <p>Let us send you an email containing a link to get you back into to your account.</p>
-            <ShortInput label="Email" onChange={this.setter('email')} placeholder="you@yourdomain.com" value={this.state.email}/>
-            <Button action={this.submit} css={style.button}> Send me a link!</Button>
-            <Link to='/'>I still need an account.</Link>
+            <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
+              <ShortInput label="Email" autofocus onChange={this.setter('email')} value={this.state.email}/>
+              <Button action={this.submit} css={style.button}> Send me a link!</Button>
+              <div {...style.note}><Link to='/'>I still need an account.</Link></div>
+            </form>
           </div>
         </div>
       </MainContentWrapper>
@@ -75,7 +73,7 @@ export class Login extends React.Component<LoginProps, {}> {
 
 const style = styles({
   button: {
-    margin: '0 auto',
+    marginLeft: 'auto',
     display: 'block'
   },
   box: {
@@ -87,5 +85,10 @@ const style = styles({
   maxWidth: {
     maxWidth: 400,
     margin: '0 auto'
-  }
+  },
+  note: {
+    marginTop: vars.spacing,
+    borderTop: vars.borderSimple,
+    fontSize: 16
+  },
 });
