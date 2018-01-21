@@ -13,7 +13,7 @@ import API from './api/api';
 
 function redirect(path: string) {
   return () => {
-    go(path);
+    go(path, {} , true);
   }
 }
 

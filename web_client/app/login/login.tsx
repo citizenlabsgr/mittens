@@ -26,11 +26,11 @@ export class Login extends React.Component<LoginProps, {}> {
   componentWillMount() {
     Voter.fetchMe().then(voter => {
       if (voter.registered === true) {
-        go('/registration-verified');
+        go('/registration-verified', {}, true);
       } else if (voter.registered === false) {
-        go('/not-registered');
+        go('/not-registered', {}, true);
       } else {
-        go('/');
+        go('/', {}, true);
       }
     }).catch(e => {
       this.setState({errors: e, ready: true})
