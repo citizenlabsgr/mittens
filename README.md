@@ -81,3 +81,5 @@ To run the backend/frontend development server:
 ```sh
 $ make run
 ```
+
+Unless `SENDGRID_USERNAME` and `SENDGRID_PASSWORD` are set, sent emails will appear in the `./tmp/emails/` directory.

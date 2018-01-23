@@ -61,7 +61,7 @@ let style = styles({
     fontWeight: 600,
   },
   errors: {
-    color: vars.color.warn,
+    color: 'rgba(255, 220, 200, .9)',
     fontSize: 14,
     float: 'right',
     lineHeight: 1.6

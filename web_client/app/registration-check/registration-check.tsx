@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { Voter } from 'models';
 import { go } from 'router';
 
+import { Link } from 'link/link';
 import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'forms/short-input/short-input';
 import { Button } from 'button/button';
@@ -22,7 +23,6 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     lastName: "",
     birthDate: "",
     zipCode: "",
-    voter: null as Voter,
     errors: {} as {
       first_name: string[],
       last_name: string[],
@@ -31,9 +31,6 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     }
   }
 
-  componentWillMount() {
-    this.setState({voter: new Voter()});
-  }
 
   setter(name: string) {
     return (value: string) => {
@@ -42,7 +39,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
   }
 
   submit = () => {
-    const { voter, firstName, lastName, birthDate, zipCode } = this.state;
+    const { firstName, lastName, birthDate, zipCode } = this.state;
+    const voter = Voter.currentUser;
     this.setState({errors: {}});
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
     voter.checkRegistration().then(r => {
@@ -67,7 +65,10 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
             <ShortInput label="Birthday" onChange={this.setter('birthDate')} errors={this.state.errors.birth_date} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
             <ShortInput label="Zip Code" onChange={this.setter('zipCode')} errors={this.state.errors.zip_code} value={this.state.zipCode}/>
             <div {...css(vars.clearFix)}><Button action={this.submit} css={style.button}>Check!</Button></div>
-            <div {...style.note}><p>You can also use the <a href="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</a></p></div>
+            <div {...style.note}>
+            <p>You can also use the <a href="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</a></p>
+            <p>Already signed up? <Link to="/login">Log in</Link></p>
+            </div>
           </form>
         </div>
       </MainContentWrapper>

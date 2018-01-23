@@ -4,11 +4,17 @@ from .base import *
 # They are only needed to seed data in staging and local
 BASE_URL = "http://example.com"
 
+###############################################################################
+# Core
+
 TEST = True
 
 DEBUG = True
 
 SECRET_KEY = 'test'
+
+###############################################################################
+# Databases
 
 DATABASES = {
     'default': {
@@ -16,5 +22,8 @@ DATABASES = {
         'NAME': 'voterengagement_test',
     }
 }
+
+###############################################################################
+# Logging
 
 LOGGING['loggers']['api']['level'] = 'DEBUG'
