@@ -20,7 +20,10 @@ export type LoginProps = {
 export class Login extends React.Component<LoginProps, {}> {
   state = {
     ready: false,
-    email: ""
+    email: "",
+    errors: null as {
+      email: string[]
+    }
   }
 
   componentWillMount() {
@@ -47,7 +50,9 @@ export class Login extends React.Component<LoginProps, {}> {
     const { email } = this.state;
     return API.post('login-email/', {email: email}).then(
       () => go("/awaiting-confirmation")
-    );
+    ).catch(
+      () => this.setState({errors: {email: ["Sorry, I don't recognize that email"]}})
+    )
   }
 
   render() {
@@ -60,7 +65,7 @@ export class Login extends React.Component<LoginProps, {}> {
             <h1 {...style.heading}>Welcome Back!</h1>
             <p>Let us send you an email containing a link to get you back into to your account.</p>
             <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
-              <ShortInput label="Email" autofocus onChange={this.setter('email')} value={this.state.email}/>
+              <ShortInput label="Email" autofocus onChange={this.setter('email')} errors={this.state.errors.email} value={this.state.email}/>
               <Button action={this.submit} css={style.button}> Send me a link!</Button>
               <div {...style.note}><Link to='/'>I still need an account.</Link></div>
             </form>
