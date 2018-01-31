@@ -46,7 +46,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
       alert('Please enter a valid month.');
       return;
     };
-    const birthDate = new Date(birthYear, birthMonthNum, birthDay);
+    const birthDate = new Date(parseInt(birthYear), birthMonthNum, parseInt(birthDay));
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
     voter.checkRegistration().then(r => {
       if (r) {
