@@ -5,6 +5,7 @@ import { go } from 'router';
 
 import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'forms/short-input/short-input';
+import { MonthAutocomplete } from 'forms/month-autocomplete/month-autocomplete';
 import { Button } from 'button/button';
 import { Labelled } from 'forms/labelled/labelled';
 
@@ -46,7 +47,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
       alert('Please enter a valid month.');
       return;
     };
-    const birthDate = new Date(birthYear, birthMonthNum, birthDay);
+    const birthDate = new Date(parseInt(birthYear), birthMonthNum, parseInt(birthDay));
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
     voter.checkRegistration().then(r => {
       if (r) {
@@ -68,7 +69,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
             <Labelled label="Birth Date">
               <div {...style.inline}>
                 <div {...style.monthInput}>
-                  <ShortInput label="" onChange={this.setter('birthMonth')} value={this.state.birthMonth} placeholder="Month" />
+                  <ShortInput label="" onChange={this.setter('birthMonth')} value={this.state.birthMonth} placeholder="Month"/>
+                  <MonthAutocomplete options={months} ref={input => _month = input}/>
                 </div>
                 <ShortInput label="" onChange={this.setter('birthDay')} value={this.state.birthDay} placeholder="Day" type="number"/>
                 <ShortInput label="" onChange={this.setter('birthYear')} value={this.state.birthYear} placeholder="Year" type="number"/>
