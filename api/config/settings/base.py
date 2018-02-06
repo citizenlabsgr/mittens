@@ -19,13 +19,11 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django.contrib.sites',
 
-    'api.core',
-    'api.voters',
-    'api.elections',
-    'api.ballots',
-
-    'api.ui',
     'api.api',
+    'api.ballots',
+    'api.core',
+    'api.elections',
+    'api.voters',
 
     'rest_framework',
 ]
