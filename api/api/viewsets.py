@@ -59,10 +59,7 @@ class RegistrationViewSet(viewsets.ViewSet):
                 email=email,
                 defaults=serializer.validated_data,
             )
-            if created:
-                send_login_email(voter.user, request)
-            else:
-                log.warning(f"Updated exiting voter: {voter}")
+            send_login_email(voter.user, request, welcome=created)
 
         return status
 
@@ -91,7 +88,7 @@ class LoginEmailViewSet(viewsets.ModelViewSet):
 
         email = serializer.validated_data['email']
         user = get_object_or_404(User, email=email)
-        count = send_login_email(user, request)
+        count = send_login_email(user, request, welcome=False)
         assert count == 1, f"Failed to email {email}"
 
         return Response({'message': f"Email sent: {email}"})
