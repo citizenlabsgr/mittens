@@ -19,7 +19,7 @@ djangorestframework = "*"
 
 # Database
 dj_database_url = "*"
-psycopg2 = "*"
+psycopg2-binary = "*"
 
 # Email
 django-sesame = "*"
