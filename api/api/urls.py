@@ -7,6 +7,8 @@ from . import viewsets
 
 root = routers.DefaultRouter()
 
+root.register('voters', viewsets.VoterViewSet, 'voters')
+
 root.register('registration', viewsets.RegistrationViewSet, base_name='registration')
 root.register('timelines', viewsets.TimelineViewSet, base_name='timelines')
 

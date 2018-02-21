@@ -17,6 +17,18 @@ from . import serializers
 log = logging.getLogger(__name__)
 
 
+class VoterViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.VoterSerializer
+    http_method_names = ['get', 'post']
+
+    def get_queryset(self):
+        return Voter.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        voter = serializer.save()
+        send_login_email(voter.user, self.request, welcome=True)
+
+
 class RegistrationViewSet(viewsets.ViewSet):
     serializer_class = serializers.StatusSerializer
     permission_classes = [AllowAny]
@@ -48,18 +60,10 @@ class RegistrationViewSet(viewsets.ViewSet):
         serializer = serializers.IdentitySerializer(data=request.query_params)
         serializer.is_valid(raise_exception=True)
 
-        email = serializer.validated_data.pop('email')
         identity = Identity(**serializer.validated_data)
         status = Status()
 
         fetch_and_update_registration(identity, status)
-
-        if email:
-            voter, created = Voter.objects.update_or_create(
-                email=email,
-                defaults=serializer.validated_data,
-            )
-            send_login_email(voter.user, request, welcome=created)
 
         return status
 
