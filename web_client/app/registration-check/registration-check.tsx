@@ -27,7 +27,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
       first_name: string[],
       last_name: string[],
       zip_code: string[],
-      birth_date: string[] 
+      birth_date: string[]
     }
   }
 
@@ -89,9 +89,9 @@ const style = styles({
     borderTop: vars.borderSimple,
     fontSize: 16
   },
-  // box: {
-  //   padding: vars.spacing
-  // },
+  box: {
+    padding: vars.spacing
+  },
   maxWidth: {
     maxWidth: 400,
     margin: '0 auto'
