@@ -66,8 +66,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
             <ShortInput label="Zip Code" onChange={this.setter('zipCode')} errors={this.state.errors.zip_code} value={this.state.zipCode}/>
             <div {...css(vars.clearFix)}><Button action={this.submit} css={style.button}>Check!</Button></div>
             <div {...style.note}>
-            <p>You can also use the <a href="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</a></p>
-            <p>Already signed up? <Link to="/login">Log in</Link></p>
+              <p>You can also use the <a href="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</a></p>
+              <p>Already signed up? <Link to="/login">Log in</Link></p>
             </div>
           </form>
         </div>
@@ -89,9 +89,9 @@ const style = styles({
     borderTop: vars.borderSimple,
     fontSize: 16
   },
-  box: {
-    padding: vars.spacing
-  },
+  // box: {
+  //   padding: vars.spacing
+  // },
   maxWidth: {
     maxWidth: 400,
     margin: '0 auto'
