@@ -6,6 +6,7 @@
 npm-debug.log
 
 .env
+.venv
 __pycache__/
 .cache/
 /staticfiles/
