@@ -1,11 +1,10 @@
-import logging
-
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
+import log
 
 from api.core.helpers import send_login_email
 from api.voters.models import Identity, Voter, Status
@@ -14,19 +13,29 @@ from api.voters.helpers import fetch_and_update_registration
 from . import serializers
 
 
-log = logging.getLogger(__name__)
-
-
 class VoterViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
     serializer_class = serializers.VoterSerializer
     http_method_names = ['get', 'post']
 
     def get_queryset(self):
+        if self.request.user.is_anonymous:
+            return []
         return Voter.objects.filter(user=self.request.user)
 
-    def perform_create(self, serializer):
-        voter = serializer.save()
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            voter = serializer.save()
+        else:
+            log.warning(serializer.errors)
+            email = serializer.data.get('email')
+            log.info(f"Getting voter with email: {email}")
+            voter = get_object_or_404(Voter, email=email)
+
         send_login_email(voter.user, self.request, welcome=True)
+
+        return Response(serializer.data, status=201)
 
 
 class RegistrationViewSet(viewsets.ViewSet):
@@ -59,6 +68,9 @@ class RegistrationViewSet(viewsets.ViewSet):
     def _get_status_from_query(request):
         serializer = serializers.IdentitySerializer(data=request.query_params)
         serializer.is_valid(raise_exception=True)
+
+        # TODO: We shouldn't getting email here at all
+        serializer.validated_data.pop('email')
 
         identity = Identity(**serializer.validated_data)
         status = Status()

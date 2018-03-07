@@ -1,6 +1,5 @@
-import logging
-
 import requests
+import log
 
 from api.core.helpers import prettify
 from api.elections.models import Kind, Region
@@ -8,8 +7,6 @@ from api.elections.models import Kind, Region
 
 REGISTRATION_API = "https://4gw9vvs9j1.execute-api.us-east-2.amazonaws.com/prod/checkRegistration"
 MISSING = "<missing>"
-
-log = logging.getLogger(__name__)
 
 
 def fetch_and_update_registration(voter, status):
@@ -76,5 +73,5 @@ def _get_region(kind_name, region_name):
     if created:
         log.info(f"Added new region: {region}")
     if not region.verified:
-        log.error(f"Unverified region: {region}")
+        log.warning(f"Unverified region: {region}")
     return region
