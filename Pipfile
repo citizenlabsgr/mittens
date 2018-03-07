@@ -28,6 +28,7 @@ django-sesame = "*"
 arrow = "*"
 faker = "*"
 requests = "*"
+minilog = "*"
 
 # Server
 whitenoise = "*"

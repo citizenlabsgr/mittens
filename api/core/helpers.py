@@ -1,25 +1,28 @@
 import pprint
-import logging
 
 from django.core.mail import EmailMessage
 
 from rest_framework.reverse import reverse
 from sesame.utils import get_query_string
+import log
 
 
-log = logging.getLogger(__name__)
-
-
-def send_login_email(user, request):
+def send_login_email(user, request, *, welcome):
     assert user.email, f"User has no email: {user}"
 
     base = reverse('redirector', args=["login"], request=request)
     token = get_query_string(user)
     url = base + token
 
+    # TODO: Convert this to an email template
+    if welcome:
+        subject = "Welcome to Voter Engagement"
+    else:
+        subject = "Greetings from Voter Engagement"
+    body = f"Click here to log in: {url}"
     email = EmailMessage(
-        subject="Welcome to Voter Engagement",
-        body=f"Click me: {url}",
+        subject=subject,
+        body=body,
         from_email="Voter Engagement <noreply@vote.citizenlabs.org>",
         to=[user.email],
     )

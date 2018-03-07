@@ -57,7 +57,7 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
               <ShortInput label="Email" onChange={this.setter('email')} errors={this.state.errors.email} type="email" value={this.state.email}/>
               <div {...style.buttons}>
                 <Link to="/registration-check" theme="transparent">Back</Link>
-                <Button action={this.submit} theme="success">Sign Up</Button>
+                <Button action={() => {}} theme="success">Sign Up</Button>
               </div>
             </form>}
             {Voter.currentUser.signedUp && <p>We'll remind you to get ready to vote before the next election.</p>}
