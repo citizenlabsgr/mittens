@@ -45,3 +45,4 @@ DEFAULT_FROM_EMAIL = f"Voter Engagement {BASE_NAME} <noreply@{BASE_DOMAIN}>"
 if not (os.getenv('SENDGRID_USERNAME') and os.getenv('SENDGRID_PASSWORD')):
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = os.path.join(PROJECT_ROOT, 'tmp', 'emails')
+    os.makedirs(EMAIL_FILE_PATH, exist_ok=True)
