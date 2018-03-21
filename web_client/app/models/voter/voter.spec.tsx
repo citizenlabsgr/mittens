@@ -100,7 +100,8 @@ describe("Voter", () => {
         last_name: "Anthony",
         birth_date: "1820-02-15",
         zip_code: "49506",
-        email: "susan@suffrage.org"
+        email: "susan@suffrage.org",
+        registered: true
       })
       expect(voter.firstName).toBe("Sue");
     });
