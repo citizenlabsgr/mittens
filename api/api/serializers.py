@@ -30,6 +30,7 @@ class VoterSerializer(serializers.ModelSerializer):
                   'birth_date', 'zip_code', 'email',
                   'registered']
 
+
 class ElectionSerializer(serializers.ModelSerializer):
 
     class Meta:
