@@ -1,6 +1,7 @@
 import { observable, computed, action } from 'mobx';
 import { VoterService, IncomingRegistrationJSON, IncomingVoterJSON } from './voter-service';
 import { spyOnUser } from 'fullstory/fullstory';
+import { camelCaseObject } from '../helpers';
 
 export class Voter {
   @observable firstName: string
@@ -13,31 +14,8 @@ export class Voter {
   static currentUserStore: CurrentUserStore;
 
   @action
-  checkRegistration() {
-    return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
-      result => {
-        this.registered = result.registered;
-        this.setThisAsCurrentUser();
-        return this.registered;
-      }
-    );
-  }
-
-  signUp() {
-    return VoterService.signUp(this.email, this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
-      result => {
-        this.registerSpy();
-        this.updateFromFetch(result);
-        this.setThisAsCurrentUser();
-        return this.registered;
-      }
-    );
-  }
-
-  @action
-  setThisAsCurrentUser() {
-    Voter.currentUserStore.currentUser = this;
-    Voter.currentUserStore.fetched = true;
+  static reset() {
+    this.currentUserStore = new CurrentUserStore();
   }
 
   @action
@@ -55,6 +33,27 @@ export class Voter {
     );
   }
 
+  @action
+  checkRegistration() {
+    return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
+      result => {
+        this.registered = result.registered;
+        return this.registered;
+      }
+    );
+  }
+
+  signUp() {
+    return VoterService.signUp(this.email, this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
+      result => {
+        this.signedUp = true;
+        this.registerSpy();
+        this.updateFromFetch(result);
+        return this.registered;
+      }
+    );
+  }
+
   birthDateAsString() {
     if (!this.birthDate) return "";
     return this.birthDate.toISOString().slice(0, 10);
@@ -66,18 +65,13 @@ export class Voter {
   }
 
   @action
-  registerSpy() {
-    spyOnUser(this.email, { displayName: `${this.firstName} ${this.lastName}`, email: this.email });
+  updateFromFetch(json: IncomingVoterJSON) {
+    Object.assign(this, camelCaseObject(json));
   }
 
   @action
-  updateFromFetch(json: IncomingVoterJSON) {
-    Object.assign(this, json);
-  }
-
-  @computed
-  get me() {
-    return Voter.currentUserStore.currentUser;
+  registerSpy() {
+    spyOnUser(this.email, { displayName: `${this.firstName} ${this.lastName}`, email: this.email });
   }
 }
 
@@ -87,7 +81,5 @@ class CurrentUserStore {
   @observable fetched = false;
   @observable currentUser = new Voter();
 }
-Voter.currentUserStore = new CurrentUserStore();
 
-
-Voter.fetchMe();
+Voter.reset();

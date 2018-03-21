@@ -27,8 +27,8 @@ class VoterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Voter
         fields = ['id', 'first_name', 'last_name',
-                  'birth_date', 'zip_code', 'email']
-
+                  'birth_date', 'zip_code', 'email',
+                  'registered']
 
 class ElectionSerializer(serializers.ModelSerializer):
 
