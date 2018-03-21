@@ -23,6 +23,7 @@ export interface ShortInputProps {
   required?: boolean
   type?: string
   value?: string
+  autoComplete?: string
 };
 
 export class ShortInput extends React.Component<ShortInputProps, {}> {
@@ -60,6 +61,7 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
               this.props.inputRef(r);
             }
           }}
+          autoComplete={this.props.autoComplete}
           placeholder={this.props.placeholder}
           aria-invalid={!!errors}
           aria-required={required}

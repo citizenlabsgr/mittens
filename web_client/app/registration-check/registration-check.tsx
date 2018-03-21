@@ -23,7 +23,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     firstName: "",
     lastName: "",
     birthDay: "",
-    birthMonth: "",
+    birthMonth: 0 as number,
     birthYear: "",
     zipCode: "",
     errors: {} as {
@@ -34,24 +34,27 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     }
   }
 
+  months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
   setter(name: string) {
-    return (value: string) => {
+    return (value: any) => {
       this.setState({[name]: value});
     }
   }
 
-  submit = () => {   
-    const { firstName, lastName, birthDay, birthMonth, birthYear, zipCode } = this.state;
-    const voter = Voter.currentUser;
-    const birthMonthNum = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'].indexOf(birthMonth.toLowerCase());
-    if (birthMonthNum === -1) {
-      // temporary alert, replace with form error state/form validation function
-      alert('Please enter a valid month.');
-      return;
-    };
-    const birthDate = new Date(parseInt(birthYear), birthMonthNum, parseInt(birthDay));
+  birthDateAsDate() {
+    const { birthDay, birthMonth, birthYear } = this.state;
+    return new Date(parseInt(birthYear), birthMonth, parseInt(birthDay));
+  }
+
+  submit = () => {
     this.setState({errors: {}});
+
+    const { firstName, lastName, zipCode } = this.state;
+    const birthDate = this.birthDateAsDate();
+    const voter = Voter.currentUser;
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
+
     voter.checkRegistration().then(r => {
       if (r) {
         go('/registration-verified');
@@ -69,19 +72,51 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
         <div {...style.box}>
           <form {...style.maxWidth} onSubmit={e => { this.submit(); e.preventDefault(); }}>
             <h1 {...style.heading}>First, let's check if you&rsquo;re registered to vote.</h1>
-            <ShortInput label="First Name" onChange={this.setter('firstName')} errors={this.state.errors.first_name} value={this.state.firstName}/>
-            <ShortInput label="Last Name" onChange={this.setter('lastName')} errors={this.state.errors.last_name} value={this.state.lastName}/>
+
+            <ShortInput label="First Name"
+              onChange={this.setter('firstName')}
+              errors={this.state.errors.first_name}
+              value={this.state.firstName}
+              autoComplete="given-name" />
+
+            <ShortInput label="Last Name"
+              onChange={this.setter('lastName')}
+              errors={this.state.errors.last_name}
+              value={this.state.lastName}
+              autoComplete="family-name" />
+
             <Labelled label="Birth Date">
               <div {...style.inline}>
-                <div {...style.monthInput}>
-                  <ShortInput label="" onChange={this.setter('birthMonth')} value={this.state.birthMonth} placeholder="Month" />
-                </div>
-                <ShortInput label="" onChange={this.setter('birthDay')} value={this.state.birthDay} placeholder="Day" type="number"/>
-                <ShortInput label="" onChange={this.setter('birthYear')} value={this.state.birthYear} placeholder="Year" type="number"/>
+                <select {...style.select}
+                  onChange={e => this.setter('birthMonth')(e.target.value)}
+                  value={this.state.birthMonth}>
+                  {this.months.map((name, i) => <option value={i} key={i}>{name}</option>)}
+                </select>
+                <ShortInput label=""
+                  onChange={this.setter('birthDay')}
+                  value={this.state.birthDay}
+                  placeholder="Day"
+                  type="number"
+                  autoComplete="bday-day" />
+                <ShortInput label=""
+                  onChange={this.setter('birthYear')}
+                  value={this.state.birthYear}
+                  placeholder="Year"
+                  type="number"
+                  autoComplete="bday-year" />
               </div>
             </Labelled>
-            <ShortInput label="Zip Code" onChange={this.setter('zipCode')} errors={this.state.errors.zip_code} value={this.state.zipCode}/>
-            <div {...css(vars.clearFix)}><Button action={this.submit} css={style.button}>Check!</Button></div>
+
+            <ShortInput label="Zip Code"
+              onChange={this.setter('zipCode')}
+              errors={this.state.errors.zip_code}
+              value={this.state.zipCode}
+              autoComplete="postal-code" />
+
+            <div {...css(vars.clearFix)}>
+              <Button action={this.submit} css={style.button}>Check!</Button>
+            </div>
+
             <div {...style.note}>
               <p>You can also use the <a href="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</a></p>
               <p>Already signed up? <Link to="/login">Log in</Link></p>
@@ -117,8 +152,22 @@ const style = styles({
       margin: `0px ${vars.smallSpacing/2}px`
     }
   },
-  monthInput: {
-      minWidth: 120
+  select: {
+    width: '100%',
+    display: 'block',
+    height: 51,
+    backgroundColor: vars.color.whiteTransparent,
+    color: vars.color.white,
+    padding: vars.smallSpacing,
+    marginTop: vars.smallSpacing / 2,
+    marginBottom: vars.smallSpacing / 2,
+    marginRight: 6,
+    marginLeft: 6,
+    fontSize: vars.fontSize,
+    ...vars.border,
+    borderColor: 'transparent',
+    boxShadow: 'none',
+    ...vars.inputFocus,
   },
   maxWidth: {
     maxWidth: 400,
