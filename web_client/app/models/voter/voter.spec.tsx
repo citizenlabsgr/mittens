@@ -32,7 +32,6 @@ describe("Voter", () => {
     })
 
     it("Sets voter.registered to be true if the API says they're registered", () => {
-      expect(2);
       const voter = Voter.currentUser;
       expect(voter.registered).toBeFalsy();
       VoterService.checkRegistration = jest.fn().mockImplementationOnce(() => Promise.resolve({registered: true}));
@@ -42,7 +41,6 @@ describe("Voter", () => {
     });
 
     it("Sets voter.registered to be false if the API says they're unregistered", () => {
-      expect(2);
       const voter = Voter.currentUser;
       expect(voter.registered).toBeFalsy();
       VoterService.checkRegistration = jest.fn().mockImplementationOnce(() => Promise.resolve({registered: false}));
@@ -62,7 +60,6 @@ describe("Voter", () => {
     })
 
     it("Calls the voter service to sign up", () => {
-      expect(2);
       const voter = Voter.currentUser;
       expect(voter.signedUp).toBe(false);
       return voter.signUp().then(() => {

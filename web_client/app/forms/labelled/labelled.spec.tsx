@@ -47,8 +47,8 @@ describe("Labelled", () => {
 
   it("Displays its children", () => {
     var foo = 1;
-    const elt = <Labelled label="">Ima Labelled</Labelled>;
+    const elt = <Labelled label=""><div>Hello</div></Labelled>;
     const rendered = mount(elt);
-    expect(rendered.text()).toBe("Ima Labelled");
+    expect(rendered.contains(<div>Hello</div>)).toBe(true);
   });
 });
