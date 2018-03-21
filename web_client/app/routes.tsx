@@ -3,12 +3,12 @@ import { go, RouteDeclaration, history } from 'router';
 import { Voter } from 'models';
 
 // Components
-import { Login } from 'login/login';
-import { RegistrationCheck } from 'registration-check/registration-check';
-import { RegistrationVerified } from 'registration-verified/registration-verified';
-import { AwaitingConfirmation } from 'awaiting-confirmation/awaiting-confirmation';
-import { NotRegistered } from 'not-registered/not-registered';
-import { SpinnerPage } from 'spinner-page/spinner-page';
+import { Login } from 'pages/login/login';
+import { RegistrationCheck } from 'pages/registration-check/registration-check';
+import { RegistrationVerified } from 'pages/registration-verified/registration-verified';
+import { AwaitingConfirmation } from 'pages/awaiting-confirmation/awaiting-confirmation';
+import { NotRegistered } from 'pages/not-registered/not-registered';
+import { SpinnerPage } from 'pages/spinner-page/spinner-page';
 
 import API from './api/api';
 

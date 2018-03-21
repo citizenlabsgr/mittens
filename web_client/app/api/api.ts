@@ -1,4 +1,3 @@
-import { merge } from 'lodash';
 import { apiPath } from 'environments/current';
 import { go } from 'router';
 
@@ -11,7 +10,7 @@ class API {
   }
 
   fetch(method: string, url: string, body?: {}, headers = {}) {
-    let request: {method: string, headers: {}, credentials: string, body?: string} = { 
+    let request: {method: string, headers: {}, credentials: string, body?: string} = {
       method,
       headers: Object.assign({}, this.defaultHeaders, headers),
       credentials: 'include'
@@ -29,7 +28,7 @@ class API {
         if (response.status === 401) {
           go('/login');
           return { errors: ["Not a valid email/password combination. Please try again."] };
-        } 
+        }
         if (response.status === 204) {
           return Promise.resolve({});
         }
