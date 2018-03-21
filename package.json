@@ -19,7 +19,6 @@
     "@types/react-transition-group": "^2.0.4",
     "actioncable": "^5.1.1",
     "dashify": "^0.2.2",
-    "deep-equal": "^1.0.1",
     "es6-promise-polyfill": "^1.2.0",
     "font-awesome": "^4.7.0",
     "glamor": "^2.20.24",
