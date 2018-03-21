@@ -43,7 +43,6 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
 
   onChange(value: string) {
     if (this.props.type === "number") {
-      console.log('ere')
       this.props.onChange(parseInt(value));
     } else {
       this.props.onChange(value);
