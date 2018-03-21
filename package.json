@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "An app to improve voter turnout",
   "author": "Citizen Labs",
-  "homepage": "https://gitlab.com/climatum/kepler.git",
-  "license": "UNLICENSED",
-  "repository": "https://",
+  "homepage": "http://vote.citizenlabs.com",
+  "license": "MIT",
+  "repository": "https://github.com/citizenlabsgr/voter-engagement",
   "scripts": {
     "build-dev": "webpack --display-error-details --config web_client/build_scripts/webpack.config.dev.js",
     "build": "webpack --display-error-details --config web_client/build_scripts/webpack.config.prod.js",
