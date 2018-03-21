@@ -112,7 +112,7 @@ let style = styles({
   fourth: {
     animationDelay: '3s',
     '> div': {
-      background: vars.color.theme
+      background: vars.color.warn
     },
   },
   dark: {

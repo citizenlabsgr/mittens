@@ -66,8 +66,10 @@ export class Login extends React.Component<LoginProps, {}> {
             <p>Let us send you an email containing a link to get you back into to your account.</p>
             <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
               <ShortInput label="Email" autofocus onChange={this.setter('email')} errors={this.state.errors.email} value={this.state.email}/>
-              <Button action={this.submit} css={style.button}> Send me a link!</Button>
-              <div {...style.note}><Link to='/'>I still need an account.</Link></div>
+              <div {...style.buttons}>
+                <Button action={this.submit}> Send me a link!</Button>
+                <Link to='/' theme="transparent">I don't have an account</Link>
+              </div>
             </form>
           </div>
         </div>
@@ -77,9 +79,11 @@ export class Login extends React.Component<LoginProps, {}> {
 }
 
 const style = styles({
-  button: {
-    marginLeft: 'auto',
-    display: 'block'
+  buttons: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
   },
   box: {
     padding: vars.spacing
@@ -88,7 +92,7 @@ const style = styles({
     marginBottom: vars.spacing
   },
   maxWidth: {
-    maxWidth: 400,
+    maxWidth: 600,
     margin: '0 auto'
   },
   note: {

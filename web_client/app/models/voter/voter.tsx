@@ -17,6 +17,8 @@ export class Voter {
     return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
       result => {
         this.updateFromFetch(result);
+        Voter.currentUserStore.currentUser = this;
+        Voter.currentUserStore.fetched = true;
         return this.registered;
       }
     );
@@ -27,6 +29,8 @@ export class Voter {
       result => {
         this.registerSpy();
         this.updateFromFetch(result);
+        Voter.currentUserStore.currentUser = this;
+        Voter.currentUserStore.fetched = true;
         return this.registered;
       }
     );
@@ -80,3 +84,6 @@ class CurrentUserStore {
   @observable currentUser = new Voter();
 }
 Voter.currentUserStore = new CurrentUserStore();
+
+
+Voter.fetchMe();
