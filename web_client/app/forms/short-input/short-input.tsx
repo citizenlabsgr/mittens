@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
 const dashify = require('dashify') as (s: string) => string;
-import { func } from 'prop-types';
 
 // Components
 import { Labelled } from 'forms/labelled/labelled';
@@ -17,7 +16,6 @@ export interface ShortInputProps {
   autofocus?: boolean
   errors?: string[]
   flex?: boolean
-  inputRef?: (ref: HTMLInputElement) => void
   note?: string
   placeholder?: string
   required?: boolean
@@ -27,20 +25,6 @@ export interface ShortInputProps {
 };
 
 export class ShortInput extends React.Component<ShortInputProps, {}> {
-  static contextTypes = {
-    setActionContext: func,
-    actionInContext: func
-  }
-  input: HTMLInputElement
-
-  componentDidMount() {
-    if (this.props.autofocus) this.focus();
-  }
-
-  focus() {
-    this.input.focus();
-  }
-
   onChange(value: string) {
     if (this.props.type === "number") {
       this.props.onChange(parseInt(value));
@@ -55,12 +39,7 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
       <Labelled {...{ errors, label, note, required, flex }}>
         <input {...css(style.input, errors && style.errorInput) }
           className={dashify(this.props.label)} // For testing purposes
-          ref={r => {
-            this.input = r;
-            if (this.props.inputRef) {
-              this.props.inputRef(r);
-            }
-          }}
+          autoFocus={this.props.autofocus}
           autoComplete={this.props.autoComplete}
           placeholder={this.props.placeholder}
           aria-invalid={!!errors}
@@ -75,7 +54,6 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
 }
 
 let style = styles({
-
   errorInput: {
     borderColor: vars.color.warn
   },

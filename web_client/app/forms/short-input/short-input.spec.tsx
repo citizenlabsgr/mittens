@@ -26,6 +26,12 @@ describe("Labelled", () => {
     rendered.find("input").simulate('change', { target: { value: "nice" } })
   });
 
+  it("Passes its type into the input", () => {
+    const elt = <ShortInput label={""} onChange={() => {}} type="password" />;
+    const rendered = mount(elt);
+    expect(rendered.find("input[type='password']").length).toBe(1);
+  });
+
   it("Calls onChange with a number when type=number", () => {
     const onChange = (value) => { expect(value).toBe(3); }
     const elt = <ShortInput label={""} onChange={onChange} type="number"/>;
