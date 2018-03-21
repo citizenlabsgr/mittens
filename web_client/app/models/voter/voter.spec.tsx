@@ -11,7 +11,8 @@ const mockVoter: IncomingVoterJSON = {
   last_name: "Anthony",
   birth_date: "1820-02-15",
   zip_code: "49506",
-  email: "susan@suffrage.org"
+  email: "susan@suffrage.org",
+  registered: true
 }
 
 const mockRegistration: IncomingRegistrationJSON = {
