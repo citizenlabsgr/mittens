@@ -22,7 +22,7 @@ export interface ShortInputProps {
   placeholder?: string
   required?: boolean
   type?: string
-  value?: string
+  value?: string|number
   autoComplete?: string
 };
 
@@ -43,6 +43,7 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
 
   onChange(value: string) {
     if (this.props.type === "number") {
+      console.log('ere')
       this.props.onChange(parseInt(value));
     } else {
       this.props.onChange(value);
@@ -93,7 +94,7 @@ let style = styles({
     boxShadow: 'none',
     ...vars.inputFocus,
     '::-webkit-input-placeholder': {
-      color: 'rgba(255,255,255,0.75)',
+      color: 'rgba(255,255,255,0.25)',
     }
   },
   icon: {

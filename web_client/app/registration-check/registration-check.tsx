@@ -11,6 +11,7 @@ import { Labelled } from 'forms/labelled/labelled';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
+import { BirthdayInput } from 'forms/birthday-input/birthday-input';
 
 
 export type RegistrationCheckProps = {
@@ -22,10 +23,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
   state = {
     firstName: "",
     lastName: "",
-    birthDay: "",
-    birthMonth: 0 as number,
-    birthYear: "",
     zipCode: "",
+    birthDate: undefined as Date,
     errors: {} as {
       first_name: string[],
       last_name: string[],
@@ -34,24 +33,16 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     }
   }
 
-  months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
   setter(name: string) {
     return (value: any) => {
       this.setState({[name]: value});
     }
   }
 
-  birthDateAsDate() {
-    const { birthDay, birthMonth, birthYear } = this.state;
-    return new Date(parseInt(birthYear), birthMonth, parseInt(birthDay));
-  }
-
   submit = () => {
     this.setState({errors: {}});
 
-    const { firstName, lastName, zipCode } = this.state;
-    const birthDate = this.birthDateAsDate();
+    const { firstName, lastName, zipCode, birthDate } = this.state;
     const voter = Voter.currentUser;
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
 
@@ -70,7 +61,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     return (
       <MainContentWrapper>
         <div {...style.box}>
-          <form {...style.maxWidth} onSubmit={e => { this.submit(); e.preventDefault(); }}>
+          <form {...style.maxWidth} onSubmit={e => { e.preventDefault(); this.submit(); }}>
             <h1 {...style.heading}>First, let's check if you&rsquo;re registered to vote.</h1>
 
             <ShortInput label="First Name"
@@ -85,27 +76,10 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
               value={this.state.lastName}
               autoComplete="family-name" />
 
-            <Labelled label="Birth Date">
-              <div {...style.inline}>
-                <select {...style.select}
-                  onChange={e => this.setter('birthMonth')(e.target.value)}
-                  value={this.state.birthMonth}>
-                  {this.months.map((name, i) => <option value={i} key={i}>{name}</option>)}
-                </select>
-                <ShortInput label=""
-                  onChange={this.setter('birthDay')}
-                  value={this.state.birthDay}
-                  placeholder="Day"
-                  type="number"
-                  autoComplete="bday-day" />
-                <ShortInput label=""
-                  onChange={this.setter('birthYear')}
-                  value={this.state.birthYear}
-                  placeholder="Year"
-                  type="number"
-                  autoComplete="bday-year" />
-              </div>
-            </Labelled>
+            <BirthdayInput label="Birth Date"
+              onChange={this.setter('birthDate')}
+              errors={this.state.errors.birth_date}
+              value={this.state.birthDate} />
 
             <ShortInput label="Zip Code"
               onChange={this.setter('zipCode')}
@@ -114,7 +88,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
               autoComplete="postal-code" />
 
             <div {...css(vars.clearFix)}>
-              <Button action={this.submit} css={style.button}>Check!</Button>
+              <Button action={() => {}} css={style.button}>Check!</Button>
             </div>
 
             <div {...style.note}>
@@ -144,30 +118,6 @@ const style = styles({
   },
   box: {
     padding: vars.spacing
-  },
-  inline: {
-    display: 'flex',
-    margin: `0px ${-vars.smallSpacing/2}px`,
-    ' label': {
-      margin: `0px ${vars.smallSpacing/2}px`
-    }
-  },
-  select: {
-    width: '100%',
-    display: 'block',
-    height: 51,
-    backgroundColor: vars.color.whiteTransparent,
-    color: vars.color.white,
-    padding: vars.smallSpacing,
-    marginTop: vars.smallSpacing / 2,
-    marginBottom: vars.smallSpacing / 2,
-    marginRight: 6,
-    marginLeft: 6,
-    fontSize: vars.fontSize,
-    ...vars.border,
-    borderColor: 'transparent',
-    boxShadow: 'none',
-    ...vars.inputFocus,
   },
   maxWidth: {
     maxWidth: 400,

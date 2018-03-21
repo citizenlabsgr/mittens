@@ -128,7 +128,7 @@ const transparentStyle = css({
   padding: `${vars.smallSpacing + 1}px ${vars.smallSpacing + 6}px`,
   textAlign: 'center',
   backgroundColor: 'transparent',
-  border: `1px solid ${vars.color.whiteLight}`,
+  border: `2px solid ${vars.color.whiteLight}`,
   color: vars.color.whiteLight,
   userSelect: 'none',
   textDecoration: 'none',
@@ -139,7 +139,7 @@ const transparentStyle = css({
   display: 'inline-block',
   ':hover': {
     color: vars.color.white,
-    border: `1px solid ${vars.color.white}`,
+    border: `2px solid ${vars.color.white}`,
   },
   ':focus': {
     ...vars.focus[':focus'],

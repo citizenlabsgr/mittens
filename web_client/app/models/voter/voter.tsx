@@ -48,6 +48,7 @@ export class Voter {
   }
 
   birthDateAsString() {
+    if (!this.birthDate) return "";
     return this.birthDate.toISOString().slice(0, 10);
   }
 
