@@ -58,8 +58,8 @@ def _find_ward(data):
 
 def _find_regions(data):
     for key, value in data.items():
-        kind_name = key.replace('_', ' ').strip()
-        region_name = value.strip()
+        kind_name = _clean_region_kind(key)
+        region_name = _clean_region_name(value)
         if kind_name and region_name:
             _get_region(kind_name, region_name)
 
@@ -75,3 +75,11 @@ def _get_region(kind_name, region_name):
     if not region.verified:
         log.warning(f"Unverified region: {region}")
     return region
+
+
+def _clean_region_kind(name):
+    return name.replace('_', ' ').strip()
+
+
+def _clean_region_name(name):
+    return name.replace('District District', 'District').strip()
