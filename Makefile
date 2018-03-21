@@ -99,6 +99,7 @@ test-backend: install
 .PHONY: test-frontend
 test-frontend: install
 	yarn build
+	yarn test
 
 .PHONY: watch
 watch: install
