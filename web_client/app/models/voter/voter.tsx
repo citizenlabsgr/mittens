@@ -13,7 +13,7 @@ export class Voter {
 
   @action
   checkRegistration() {
-    return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDate.toISOString().slice(0, 10), this.zipCode).then(
+    return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
       result => {
         this.updateFromFetch(result);
         return this.registered;
@@ -22,7 +22,7 @@ export class Voter {
   }
 
   signUp() {
-    return VoterService.signUp(this.email, this.firstName, this.lastName, this.birthDate, this.zipCode).then(
+    return VoterService.signUp(this.email, this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
       result => {
         this.updateFromFetch(result);
         return this.registered;
@@ -44,6 +44,10 @@ export class Voter {
     );
   }
 
+  birthDateAsString() {
+    return this.birthDate.toISOString().slice(0, 10);
+  }
+
   @computed
   static get currentUser() {
     return this.currentUserStore.currentUser;
@@ -54,7 +58,7 @@ export class Voter {
     Object.assign(this, json);
   }
 
-  @computed 
+  @computed
   get me() {
     return Voter.currentUserStore.currentUser;
   }
