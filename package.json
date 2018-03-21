@@ -87,7 +87,7 @@
   },
   "jest": {
     "modulePaths": [
-      "<rootDir>/app"
+      "<rootDir>/web_client/app"
     ],
     "moduleFileExtensions": [
       "js",
@@ -96,12 +96,12 @@
       "tsx"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|svg|css)$": "<rootDir>/build_scripts/jest/fileMock.js",
-      "\\./history$": "<rootDir>/app/router/__mocks__/history.ts",
-      "\\./(.*)-service$": "<rootDir>/app/models/$1/__mocks__/$1-service.ts"
+      "\\.(jpg|jpeg|png|gif|svg|css)$": "<rootDir>/web_client/build_scripts/jest/fileMock.js",
+      "\\./history$": "<rootDir>/web_client/app/router/__mocks__/history.ts",
+      "\\./(.*)-service$": "<rootDir>/web_client/app/models/$1/__mocks__/$1-service.ts"
     },
     "transform": {
-      ".(ts|tsx)": "<rootDir>/build_scripts/jest/preprocessor.js"
+      ".(ts|tsx)": "<rootDir>/web_client/build_scripts/jest/preprocessor.js"
     },
     "testRegex": "app/.*\\.spec\\.(ts|tsx)$",
     "globals": {

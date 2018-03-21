@@ -4,6 +4,15 @@ export interface IncomingRegistrationJSON {
   registered: boolean
 }
 
+export interface IncomingVoterJSON {
+  id: number,
+  first_name: string,
+  last_name: string,
+  birth_date: string,
+  zip_code: string,
+  email: string
+}
+
 export const VoterService = new class {
   checkRegistration(
       firstName: string,
@@ -18,7 +27,7 @@ export const VoterService = new class {
     firstName: string,
     lastName: string,
     birthDate: string,
-    zip: string): Promise<IncomingRegistrationJSON> {
+    zip: string): Promise<IncomingVoterJSON> {
     return API.post('voters/', {
       email: email,
       first_name: firstName,
@@ -28,7 +37,7 @@ export const VoterService = new class {
     });
   }
 
-  me(): Promise<IncomingRegistrationJSON> {
-    return API.get('registration/');
+  me(): Promise<IncomingVoterJSON> {
+    return API.get('voters/');
   }
 }

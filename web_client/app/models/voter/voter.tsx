@@ -1,5 +1,5 @@
 import { observable, computed, action } from 'mobx';
-import { VoterService, IncomingRegistrationJSON } from './voter-service';
+import { VoterService, IncomingRegistrationJSON, IncomingVoterJSON } from './voter-service';
 import { spyOnUser } from 'fullstory/fullstory';
 
 export class Voter {
@@ -16,9 +16,8 @@ export class Voter {
   checkRegistration() {
     return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
       result => {
-        this.updateFromFetch(result);
-        Voter.currentUserStore.currentUser = this;
-        Voter.currentUserStore.fetched = true;
+        this.registered = result.registered;
+        this.setThisAsCurrentUser();
         return this.registered;
       }
     );
@@ -29,11 +28,16 @@ export class Voter {
       result => {
         this.registerSpy();
         this.updateFromFetch(result);
-        Voter.currentUserStore.currentUser = this;
-        Voter.currentUserStore.fetched = true;
+        this.setThisAsCurrentUser();
         return this.registered;
       }
     );
+  }
+
+  @action
+  setThisAsCurrentUser() {
+    Voter.currentUserStore.currentUser = this;
+    Voter.currentUserStore.fetched = true;
   }
 
   @action
@@ -67,7 +71,7 @@ export class Voter {
   }
 
   @action
-  updateFromFetch(json: IncomingRegistrationJSON) {
+  updateFromFetch(json: IncomingVoterJSON) {
     Object.assign(this, json);
   }
 
