@@ -1,8 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { observer } from 'mobx-react';
-const dashify = require('dashify') as (s: string) => string;
-import { func } from 'prop-types';
 
 // Components
 import { Labelled } from 'forms/labelled/labelled';
