@@ -15,7 +15,7 @@ urlpatterns = [
     url('^admin/', admin.site.urls),
     url('^grappelli/', include('grappelli.urls')),
 
-    url('^(?!(?:api|admin))', include('api.ui.urls')),
+    url('^(?!(?:api|admin))', include('api.core.urls')),
 ]
 
 admin.site.site_header = "Voter Engagement Administration"

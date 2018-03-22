@@ -1,12 +1,9 @@
-import logging
-
 from django.conf import settings
 from django.contrib.staticfiles.views import serve
 from django.views.decorators.cache import never_cache
 from django.shortcuts import redirect
 
-
-log = logging.getLogger(__name__)
+import log
 
 
 @never_cache
@@ -15,10 +12,12 @@ def index(request):
 
 
 def redirector(request, path):
-    if not request.user.is_authenticated:
+    if request.user.is_authenticated:
+        log.info(f"Authenticated from email: {request.user.email}")
+    else:
         log.warning("Failed to authenticate from token")
 
     url = "/" + path
-    log.info(f"Redirecting to {url}")
+    log.info(f"Redirecting to: {url}")
 
     return redirect(url)

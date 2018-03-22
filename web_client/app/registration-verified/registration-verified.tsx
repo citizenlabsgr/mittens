@@ -1,14 +1,17 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { go } from 'router';
+import { Voter } from 'models';
 
 import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'forms/short-input/short-input';
 import { Button } from 'button/button';
+import { Link } from 'link/link';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
 import { CheckMark } from 'icons/checkmark';
+import { lang } from 'glamor';
 
 export type RegistrationVerifiedProps = {
 
@@ -18,7 +21,9 @@ export type RegistrationVerifiedProps = {
 export class RegistrationVerified extends React.Component<RegistrationVerifiedProps, {}> {
   state = {
     email: "",
-    phoneNumber: "",
+    errors: {} as {
+      email: string[]
+    }
   }
 
   setter(name: string) {
@@ -30,38 +35,39 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
   // Need to define action(s) associated with form buttons
 
   submit = () => {
-    console.log('Email: ' + this.state.email);
-    console.log('Phone Number: ' + this.state.phoneNumber);
-  }
-
-  return = () => {
-    go('/registration-check')
+    Voter.currentUser.email = this.state.email;
+    Voter.currentUser.signUp().then(
+      () => go("/awaiting-confirmation")
+    ).catch(
+      errors => this.setState({errors: errors})
+    );
   }
 
   render() {
     return (
-      <div {...style.box}>
-        <div {...style.maxWidth}>
-          <div {...style.icon}>
-            <CheckMark size={100} color={vars.color.white} />
+      <MainContentWrapper background={vars.color.successDark}>
+        <div {...style.box}>
+          <div {...style.maxWidth}>
+            <div {...style.icon}>
+              <CheckMark size={100} color={vars.color.white} />
+            </div>
+            <h1 {...style.result}>You&rsquo;re already registered&nbsp;to&nbsp;vote!</h1>
+            {!Voter.currentUser.signedUp && <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
+              <p>Sign up to be reminded to vote in local elections.</p>
+              <ShortInput label="Email" onChange={this.setter('email')} errors={this.state.errors.email} type="email" value={this.state.email}/>
+              <div {...style.buttons}>
+                <Link to="/registration-check" theme="transparent">Back</Link>
+                <Button action={() => {}} theme="success">Sign Up</Button>
+              </div>
+            </form>}
+            {Voter.currentUser.signedUp && <p>We'll remind you to get ready to vote before the next election.</p>}
           </div>
-          <h1 {...style.result}>You&rsquo;re registered!</h1>
-          <p {...style.note}>Sign up for notifications to be reminded to vote.  We'll automatically create an account you can use to encourage your friends to vote.</p>
-          <ShortInput label="" onChange={this.setter('email')} placeholder="Email" value={this.state.email}/>
-          <ShortInput label="" onChange={this.setter('phoneNumber')} placeholder="Phone Number" value={this.state.phoneNumber}/>
-          <div><Button action={this.submit} theme="success" css={style.signUpButton}>Sign Up</Button></div>
-          <Button action={this.return} theme="transparent" css={style.backButton}>Back</Button>
         </div>
-      </div>
+      </MainContentWrapper>
     );
   }
 } 
 
-// Colors from wireframe...
-// Green form background: #6EB047
-// Form input element background: #99C77E
-// Button highlighted background and border: #85CE5A
-// Text: #FFFFFF (white)
 
 const style = styles({
   icon: {
@@ -71,30 +77,21 @@ const style = styles({
     marginBottom: 20
   },
   result: {
-    fontSize: '2.5em',
-    margin: 0,
-    textTransform: 'uppercase',
     textAlign: 'center',
-    fontWeight: 'bold',
   },
-  note: {  
-    padding: '10px'
-  },
-  signUpButton: {
-    float: 'right'
-  },
-  backButton: {
-    float: 'left'
+  buttons: {
+    marginTop: vars.spacing,
+    display: 'flex',
+    justifyContent: 'space-between'
   },
   box: {
     padding: vars.spacing,
-    backgroundColor: '#6EB047'
   },
   heading: {
     marginBottom: vars.spacing
   },
   maxWidth: {
-    maxWidth: 350,
+    maxWidth: 400,
     margin: '0 auto'
   },
 });

@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { Voter } from 'models';
 import { go } from 'router';
 
+import { Link } from 'link/link';
 import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'forms/short-input/short-input';
 import { Button } from 'button/button';
@@ -25,11 +26,12 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     birthMonth: "",
     birthYear: "",
     zipCode: "",
-    voter: null as Voter
-  }
-
-  componentWillMount() {
-    this.setState({voter: new Voter()});
+    errors: {} as {
+      first_name: string[],
+      last_name: string[],
+      zip_code: string[],
+      birth_date: string[]
+    }
   }
 
   setter(name: string) {
@@ -39,7 +41,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
   }
 
   submit = () => {   
-    const { voter, firstName, lastName, birthDay, birthMonth, birthYear, zipCode } = this.state;
+    const { firstName, lastName, birthDay, birthMonth, birthYear, zipCode } = this.state;
+    const voter = Voter.currentUser;
     const birthMonthNum = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'].indexOf(birthMonth.toLowerCase());
     if (birthMonthNum === -1) {
       // temporary alert, replace with form error state/form validation function
@@ -47,6 +50,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
       return;
     };
     const birthDate = new Date(parseInt(birthYear), birthMonthNum, parseInt(birthDay));
+    this.setState({errors: {}});
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
     voter.checkRegistration().then(r => {
       if (r) {
@@ -54,6 +58,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
       } else {
         go('/not-registered');
       }
+    }).catch(e => {
+      this.setState({errors: e})
     })
   }
 
@@ -61,10 +67,10 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     return (
       <MainContentWrapper>
         <div {...style.box}>
-          <div {...style.maxWidth}>
-            <h1 {...style.heading}>Are you registered?</h1>
-            <ShortInput label="First Name" onChange={this.setter('firstName')} placeholder="Susan" value={this.state.firstName}/>
-            <ShortInput label="Last Name" onChange={this.setter('lastName')} placeholder="Anthony" value={this.state.lastName}/>
+          <form {...style.maxWidth} onSubmit={e => { this.submit(); e.preventDefault(); }}>
+            <h1 {...style.heading}>First, let's check if you&rsquo;re registered to vote.</h1>
+            <ShortInput label="First Name" onChange={this.setter('firstName')} errors={this.state.errors.first_name} value={this.state.firstName}/>
+            <ShortInput label="Last Name" onChange={this.setter('lastName')} errors={this.state.errors.last_name} value={this.state.lastName}/>
             <Labelled label="Birth Date">
               <div {...style.inline}>
                 <div {...style.monthInput}>
@@ -74,9 +80,13 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
                 <ShortInput label="" onChange={this.setter('birthYear')} value={this.state.birthYear} placeholder="Year" type="number"/>
               </div>
             </Labelled>
-            <ShortInput label="Zip Code" onChange={this.setter('zipCode')} value={this.state.zipCode}/>
-            <Button action={this.submit} css={style.button}>Find Me!</Button>
-          </div>
+            <ShortInput label="Zip Code" onChange={this.setter('zipCode')} errors={this.state.errors.zip_code} value={this.state.zipCode}/>
+            <div {...css(vars.clearFix)}><Button action={this.submit} css={style.button}>Check!</Button></div>
+            <div {...style.note}>
+              <p>You can also use the <a href="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</a></p>
+              <p>Already signed up? <Link to="/login">Log in</Link></p>
+            </div>
+          </form>
         </div>
       </MainContentWrapper>
     );
@@ -84,15 +94,21 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
 }
 
 const style = styles({
+  heading: {
+    textAlign: 'center',
+    marginBottom: vars.spacing
+  },
   button: {
-    margin: '0 auto',
-    display: 'block'
+    float: 'right',
+    marginTop: vars.smallSpacing
+  },
+  note: {
+    marginTop: vars.spacing,
+    borderTop: vars.borderSimple,
+    fontSize: 16
   },
   box: {
     padding: vars.spacing
-  },
-  heading: {
-    marginBottom: vars.spacing
   },
   inline: {
     display: 'flex',

@@ -6,7 +6,7 @@ name = "pypi"
 
 [requires]
 
-python_version = "3.6.3"
+python_version = "3.6"
 
 [packages]
 
@@ -19,7 +19,7 @@ djangorestframework = "*"
 
 # Database
 dj_database_url = "*"
-psycopg2 = "*"
+psycopg2-binary = "*"
 
 # Email
 django-sesame = "*"
@@ -28,6 +28,7 @@ django-sesame = "*"
 arrow = "*"
 faker = "*"
 requests = "*"
+minilog = "*"
 
 # Server
 whitenoise = "*"

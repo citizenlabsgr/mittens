@@ -1,6 +1,5 @@
-import logging
-
 import requests
+import log
 
 from api.core.helpers import prettify
 from api.elections.models import Kind, Region
@@ -8,8 +7,6 @@ from api.elections.models import Kind, Region
 
 REGISTRATION_API = "https://4gw9vvs9j1.execute-api.us-east-2.amazonaws.com/prod/checkRegistration"
 MISSING = "<missing>"
-
-log = logging.getLogger(__name__)
 
 
 def fetch_and_update_registration(voter, status):
@@ -61,8 +58,8 @@ def _find_ward(data):
 
 def _find_regions(data):
     for key, value in data.items():
-        kind_name = key.replace('_', ' ').strip()
-        region_name = value.strip()
+        kind_name = _clean_region_kind(key)
+        region_name = _clean_region_name(value)
         if kind_name and region_name:
             _get_region(kind_name, region_name)
 
@@ -76,5 +73,13 @@ def _get_region(kind_name, region_name):
     if created:
         log.info(f"Added new region: {region}")
     if not region.verified:
-        log.error(f"Unverified region: {region}")
+        log.warning(f"Unverified region: {region}")
     return region
+
+
+def _clean_region_kind(name):
+    return name.replace('_', ' ').strip()
+
+
+def _clean_region_name(name):
+    return name.replace('District District', 'District').strip()

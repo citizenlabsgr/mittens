@@ -25,7 +25,7 @@ ALLOWED_HOSTS = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ###############################################################################
-# Database
+# Databases
 
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config()

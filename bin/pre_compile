@@ -13,3 +13,6 @@ puts-step() {
 puts-step "Compiling frontend..."
 yarn install | indent
 yarn build | indent
+
+puts-step "Removing reloader..."
+sed -i '/localhost/d' ./web_client/build/index.html | indent

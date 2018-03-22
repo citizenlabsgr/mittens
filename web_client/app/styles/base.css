@@ -3,13 +3,13 @@ html, body {
   margin: 0;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
   background-color: #788595;
   height: 100%;
 }
 
-#container, #container > div {
+#container {
   height: 100%;
 }
 
@@ -17,19 +17,18 @@ html, body {
   box-sizing: border-box;
 }
 
+p {
+  margin-bottom: 24px;
+}
+
 h1, h2, h3, h4, h5 {
   margin: 0;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 300;
-}
-@media(max-width: 600px) {
-  h1 {
-    font-size: 20px;
-    font-weight: bold;
-  }
+  margin-bottom: 24px;
 }
 
 h2 {
@@ -54,3 +53,12 @@ ul {
 input {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
+a, a:active, a:visited {
+  color: #fff;
+}
+
+a:hover {
+  color: #eee;
+}
+

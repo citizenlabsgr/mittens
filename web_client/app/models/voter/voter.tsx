@@ -7,14 +7,63 @@ export class Voter {
   @observable birthDate: Date
   @observable zipCode: string
   @observable registered: boolean
+  @observable email: string
+  @observable signedUp: boolean = false;
+  static currentUserStore: CurrentUserStore;
 
   @action
   checkRegistration() {
     return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDate.toISOString().slice(0, 10), this.zipCode).then(
       result => {
-        Object.assign(this, result);
+        this.updateFromFetch(result);
         return this.registered;
       }
     );
   }
+
+  signUp() {
+    return VoterService.signUp(this.email, this.firstName, this.lastName, this.birthDate, this.zipCode).then(
+      result => {
+        this.updateFromFetch(result);
+        return this.registered;
+      }
+    );
+  }
+
+  @action
+  static fetchMe() {
+    // If we've already fetched current user, don't refetch.
+    if (this.currentUserStore.fetched) return Promise.resolve(this.currentUser);
+    return VoterService.me().then(
+      json => {
+        this.currentUser.updateFromFetch(json);
+        this.currentUser.signedUp = true;
+        this.currentUserStore.fetched = true;
+        return this.currentUser;
+      }
+    );
+  }
+
+  @computed
+  static get currentUser() {
+    return this.currentUserStore.currentUser;
+  }
+
+  @action
+  updateFromFetch(json: IncomingRegistrationJSON) {
+    Object.assign(this, json);
+  }
+
+  @computed 
+  get me() {
+    return Voter.currentUserStore.currentUser;
+  }
 }
+
+// Mobx interacts poorly with static variables, so we store our statics as
+// instance variables in a singleton.
+class CurrentUserStore {
+  @observable fetched = false;
+  @observable currentUser = new Voter();
+}
+Voter.currentUserStore = new CurrentUserStore();
