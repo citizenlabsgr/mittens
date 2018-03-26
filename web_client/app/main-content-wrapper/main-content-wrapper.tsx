@@ -17,29 +17,29 @@ export class MainContentWrapper extends React.Component<MainContentWrapperProps,
     return (
       <div {...style.wrapper} style={{backgroundColor: this.props.background || vars.color.background}}>
         <main {...style.content}>{this.props.children}</main>
-        <p {...style.githubLink}><Link to="https://github.com/citizenlabsgr/voter-engagement">View On GitHub</Link></p>
+        <div>
+          <span {...style.githubLink}><Link to="https://github.com/citizenlabsgr/voter-engagement">View On GitHub</Link></span>
+        </div>
       </div>
-
     );
   }
 }
 
 
-let style = styles({
-  content: {
-    flex: 1,
-    position: 'relative'
-  },
+let style = styles({  
   wrapper: {
     minHeight: '100vh',
     display: 'flex',
-    alignItems: 'center'
+    flexDirection: 'column',
   },
-
+  content: {
+    flex: 1,
+    position: 'relative',
+  },
   githubLink: {
-    position: 'absolute',
-    bottom: '10px',
-    right: '35px',
+    marginBottom: '10px',
+    marginRight: '35px',
     fontSize: '15px',
+    float: 'right',
   },
 });
