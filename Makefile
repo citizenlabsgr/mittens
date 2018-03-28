@@ -14,8 +14,7 @@ doctor: ## Check for required system dependencies
 	echo export SECRET_KEY=local >> $@
 	echo export DATABASE_URL=postgresql://localhost/voterengagement_dev >> $@
 	echo >> $@
-	echo export SENDGRID_USERNAME=copy-from-staging >> $@
-	echo export SENDGRID_PASSWORD=copy-from-staging >> $@
+	echo export MANDRILL_API_KEY=copy-from-staging >> $@
 	echo >> $@
 	echo export ROLLBAR_ENVIRONMENT=local >> $@
 	echo export ROLLBAR_ACCESS_TOKEN=copy-from-staging >> $@

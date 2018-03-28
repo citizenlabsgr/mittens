@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'api.elections',
     'api.voters',
 
+    'anymail',
     'rest_framework',
 ]
 
@@ -130,11 +131,11 @@ AUTHENTICATION_BACKENDS = [
 ###############################################################################
 # Email
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = os.getenv('SENDGRID_USERNAME')
-EMAIL_HOST_PASSWORD = os.getenv('SENDGRID_PASSWORD')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+ANYMAIL = {
+    'MANDRILL_API_KEY': os.getenv('MANDRILL_API_KEY'),
+}
+
+EMAIL_BACKEND = 'anymail.backends.mandrill.EmailBackend'
 
 ###############################################################################
 # Grappelli

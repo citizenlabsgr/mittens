@@ -23,6 +23,7 @@ psycopg2-binary = "*"
 
 # Email
 django-sesame = "*"
+django-anymail = "*"
 
 # Utilities
 arrow = "*"
