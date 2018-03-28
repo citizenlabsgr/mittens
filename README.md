@@ -82,4 +82,4 @@ To run the backend/frontend development server:
 $ make run
 ```
 
-Unless `SENDGRID_USERNAME` and `SENDGRID_PASSWORD` are set, sent emails will appear in the `./tmp/emails/` directory.
+Unless `MANDRILL_API_KEY` is set, sent emails will appear in the `./tmp/emails/` directory.
