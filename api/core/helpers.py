@@ -23,7 +23,7 @@ def send_login_email(user, request, *, welcome):
     email = EmailMessage(
         subject=subject,
         body=body,
-        from_email="Voter Engagement <noreply@vote.citizenlabs.org>",
+        from_email="Citizen Labs <noreply@citizenlabs.org>",
         to=[user.email],
     )
 

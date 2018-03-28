@@ -10,10 +10,7 @@
     "DJANGO_SETTINGS_MODULE": {
       "required": true
     },
-    "SENDGRID_USERNAME": {
-      "required": true
-    },
-    "SENDGRID_PASSWORD": {
+    "MANDRILL_API_KEY": {
       "required": true
     },
     "ROLLBAR_ENVIRONMENT": {
