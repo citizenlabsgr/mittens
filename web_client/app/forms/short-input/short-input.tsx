@@ -12,7 +12,7 @@ import { styles, vars, css } from 'styles/css';
 
 
 export interface ShortInputProps {
-  onChange(v: string): void
+  onChange(v: string|number): void
   label: string
   autofocus?: boolean
   errors?: string[]
@@ -22,7 +22,8 @@ export interface ShortInputProps {
   placeholder?: string
   required?: boolean
   type?: string
-  value?: string
+  value?: string|number
+  autoComplete?: string
 };
 
 export class ShortInput extends React.Component<ShortInputProps, {}> {
@@ -40,6 +41,15 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
     this.input.focus();
   }
 
+  onChange(value: string) {
+    if (this.props.type === "number") {
+      console.log('ere')
+      this.props.onChange(parseInt(value));
+    } else {
+      this.props.onChange(value);
+    }
+  }
+
   render() {
     const { label, note, type, errors, value, required, flex } = this.props
     return (
@@ -52,12 +62,13 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
               this.props.inputRef(r);
             }
           }}
+          autoComplete={this.props.autoComplete}
           placeholder={this.props.placeholder}
           aria-invalid={!!errors}
           aria-required={required}
           type={type}
           value={value}
-          onChange={(e: any) => this.props.onChange(e.target.value)} />
+          onChange={(e: any) => this.onChange(e.target.value)} />
         <div {...style.icon}>{this.props.children}</div>
       </Labelled>
     );
@@ -83,7 +94,7 @@ let style = styles({
     boxShadow: 'none',
     ...vars.inputFocus,
     '::-webkit-input-placeholder': {
-      color: 'rgba(255,255,255,0.75)',
+      color: 'rgba(255,255,255,0.25)',
     }
   },
   icon: {

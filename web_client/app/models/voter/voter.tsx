@@ -5,7 +5,7 @@ import { spyOnUser } from 'fullstory/fullstory';
 export class Voter {
   @observable firstName: string
   @observable lastName: string
-  @observable birthDate: string
+  @observable birthDate: Date
   @observable zipCode: string
   @observable registered: boolean
   @observable email: string
@@ -14,7 +14,7 @@ export class Voter {
 
   @action
   checkRegistration() {
-    return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDate, this.zipCode).then(
+    return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
       result => {
         this.updateFromFetch(result);
         return this.registered;
@@ -23,7 +23,7 @@ export class Voter {
   }
 
   signUp() {
-    return VoterService.signUp(this.email, this.firstName, this.lastName, this.birthDate, this.zipCode).then(
+    return VoterService.signUp(this.email, this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
       result => {
         this.registerSpy();
         this.updateFromFetch(result);
@@ -47,6 +47,12 @@ export class Voter {
     );
   }
 
+  birthDateAsString() {
+    if (!this.birthDate) return "";
+    return this.birthDate.toISOString().slice(0, 10);
+  }
+
+  @computed
   static get currentUser() {
     return this.currentUserStore.currentUser;
   }

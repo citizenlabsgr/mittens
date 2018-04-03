@@ -7,9 +7,11 @@ import { Link } from 'link/link';
 import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'forms/short-input/short-input';
 import { Button } from 'button/button';
+import { Labelled } from 'forms/labelled/labelled';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
+import { BirthdayInput } from 'forms/birthday-input/birthday-input';
 
 
 export type RegistrationCheckProps = {
@@ -21,8 +23,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
   state = {
     firstName: "",
     lastName: "",
-    birthDate: "",
     zipCode: "",
+    birthDate: undefined as Date,
     errors: {} as {
       first_name: string[],
       last_name: string[],
@@ -31,18 +33,19 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     }
   }
 
-
   setter(name: string) {
-    return (value: string) => {
+    return (value: any) => {
       this.setState({[name]: value});
     }
   }
 
   submit = () => {
-    const { firstName, lastName, birthDate, zipCode } = this.state;
-    const voter = Voter.currentUser;
     this.setState({errors: {}});
+
+    const { firstName, lastName, zipCode, birthDate } = this.state;
+    const voter = Voter.currentUser;
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
+
     voter.checkRegistration().then(r => {
       if (r) {
         go('/registration-verified');
@@ -58,13 +61,36 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     return (
       <MainContentWrapper>
         <div {...style.box}>
-          <form {...style.maxWidth} onSubmit={e => { this.submit(); e.preventDefault(); }}>
+          <form {...style.maxWidth} onSubmit={e => { e.preventDefault(); this.submit(); }}>
             <h1 {...style.heading}>First, let's check if you&rsquo;re registered to vote.</h1>
-            <ShortInput label="First Name" onChange={this.setter('firstName')} errors={this.state.errors.first_name} value={this.state.firstName}/>
-            <ShortInput label="Last Name" onChange={this.setter('lastName')} errors={this.state.errors.last_name} value={this.state.lastName}/>
-            <ShortInput label="Birthday" onChange={this.setter('birthDate')} errors={this.state.errors.birth_date} value={this.state.birthDate} placeholder="YYYY-MM-DD" />
-            <ShortInput label="Zip Code" onChange={this.setter('zipCode')} errors={this.state.errors.zip_code} value={this.state.zipCode}/>
-            <div {...css(vars.clearFix)}><Button action={this.submit} css={style.button}>Check!</Button></div>
+
+            <ShortInput label="First Name"
+              onChange={this.setter('firstName')}
+              errors={this.state.errors.first_name}
+              value={this.state.firstName}
+              autoComplete="given-name" />
+
+            <ShortInput label="Last Name"
+              onChange={this.setter('lastName')}
+              errors={this.state.errors.last_name}
+              value={this.state.lastName}
+              autoComplete="family-name" />
+
+            <BirthdayInput label="Birth Date"
+              onChange={this.setter('birthDate')}
+              errors={this.state.errors.birth_date}
+              value={this.state.birthDate} />
+
+            <ShortInput label="Zip Code"
+              onChange={this.setter('zipCode')}
+              errors={this.state.errors.zip_code}
+              value={this.state.zipCode}
+              autoComplete="postal-code" />
+
+            <div {...css(vars.clearFix)}>
+              <Button action={() => {}} css={style.button}>Check!</Button>
+            </div>
+
             <div {...style.note}>
               <p>You can also use the <a href="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</a></p>
               <p>Already signed up? <Link to="/login">Log in</Link></p>
@@ -78,7 +104,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
 
 const style = styles({
   heading: {
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: vars.spacing
   },
   button: {
     float: 'right',
