@@ -3,17 +3,14 @@ import { observer } from 'mobx-react';
 import { Voter } from 'models';
 import { go } from 'router';
 
-import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
-import { ShortInput } from 'forms/short-input/short-input';
-import { Button } from 'button/button';
+import { MainContentWrapper } from 'components/main-content-wrapper/main-content-wrapper';
+import { ShortInput } from 'components/forms/short-input/short-input';
+import { Button } from 'components/button/button';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
 
-
-export type AwaitingConfirmationProps = {
-
-};
+export type AwaitingConfirmationProps = {};
 
 @observer
 export class AwaitingConfirmation extends React.Component<AwaitingConfirmationProps, {}> {

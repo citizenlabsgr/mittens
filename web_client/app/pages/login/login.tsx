@@ -3,10 +3,10 @@ import { observer } from 'mobx-react';
 import { go } from 'router';
 import { Voter } from 'models';
 
-import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
-import { ShortInput } from 'forms/short-input/short-input';
-import { Button } from 'button/button';
-import { Link } from 'link/link';
+import { MainContentWrapper } from 'components/main-content-wrapper/main-content-wrapper';
+import { ShortInput } from 'components/forms/short-input/short-input';
+import { Button } from 'components/button/button';
+import { Link } from 'components/link/link';
 
 import { styles, vars, css, centeredBox } from 'styles/css';
 

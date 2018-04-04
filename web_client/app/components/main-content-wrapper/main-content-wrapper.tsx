@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
-import { Link } from 'link/link';
+import { Link } from 'components/link/link';
 
 // CSS
 import { styles, vars, css } from 'styles/css';
@@ -26,7 +26,7 @@ export class MainContentWrapper extends React.Component<MainContentWrapperProps,
 }
 
 
-let style = styles({  
+let style = styles({
   wrapper: {
     minHeight: '100vh',
     display: 'flex',

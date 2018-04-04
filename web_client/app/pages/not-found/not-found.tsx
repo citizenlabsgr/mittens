@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Link } from 'link/link';
+import { Link } from 'components/link/link';
 
 // CSS
 import { styles, vars, css } from 'styles/css';

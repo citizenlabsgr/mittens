@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Spinner } from 'spinner/spinner';
-import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
+import { Spinner } from 'components/spinner/spinner';
+import { MainContentWrapper } from 'components/main-content-wrapper/main-content-wrapper';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';

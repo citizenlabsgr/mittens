@@ -3,19 +3,16 @@ import { observer } from 'mobx-react';
 import { go } from 'router';
 import { Voter } from 'models';
 
-import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
-import { ShortInput } from 'forms/short-input/short-input';
-import { Button } from 'button/button';
-import { Link } from 'link/link';
+import { MainContentWrapper } from 'components/main-content-wrapper/main-content-wrapper';
+import { ShortInput } from 'components/forms/short-input/short-input';
+import { Button } from 'components/button/button';
+import { Link } from 'components/link/link';
+import { CheckMark } from 'components/icons/checkmark';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
-import { CheckMark } from 'icons/checkmark';
-import { lang } from 'glamor';
 
-export type RegistrationVerifiedProps = {
-
-};
+export type RegistrationVerifiedProps = {};
 
 @observer
 export class RegistrationVerified extends React.Component<RegistrationVerifiedProps, {}> {
@@ -66,7 +63,7 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
       </MainContentWrapper>
     );
   }
-} 
+}
 
 
 const style = styles({

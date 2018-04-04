@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { go, isActive, history } from 'router';
 import { LocationDescriptor } from 'history';
 import { css, styles, vars, Style } from 'styles/css';
-import { buttonStyle } from 'button/button';
+import { buttonStyle } from 'components/button/button';
 
 export interface LinkProps {
   to: string

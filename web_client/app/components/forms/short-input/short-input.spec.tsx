@@ -20,7 +20,7 @@ describe("Labelled", () => {
   });
 
   it("Calls onChange when the input is changed", () => {
-    const onChange = (value) => { expect(value).toBe("nice"); }
+    const onChange = (value: string) => { expect(value).toBe("nice"); }
     const elt = <ShortInput label={""} onChange={onChange} />;
     const rendered = mount(elt);
     rendered.find("input").simulate('change', { target: { value: "nice" } })
@@ -33,7 +33,7 @@ describe("Labelled", () => {
   });
 
   it("Calls onChange with a number when type=number", () => {
-    const onChange = (value) => { expect(value).toBe(3); }
+    const onChange = (value: number) => { expect(value).toBe(3); }
     const elt = <ShortInput label={""} onChange={onChange} type="number"/>;
     const rendered = mount(elt);
     rendered.find("input").simulate('change', { target: { value: "3" } })

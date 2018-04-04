@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 const dashify = require('dashify') as (s: string) => string;
 
 // Components
-import { Labelled } from 'forms/labelled/labelled';
+import { Labelled } from 'components/forms/labelled/labelled';
 
 // CSS
 import { styles, vars, css } from 'styles/css';

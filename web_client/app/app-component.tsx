@@ -8,7 +8,7 @@ import { Voter } from 'models';
 
 // Components
 import { Router } from 'router';
-import { NotFound } from 'not-found/not-found';
+import { NotFound } from 'pages/not-found/not-found';
 import * as DocumentTitle from 'react-document-title';
 
 export interface AppProps { };

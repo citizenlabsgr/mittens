@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { Voter } from 'models';
-
-import { MainContentWrapper } from 'main-content-wrapper/main-content-wrapper';
-import { ShortInput } from 'forms/short-input/short-input';
-import { Button } from 'button/button';
-import { Link } from 'link/link';
 import { go } from 'router';
+
+import { MainContentWrapper } from 'components/main-content-wrapper/main-content-wrapper';
+import { ShortInput } from 'components/forms/short-input/short-input';
+import { Button } from 'components/button/button';
+import { Link } from 'components/link/link';
+import { BigX } from 'components/icons/big-x';
 
 // CSS
 import { styles, vars, css, centeredBox } from 'styles/css';
 import { addLeadingSlash } from 'history/PathUtils';
-import { BigX } from 'icons/big-x';
+
 
 export type NotRegisteredProps = {
 
@@ -75,7 +76,7 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
       </MainContentWrapper>
     );
   }
-} 
+}
 
 const style = styles({
   icon: {

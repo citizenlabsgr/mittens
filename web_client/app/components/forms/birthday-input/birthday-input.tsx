@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 // Components
-import { Labelled } from 'forms/labelled/labelled';
-import { ShortInput } from 'forms/short-input/short-input';
+import { Labelled } from 'components/forms/labelled/labelled';
+import { ShortInput } from 'components/forms/short-input/short-input';
 
 // CSS
 import { styles, vars, css } from 'styles/css';
