@@ -38,6 +38,7 @@ export class Voter {
     return VoterService.checkRegistration(this.firstName, this.lastName, this.birthDateAsString(), this.zipCode).then(
       result => {
         this.registered = result.registered;
+        Voter.currentUserStore.fetched = true;
         return this.registered;
       }
     );

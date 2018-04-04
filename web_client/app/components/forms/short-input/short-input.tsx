@@ -25,11 +25,11 @@ export interface ShortInputProps {
 };
 
 export class ShortInput extends React.Component<ShortInputProps, {}> {
-  onChange(value: string) {
+  onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (this.props.type === "number") {
-      this.props.onChange(parseInt(value));
+      this.props.onChange(parseInt(e.target.value));
     } else {
-      this.props.onChange(value);
+      this.props.onChange(e.target.value);
     }
   }
 
@@ -45,8 +45,8 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
           aria-invalid={!!errors}
           aria-required={required}
           type={type}
-          value={value}
-          onChange={(e: any) => this.onChange(e.target.value)} />
+          value={value || ""}
+          onChange={this.onChange} />
         <div {...style.icon}>{this.props.children}</div>
       </Labelled>
     );

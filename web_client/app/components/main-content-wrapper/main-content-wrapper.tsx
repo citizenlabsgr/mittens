@@ -8,14 +8,18 @@ import { styles, vars, css } from 'styles/css';
 
 
 export interface MainContentWrapperProps {
-  background?: string
+  color?: "theme" | "success" | "warn"
 };
 
 @observer
 export class MainContentWrapper extends React.Component<MainContentWrapperProps, {}> {
+  static defaultProps = {
+    color: "theme"
+  }
+
   render() {
     return (
-      <div {...style.wrapper} style={{backgroundColor: this.props.background || vars.color.background}}>
+      <div {...style.wrapper} className={this.props.color + "-container"} style={{backgroundColor: vars.color[this.props.color]}}>
         <main {...style.content}>{this.props.children}</main>
         <div>
           <span {...style.githubLink}><Link to="https://github.com/citizenlabsgr/voter-engagement">View On GitHub</Link></span>
@@ -30,7 +34,7 @@ let style = styles({
   wrapper: {
     minHeight: '100vh',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   content: {
     flex: 1,

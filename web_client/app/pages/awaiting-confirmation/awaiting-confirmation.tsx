@@ -16,7 +16,7 @@ export type AwaitingConfirmationProps = {};
 export class AwaitingConfirmation extends React.Component<AwaitingConfirmationProps, {}> {
   render() {
     return (
-      <MainContentWrapper>
+      <MainContentWrapper color="theme">
         <div {...style.box}>
           <div {...style.maxWidth}>
             <h1>Thanks! Check your email!</h1>

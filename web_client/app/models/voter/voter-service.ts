@@ -39,6 +39,14 @@ export const VoterService = new class {
   }
 
   me(): Promise<IncomingVoterJSON> {
-    return API.get('voters/');
+    return API.get('voters/').then(
+      voters => {
+        if (voters.length < 1) {
+          throw "Not logged in.";
+        }
+        else {
+          return voters[0];
+        }
+      });
   }
 }

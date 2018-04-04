@@ -16,7 +16,7 @@ export interface AppProps { };
 
 export class App extends React.Component<AppProps, {}> {
   componentWillMount() {
-    Voter.fetchMe().catch();
+    Voter.fetchMe().catch(() => {});
   }
 
   render() {

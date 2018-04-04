@@ -42,7 +42,7 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
 
   render() {
     return (
-      <MainContentWrapper background={vars.color.successDark}>
+      <MainContentWrapper color="success">
         <div {...style.box}>
           <div {...style.maxWidth}>
             <div {...style.icon}>
@@ -53,8 +53,8 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
               <p>Sign up to be reminded to vote in local elections.</p>
               <ShortInput label="Email" onChange={this.setter('email')} errors={this.state.errors.email} type="email" value={this.state.email}/>
               <div {...style.buttons}>
-                <Link to="/registration-check" theme="transparent">Back</Link>
-                <Button action={() => {}} theme="success">Sign Up</Button>
+                <Link to="/registration-check" theme="secondary">Back</Link>
+                <Button action={() => {}}>Sign Up</Button>
               </div>
             </form>}
             {Voter.currentUser.signedUp && <p>We'll remind you to get ready to vote before the next election.</p>}

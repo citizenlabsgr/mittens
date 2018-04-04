@@ -3,13 +3,13 @@ import { observer } from 'mobx-react';
 import { go, isActive, history } from 'infrastructure/router';
 import { LocationDescriptor } from 'history';
 import { css, styles, vars, Style } from 'styles/css';
-import { buttonStyle } from 'components/button/button';
+import { buttonStyler } from 'components/button/button';
 
 export interface LinkProps {
   to: string
   query?: { [id: string]: string }
   state?: any
-  theme?: string
+  theme?: "primary" | "secondary" | "link"
   flex?: boolean
   square?: boolean
   css?: Style
@@ -26,6 +26,10 @@ export interface LinkProps {
 
 @observer
 export class Link extends React.Component<LinkProps, {}> {
+  static defaultProps = {
+    theme: "link"
+  };
+
   state: { active: false }
   link: HTMLAnchorElement
   newFocus = false
@@ -81,8 +85,8 @@ export class Link extends React.Component<LinkProps, {}> {
       {...css(this.props.flex && { flex: 1 },
         style.reset,
         this.props.replacementCSS,
-        !this.props.replacementCSS && [!this.props.theme && style.link,
-        this.props.theme && buttonStyle(this.props.theme),
+        !this.props.replacementCSS && [
+        this.props.theme && buttonStyler(this.props.theme || "link"),
         this.props.square && { borderRadius: 0 },
         this.active() && this.props.activeCSS,
         this.props.css]) }
@@ -104,16 +108,4 @@ let style = styles({
     textDecoration: 'inherit',
     ...vars.focus
   },
-  link: {
-    display: 'inline',
-    color: vars.color.themeLight,
-    textDecoration: 'underline',
-    ':hover': {
-      color: vars.color.theme,
-    },
-    ':focus': {
-      boxShadow: 'none',
-      textShadow: `0 0 10px ${vars.color.focus}, 0 0 15px ${vars.color.focus}`
-    }
-  }
 });

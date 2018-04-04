@@ -51,21 +51,21 @@ export class NotRegistered extends React.Component<NotRegisteredProps, {}> {
 
   render() {
     return (
-      <MainContentWrapper background={vars.color.warnDark}>
+      <MainContentWrapper color="warn">
         <div {...style.box}>
           <div {...style.maxWidth}>
             <div {...style.icon}><BigX size={100} color={vars.color.white} /></div>
             <h1 {...style.result}>You&rsquo;re not registered.</h1>
             <p>Sorry! We couldn't find you using that information. You may not be registered. Find how to register yourself, or <Link to="/registration-check">try checking again</Link>.</p>
             <div {...style.registerButtons}>
-              <Button action={this.register} theme="warn" css={style.button}>Register to Vote</Button>
+              <Button action={this.register} css={style.button}>Register to Vote</Button>
             </div>
             {!Voter.currentUser.signedUp && <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
               <p>You can also sign up to be reminded to vote in local elections.</p>
               <ShortInput label="Email" onChange={this.setter('email')} errors={this.state.errors.email} type="email" value={this.state.email}/>
               <div {...style.buttons}>
-                <Link to="/registration-check" theme="transparent">Back</Link>
-                <Button action={this.submit} theme="warn">Sign Up</Button>
+                <Link to="/registration-check" theme="secondary">Back</Link>
+                <Button action={this.submit}>Sign Up</Button>
               </div>
             </form>}
             {Voter.currentUser.signedUp && <form onSubmit={e => { this.submit(); e.preventDefault(); }}>

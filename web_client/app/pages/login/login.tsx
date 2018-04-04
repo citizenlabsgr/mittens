@@ -68,7 +68,7 @@ export class Login extends React.Component<LoginProps, {}> {
               <ShortInput label="Email" autofocus onChange={this.setter('email')} errors={this.state.errors.email} value={this.state.email}/>
               <div {...style.buttons}>
                 <Button action={this.submit}> Send me a link!</Button>
-                <Link to='/' theme="transparent">I don't have an account</Link>
+                <Link to='/' theme="secondary">I don't have an account</Link>
               </div>
             </form>
           </div>
