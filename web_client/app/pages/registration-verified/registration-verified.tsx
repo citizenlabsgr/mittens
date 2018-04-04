@@ -10,7 +10,7 @@ import { Link } from 'components/link/link';
 import { CheckMark } from 'components/icons/checkmark';
 
 // CSS
-import { styles, vars, css, centeredBox } from 'styles/css';
+import { styles, vars, css } from 'styles/css';
 
 export type RegistrationVerifiedProps = {};
 
@@ -43,23 +43,19 @@ export class RegistrationVerified extends React.Component<RegistrationVerifiedPr
   render() {
     return (
       <MainContentWrapper color="success">
-        <div {...style.box}>
-          <div {...style.maxWidth}>
-            <div {...style.icon}>
-              <CheckMark size={100} color={vars.color.white} />
-            </div>
-            <h1 {...style.result}>You&rsquo;re already registered&nbsp;to&nbsp;vote!</h1>
-            {!Voter.currentUser.signedUp && <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
-              <p>Sign up to be reminded to vote in local elections.</p>
-              <ShortInput label="Email" onChange={this.setter('email')} errors={this.state.errors.email} type="email" value={this.state.email}/>
-              <div {...style.buttons}>
-                <Link to="/registration-check" theme="secondary">Back</Link>
-                <Button action={() => {}}>Sign Up</Button>
-              </div>
-            </form>}
-            {Voter.currentUser.signedUp && <p>We'll remind you to get ready to vote before the next election.</p>}
-          </div>
+        <div {...style.icon}>
+          <CheckMark size={100} color={vars.color.white} />
         </div>
+        <h1 {...style.result}>You&rsquo;re already registered&nbsp;to&nbsp;vote!</h1>
+        {!Voter.currentUser.signedUp && <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
+          <p>Sign up to be reminded to vote in local elections.</p>
+          <ShortInput label="Email" onChange={this.setter('email')} errors={this.state.errors.email} type="email" value={this.state.email}/>
+          <div {...style.buttons}>
+            <Link to="/registration-check" theme="secondary">Back</Link>
+            <Button action={() => {}}>Sign Up</Button>
+          </div>
+        </form>}
+        {Voter.currentUser.signedUp && <p>We'll remind you to get ready to vote before the next election.</p>}
       </MainContentWrapper>
     );
   }
@@ -81,15 +77,8 @@ const style = styles({
     display: 'flex',
     justifyContent: 'space-between'
   },
-  box: {
-    padding: vars.spacing,
-  },
   heading: {
     marginBottom: vars.spacing
-  },
-  maxWidth: {
-    maxWidth: 400,
-    margin: '0 auto'
-  },
+  }
 });
 

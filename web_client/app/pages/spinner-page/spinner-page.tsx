@@ -3,7 +3,7 @@ import { Spinner } from 'components/spinner/spinner';
 import { MainContentWrapper } from 'components/main-content-wrapper/main-content-wrapper';
 
 // CSS
-import { styles, vars, css, centeredBox } from 'styles/css';
+import { styles, vars, css } from 'styles/css';
 
 
 export type SpinnerPageProps = {

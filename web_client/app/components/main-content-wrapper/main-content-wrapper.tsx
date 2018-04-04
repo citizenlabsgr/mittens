@@ -19,10 +19,12 @@ export class MainContentWrapper extends React.Component<MainContentWrapperProps,
 
   render() {
     return (
-      <div {...style.wrapper} className={this.props.color + "-container"} style={{backgroundColor: vars.color[this.props.color]}}>
-        <main {...style.content}>{this.props.children}</main>
-        <div>
-          <span {...style.githubLink}><Link to="https://github.com/citizenlabsgr/voter-engagement">View On GitHub</Link></span>
+      <div>
+        <div {...style.wrapper} className={this.props.color + "-container"} style={{backgroundColor: vars.color[this.props.color]}}>
+          <main {...style.content}>{this.props.children}</main>
+          <div {...style.githubLink}>
+            <Link to="https://github.com/citizenlabsgr/voter-engagement">View On GitHub</Link>
+          </div>
         </div>
       </div>
     );
@@ -32,18 +34,21 @@ export class MainContentWrapper extends React.Component<MainContentWrapperProps,
 
 let style = styles({
   wrapper: {
+    position: 'relative',
     minHeight: '100vh',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: vars.spacing
   },
   content: {
-    flex: 1,
     position: 'relative',
+    maxWidth: 525
   },
   githubLink: {
-    marginBottom: '10px',
-    marginRight: '35px',
-    fontSize: '15px',
-    float: 'right',
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
   },
 });

@@ -8,7 +8,7 @@ import { ShortInput } from 'components/forms/short-input/short-input';
 import { Button } from 'components/button/button';
 import { Link } from 'components/link/link';
 
-import { styles, vars, css, centeredBox } from 'styles/css';
+import { styles, vars, css } from 'styles/css';
 
 import API from 'infrastructure/api/api';
 
@@ -60,19 +60,15 @@ export class Login extends React.Component<LoginProps, {}> {
 
     return (
       <MainContentWrapper>
-        <div {...style.box}>
-          <div {...style.maxWidth}>
-            <h1 {...style.heading}>Welcome Back!</h1>
-            <p>Let us send you an email containing a link to get you back into to your account.</p>
-            <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
-              <ShortInput label="Email" autofocus onChange={this.setter('email')} errors={this.state.errors.email} value={this.state.email}/>
-              <div {...style.buttons}>
-                <Button action={this.submit}> Send me a link!</Button>
-                <Link to='/' theme="secondary">I don't have an account</Link>
-              </div>
-            </form>
+        <h1 {...style.heading}>Welcome Back!</h1>
+        <p>Let us send you an email containing a link to get you back into to your account.</p>
+        <form onSubmit={e => { this.submit(); e.preventDefault(); }}>
+          <ShortInput label="Email" autofocus onChange={this.setter('email')} errors={this.state.errors.email} value={this.state.email}/>
+          <div {...style.buttons}>
+            <Button action={this.submit}> Send me a link!</Button>
+            <Link to='/' theme="secondary">I don't have an account</Link>
           </div>
-        </div>
+        </form>
       </MainContentWrapper>
     );
   }
@@ -85,15 +81,8 @@ const style = styles({
     flexWrap: 'wrap',
     justifyContent: 'space-between'
   },
-  box: {
-    padding: vars.spacing
-  },
   heading: {
     marginBottom: vars.spacing
-  },
-  maxWidth: {
-    maxWidth: 600,
-    margin: '0 auto'
   },
   note: {
     marginTop: vars.spacing,

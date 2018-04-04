@@ -79,14 +79,6 @@ export const vars = {
   },
 }
 
-export const centeredBox = {
-  position: 'relative',
-  margin: `${vars.spacing}px auto`,
-  maxWidth: 600,
-  backgroundColor: vars.color.white,
-  ...vars.clearFix,
-}
-
 export const clearfix = {
   ':after': {
     content: '""',

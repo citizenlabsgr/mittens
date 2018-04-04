@@ -38,7 +38,10 @@ function redirect(path: string) {
 
 function requireLogin() {
   Voter.fetchMe().catch(
-    () => go('/login', {}, true)
+    () => {
+      console.warn("Unknown user. Redirecting to login.")
+      go('/login', {}, true)
+    }
   );
 }
 

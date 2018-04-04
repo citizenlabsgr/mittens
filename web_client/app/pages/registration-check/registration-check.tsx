@@ -11,7 +11,7 @@ import { Labelled } from 'components/forms/labelled/labelled';
 import { BirthdayInput } from 'components/forms/birthday-input/birthday-input';
 
 // CSS
-import { styles, vars, css, centeredBox } from 'styles/css';
+import { styles, vars, css } from 'styles/css';
 
 
 export type RegistrationCheckProps = {
@@ -60,8 +60,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
   render() {
     return (
       <MainContentWrapper>
-        <div {...style.box}>
-          <form {...style.maxWidth} onSubmit={e => { e.preventDefault(); this.submit(); }}>
+          <form onSubmit={e => { e.preventDefault(); this.submit(); }}>
             <h1 {...style.heading}>First, let's check if you&rsquo;re registered to vote.</h1>
 
             <ShortInput label="First Name"
@@ -96,7 +95,6 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
               <p>Already signed up? <Link to="/login">Log in</Link></p>
             </div>
           </form>
-        </div>
       </MainContentWrapper>
     );
   }
@@ -115,12 +113,5 @@ const style = styles({
     marginTop: vars.spacing,
     borderTop: vars.borderSimple,
     fontSize: 16
-  },
-  box: {
-    padding: vars.spacing
-  },
-  maxWidth: {
-    maxWidth: 400,
-    margin: '0 auto'
   }
 });

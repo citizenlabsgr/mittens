@@ -8,7 +8,7 @@ import { ShortInput } from 'components/forms/short-input/short-input';
 import { Button } from 'components/button/button';
 
 // CSS
-import { styles, vars, css, centeredBox } from 'styles/css';
+import { styles, vars, css } from 'styles/css';
 
 export type AwaitingConfirmationProps = {};
 
@@ -17,24 +17,12 @@ export class AwaitingConfirmation extends React.Component<AwaitingConfirmationPr
   render() {
     return (
       <MainContentWrapper color="theme">
-        <div {...style.box}>
-          <div {...style.maxWidth}>
-            <h1>Thanks! Check your email!</h1>
-            <p>We've sent you a link. Click it to log in.</p>
-          </div>
-        </div>
+        <h1>Thanks! Check your email!</h1>
+        <p>We've sent you a link. Click it to log in.</p>
       </MainContentWrapper>
     );
   }
 }
 
 const style = styles({
-  box: {
-    padding: vars.spacing
-  },
-  maxWidth: {
-    textAlign: 'center',
-    maxWidth: 400,
-    margin: '0 auto'
-  },
 });
