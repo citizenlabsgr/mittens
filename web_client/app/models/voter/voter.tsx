@@ -22,15 +22,16 @@ export class Voter {
   static fetchMe() {
     // If we've already fetched current user, don't refetch.
     if (this.currentUserStore.fetched) return Promise.resolve(this.currentUser);
-    return VoterService.me().then(
-      json => {
-        this.currentUser.updateFromFetch(json);
-        this.currentUser.signedUp = true;
+    return VoterService.me().then(json => {
+      this.currentUser.updateFromFetch(json);
+      this.currentUser.signedUp = true;
+      // Two requests here until the API stores registration status in db
+      return this.currentUser.checkRegistration().then(() => {
         this.currentUserStore.fetched = true;
         this.currentUser.registerSpy();
         return this.currentUser;
-      }
-    );
+      })
+    })
   }
 
   @action
@@ -68,6 +69,9 @@ export class Voter {
   @action
   updateFromFetch(json: IncomingVoterJSON) {
     Object.assign(this, camelCaseObject(json));
+    if (json.birth_date) {
+      this.birthDate = new Date(json.birth_date);
+    }
   }
 
   @action

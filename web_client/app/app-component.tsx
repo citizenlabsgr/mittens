@@ -15,10 +15,6 @@ export interface AppProps { };
 
 
 export class App extends React.Component<AppProps, {}> {
-  componentWillMount() {
-    Voter.fetchMe().catch(() => {});
-  }
-
   render() {
     return (
       <DocumentTitle title="Voter Engagement">
