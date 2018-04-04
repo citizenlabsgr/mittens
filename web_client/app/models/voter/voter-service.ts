@@ -11,7 +11,6 @@ export interface IncomingVoterJSON {
   birth_date: string,
   zip_code: string,
   email: string
-  registered: boolean
 }
 
 export const VoterService = new class {

@@ -8,7 +8,6 @@ const mockVoter: IncomingVoterJSON = {
   birth_date: "1820-02-15",
   zip_code: "49506",
   email: "susan@suffrage.org",
-  registered: true
 }
 
 export const VoterService = new class {

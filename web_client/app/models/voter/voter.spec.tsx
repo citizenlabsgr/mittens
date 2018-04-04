@@ -11,8 +11,7 @@ const mockVoter: IncomingVoterJSON = {
   last_name: "Anthony",
   birth_date: "1820-02-15",
   zip_code: "49506",
-  email: "susan@suffrage.org",
-  registered: true
+  email: "susan@suffrage.org"
 }
 
 const mockRegistration: IncomingRegistrationJSON = {
@@ -34,7 +33,7 @@ describe("Voter", () => {
     it("Sets voter.registered to be true if the API says they're registered", () => {
       const voter = Voter.currentUser;
       expect(voter.registered).toBeFalsy();
-      VoterService.checkRegistration = jest.fn().mockImplementationOnce(() => Promise.resolve({registered: true}));
+      VoterService.checkRegistration = jest.fn().mockImplementation(() => Promise.resolve({registered: true}));
       return voter.checkRegistration().then(() => {
         expect(voter.registered).toBe(true);
       });
@@ -43,7 +42,7 @@ describe("Voter", () => {
     it("Sets voter.registered to be false if the API says they're unregistered", () => {
       const voter = Voter.currentUser;
       expect(voter.registered).toBeFalsy();
-      VoterService.checkRegistration = jest.fn().mockImplementationOnce(() => Promise.resolve({registered: false}));
+      VoterService.checkRegistration = jest.fn().mockImplementation(() => Promise.resolve({registered: false}));
       return voter.checkRegistration().then(() => {
         expect(voter.registered).toBe(false);
       });
@@ -68,9 +67,8 @@ describe("Voter", () => {
     });
   });
 
-  describe("signUp", () => {
+  describe("fetchMe", () => {
     it("Calls the voter service to retrieve logged-in user", () => {
-      expect(2);
       expect(Voter.currentUser.signedUp).toBe(false);
       return Voter.fetchMe().then(
         (me) => {
@@ -98,10 +96,10 @@ describe("Voter", () => {
         last_name: "Anthony",
         birth_date: "1820-02-15",
         zip_code: "49506",
-        email: "susan@suffrage.org",
-        registered: true
+        email: "susan@suffrage.org"
       })
       expect(voter.firstName).toBe("Sue");
+      expect(voter.birthDate.getFullYear()).toBe(1820);
     });
   })
 });
