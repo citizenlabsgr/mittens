@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { go, isActive, history } from 'router';
+import { go, isActive, history } from 'infrastructure/router';
 import { LocationDescriptor } from 'history';
 import { css, styles, vars, Style } from 'styles/css';
 import { buttonStyle } from 'components/button/button';

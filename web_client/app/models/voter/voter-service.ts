@@ -1,4 +1,4 @@
-import API from 'api/api';
+import API from 'infrastructure/api/api';
 
 export interface IncomingRegistrationJSON {
   registered: boolean

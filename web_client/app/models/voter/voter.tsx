@@ -1,6 +1,6 @@
 import { observable, computed, action } from 'mobx';
 import { VoterService, IncomingRegistrationJSON, IncomingVoterJSON } from './voter-service';
-import { spyOnUser } from 'fullstory/fullstory';
+import { spyOnUser } from 'infrastructure/fullstory/fullstory';
 import { camelCaseObject } from '../helpers';
 
 export class Voter {

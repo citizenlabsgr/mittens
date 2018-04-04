@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { Voter } from 'models';
-import { go } from 'router';
+import { go } from 'infrastructure/router';
 
 import { MainContentWrapper } from 'components/main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'components/forms/short-input/short-input';

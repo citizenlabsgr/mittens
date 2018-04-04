@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
-import { go } from 'router';
+import { go } from 'infrastructure/router';
 import { Voter } from 'models';
 
 import { MainContentWrapper } from 'components/main-content-wrapper/main-content-wrapper';

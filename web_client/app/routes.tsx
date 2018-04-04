@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { go, RouteDeclaration, history } from 'router';
+import { go, RouteDeclaration, history } from 'infrastructure/router';
 import { Voter } from 'models';
 
 // Components
@@ -10,7 +10,7 @@ import { AwaitingConfirmation } from 'pages/awaiting-confirmation/awaiting-confi
 import { NotRegistered } from 'pages/not-registered/not-registered';
 import { SpinnerPage } from 'pages/spinner-page/spinner-page';
 
-import API from './api/api';
+import API from 'infrastructure/api/api';
 
 
 function goForUserRegistration(user: Voter) {

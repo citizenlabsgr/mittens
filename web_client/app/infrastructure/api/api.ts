@@ -1,5 +1,5 @@
-import { apiPath } from 'environments/current';
-import { go } from 'router';
+import { apiPath } from 'infrastructure/environments/current';
+import { go } from 'infrastructure/router';
 
 class API {
   // Need to set which api url we're going for

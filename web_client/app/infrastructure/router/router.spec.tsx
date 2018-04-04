@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Route } from './router';
-import { go, history } from 'router';
+import { go, history } from '../router';
 
 class MyComponent extends React.Component<{}, {}> {
   render() {
