@@ -1,8 +1,8 @@
 import { css, StyleAttribute, CSSProperties, keyframes } from 'glamor';
-import { vars, centeredBox, clearfix } from 'styles/variables';
+import { vars, clearfix } from 'styles/variables';
 
 
-export { vars, css, centeredBox, clearfix, keyframes }
+export { vars, css, clearfix, keyframes }
 
 export type Style = false | StyleAttribute | CSSProperties
 

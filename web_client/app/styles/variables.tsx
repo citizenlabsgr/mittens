@@ -10,21 +10,26 @@ export const vars = {
   spacing: 24,
   smallSpacing: 12,
   color: {
-    background: "#788595",
     focus: focusColor,
     font: "#333",
     fontLight: "#777",
-    theme: "#475B6E",
-    themeLight: "#516476",
+
+    theme: "#788595",
+    themeSecondary: "#475B6E",
+    themeTertiaryLight: "#586C7E",
+    themeTertiaryDark: "#334556",
+
+    success: "#6EB047",
+    successSecondary: "#87CC60",
+    successTertiaryLight: "#98DC71",
+    successTertiaryDark: "#62A23B",
+
+    warn: "#F17B26",
+    warnSecondary: "#F5A623",
+    warnTertiaryLight: "#FFBC4D",
+    warnTertiaryDark: "#E7731F",
+
     lightest: "#f5f5f5",
-    action: "#FF803A",
-    actionight: "#FF9861",
-    warnDark: "#F17B26",
-    warn: "#F5A623",
-    warnLight: "#de600a",
-    success: "#87CC60",
-    successDark: "#6EB047",
-    successLight: "#8DBF71",
     white: "#fff",
     whiteLight: "#EFEFEF",
     whiteTransparent: "rgba(255, 255, 255, 0.2)"
@@ -72,14 +77,6 @@ export const vars = {
     height: 1,
     overflow: 'hidden'
   },
-}
-
-export const centeredBox = {
-  position: 'relative',
-  margin: `${vars.spacing}px auto`,
-  maxWidth: 600,
-  backgroundColor: vars.color.white,
-  ...vars.clearFix,
 }
 
 export const clearfix = {

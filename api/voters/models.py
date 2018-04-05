@@ -43,6 +43,11 @@ class Voter(Identity):
     def name(self):
         return f"{self.first_name} {self.last_name}"
 
+    @property
+    def registered(self):
+        # TODO concept of 'for current election'
+        return self.statuses[0].registered
+
     def update_user(self):
         self.user, created = User.objects.get_or_create(email=self.email)
         if created:
