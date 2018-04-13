@@ -45,7 +45,7 @@ export class BirthdayInput extends React.Component<BirthdayInputProps, {}> {
 
   render() {
     return (
-      <div>
+      <div {...style.relabeled}>
         <Labelled label={this.props.label} errors={this.props.errors && ["Your full birthday is required."]}>
         </Labelled>
         <div {...style.inline}>
@@ -81,6 +81,12 @@ let style = styles({
     margin: `0px ${-vars.smallSpacing/2}px`,
     ' label': {
       margin: `0px ${vars.smallSpacing/2}px`
+    }
+  },
+  relabeled: {
+    marginBottom: vars.smallSpacing,
+    ' label': {
+      marginBottom: 0
     }
   },
   errorInput: {
