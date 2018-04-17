@@ -21,6 +21,8 @@ export interface ShortInputProps {
   required?: boolean
   type?: string
   value?: string|number
+  min?: number
+  max?: number
   autoComplete?: string
 };
 

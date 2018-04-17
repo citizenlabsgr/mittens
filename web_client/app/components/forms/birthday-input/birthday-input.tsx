@@ -14,8 +14,6 @@ export interface BirthdayInputProps {
   autofocus?: boolean
   errors?: string[]
   note?: string
-  min?: number
-  max?: number
   required?: boolean
   value?: Date
 };
