@@ -14,6 +14,8 @@ export interface BirthdayInputProps {
   autofocus?: boolean
   errors?: string[]
   note?: string
+  min?: number
+  max?: number
   required?: boolean
   value?: Date
 };
@@ -59,6 +61,8 @@ export class BirthdayInput extends React.Component<BirthdayInputProps, {}> {
             value={this.state.birthDay}
             placeholder="Day"
             type="number"
+            min={0}
+            max={31}
             autoComplete="bday-day" />
           <ShortInput label=""
             errors={this.props.errors && this.props.errors.map(() => "")}

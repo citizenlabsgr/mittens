@@ -34,7 +34,7 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
   }
 
   render() {
-    const { label, note, type, errors, value, required, flex } = this.props
+    const { label, note, type, errors, value, required, flex, min, max } = this.props
     return (
       <Labelled {...{ errors, label, note, required, flex }}>
         <input {...css(style.input, errors && style.errorInput) }
@@ -46,6 +46,8 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
           aria-required={required}
           type={type}
           value={value || ""}
+          min={min}
+          max={max}
           onChange={this.onChange} />
         <div {...style.icon}>{this.props.children}</div>
       </Labelled>
