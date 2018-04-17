@@ -14,21 +14,21 @@ def send_login_email(user, request, *, welcome):
     token = get_query_string(user)
     url = base + token
 
-    # TODO: Convert this to an email template
-    if welcome:
-        subject = "Welcome to Voter Engagement"
-    else:
-        subject = "Greetings from Voter Engagement"
-    body = f"Click here to log in: {url}"
-    email = EmailMessage(
-        subject=subject,
-        body=body,
+    message = EmailMessage(
+        subject=None,
         from_email="Citizen Labs <noreply@citizenlabs.org>",
         to=[user.email],
     )
+    if welcome:
+        message.template_id = 'welcome-placeholder'
+    else:
+        message.template_id = 'greetings-placeholder'
+    message.merge_global_data = {
+        'LOGIN_URL': url,
+    }
 
-    log.debug(f"Sending email: {prettify(email.__dict__)}")
-    count = email.send(fail_silently=False)
+    log.debug(f"Sending email: {prettify(message.__dict__)}")
+    count = message.send(fail_silently=False)
 
     return count
 
