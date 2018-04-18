@@ -68,6 +68,7 @@ export class BirthdayInput extends React.Component<BirthdayInputProps, {}> {
             value={this.state.birthYear}
             placeholder="Year"
             type="number"
+            min={1900}
             autoComplete="bday-year" />
         </div>
         </Labelled>
