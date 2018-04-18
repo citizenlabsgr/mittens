@@ -59,6 +59,8 @@ export class BirthdayInput extends React.Component<BirthdayInputProps, {}> {
             value={this.state.birthDay}
             placeholder="Day"
             type="number"
+            min={0}
+            max={31}
             autoComplete="bday-day" />
           <ShortInput label=""
             errors={this.props.errors && this.props.errors.map(() => "")}
@@ -66,6 +68,7 @@ export class BirthdayInput extends React.Component<BirthdayInputProps, {}> {
             value={this.state.birthYear}
             placeholder="Year"
             type="number"
+            min={1900}
             autoComplete="bday-year" />
         </div>
         </Labelled>
@@ -85,7 +88,7 @@ let style = styles({
     borderColor: vars.color.warn
   },
   select: {
-    width: '100%',
+    width: '100%', 
     display: 'block',
     height: 51,
     backgroundColor: vars.color.whiteTransparent,
