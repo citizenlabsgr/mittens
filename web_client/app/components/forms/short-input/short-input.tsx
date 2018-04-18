@@ -63,6 +63,7 @@ let style = styles({
   },
   input: {
     width: '100%',
+    minWidth: '75px',
     display: 'block',
     backgroundColor: vars.color.whiteTransparent,
     color: vars.color.white,

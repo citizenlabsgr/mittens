@@ -87,7 +87,7 @@ let style = styles({
     borderColor: vars.color.warn
   },
   select: {
-    width: '100%',
+    width: '100%', 
     display: 'block',
     height: 51,
     backgroundColor: vars.color.whiteTransparent,
