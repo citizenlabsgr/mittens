@@ -11,6 +11,7 @@ export class Voter {
   @observable registered: boolean
   @observable email: string
   @observable signedUp: boolean = false;
+  @observable votedBefore: boolean;
   static currentUserStore: CurrentUserStore;
 
   @action
