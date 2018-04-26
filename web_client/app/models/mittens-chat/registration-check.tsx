@@ -7,7 +7,10 @@ import { RegistrationCheck } from "pages/registration-check/registration-check";
 MittensChat.createGoal("checkRegistration").exchanges = [
   new Exchange(
     [
-      "Let's check if you're registered to vote.",
+      "Hi! I'm Mittens, the Citizen Lab.",
+      "I'm just a dog, but I'll do my best to help you vote.",
+      "It's your duty!",
+      "First, let's check if you're registered to vote.",
       "Have you voted in Michigan before?"
     ],
     {

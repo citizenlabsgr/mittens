@@ -56,7 +56,7 @@ export class Chat {
   }
 
   get dialogueDelay() {
-    return 25*this.peekDialogue().length;
+    return Math.min(3000, Math.max(750, 50*this.peekDialogue().length));
   }
 
   @action

@@ -81,7 +81,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
               autoComplete="postal-code" />
 
             <div {...css(vars.clearFix)}>
-              <Button action={() => {}} css={style.button}>Done!</Button>
+              <Button theme="secondary" action={() => {}} css={style.button}>Done!</Button>
             </div>
           </form>
     );

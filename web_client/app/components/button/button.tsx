@@ -134,6 +134,18 @@ const secondaryStyle = css({
   },
   ':focus': {
     ...vars.focus[':focus'],
+  },
+  '.chat &': {
+    color: vars.color.blueDark,
+    borderColor: vars.color.blue,
+    borderRadius: vars.border.borderRadius,
+    backgroundColor: vars.color.blueLight,
+    ':hover': {
+      backgroundColor: vars.color.blueLightHover,
+    },
+    ':active': {
+      backgroundColor: vars.color.blueLightHover,
+    }
   }
 });
 
