@@ -63,7 +63,7 @@ export const vars = {
   inputFocus: {
     ':focus': {
       outline: "none",
-      border: `2px solid #fff`,
+      border: `2px solid #83DAFF`,
       zIndex: 1
     }
   },
