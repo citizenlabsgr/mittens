@@ -138,7 +138,6 @@ const secondaryStyle = css({
   '.chat &': {
     color: vars.color.blueDark,
     borderColor: vars.color.blue,
-    borderRadius: vars.border.borderRadius,
     backgroundColor: vars.color.blueLight,
     ':hover': {
       backgroundColor: vars.color.blueLightHover,

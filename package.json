@@ -27,7 +27,8 @@
     "prop-types": "^15.5.8",
     "react": "^15.6.1",
     "react-document-title": "^2.0.3",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-flip-move": "^3.0.1"
   },
   "devDependencies": {
     "@types/actioncable": "^0.0.2",

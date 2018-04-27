@@ -16,6 +16,7 @@ export class Chat {
   @observable history: { person: string, text: string }[] = [];
   goals: { [id in GoalName]: Goal };
   @observable state: ChatState;
+  @observable dialogueFinished: boolean = false;
 
   constructor() {
     this.goals = {};
@@ -31,6 +32,7 @@ export class Chat {
   changeState(state: ChatState) {
     this.state = state;
     this.currentExchange.reset();
+    this.dialogueFinished = false;
     this.delayNextDialogue();
   }
 
@@ -63,6 +65,8 @@ export class Chat {
   delayNextDialogue() {
     if (!this.currentExchange.dialogueFinished) {
       setTimeout(this.updateDialogue, this.dialogueDelay);
+    } else {
+      setTimeout(() => {this.dialogueFinished = true}, 500);
     }
   }
 
