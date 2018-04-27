@@ -56,13 +56,13 @@ export class Chat {
   }
 
   get dialogueDelay() {
-    return Math.min(3000, Math.max(750, 50*this.peekDialogue().length));
+    return Math.min(5000, Math.max(750, 40*this.peekDialogue().length));
   }
 
   @action
   delayNextDialogue() {
     if (!this.currentExchange.dialogueFinished) {
-      setInterval(this.updateDialogue, this.dialogueDelay);
+      setTimeout(this.updateDialogue, this.dialogueDelay);
     }
   }
 
