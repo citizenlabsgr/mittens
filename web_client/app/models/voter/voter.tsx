@@ -79,6 +79,13 @@ export class Voter {
   registerSpy() {
     spyOnUser(this.email, { displayName: `${this.firstName} ${this.lastName}`, email: this.email });
   }
+
+  registrationInputData() {
+    var options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return `${this.firstName} ${this.lastName}
+Born: ${this.birthDate.toLocaleString("en-us", options)}
+Zip: ${this.zipCode}`;
+  }
 }
 
 // Mobx interacts poorly with static variables, so we store our statics as

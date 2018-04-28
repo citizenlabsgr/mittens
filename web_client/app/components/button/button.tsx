@@ -75,7 +75,7 @@ export function buttonStyler(theme: string) {
 };
 
 const buttonStyle = {
-  padding: `${vars.smallSpacing + 2}px ${vars.smallSpacing + 6}px`,
+  padding: vars.smallSpacing - 2, // border
   textAlign: 'center',
   color: vars.color.white,
   userSelect: 'none',
@@ -83,9 +83,10 @@ const buttonStyle = {
   textTransform: 'capitalize',
   borderRadius: vars.border.borderRadius,
   border: 0,
-  fontSize: 18,
+  fontSize: 16,
   cursor: 'pointer',
   display: 'inline-block',
+  fontFamily: vars.fontFamily
 };
 
 const primaryStyle = {

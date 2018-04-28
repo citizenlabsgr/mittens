@@ -41,6 +41,16 @@ export class Chat {
     return this.goals[this.state.goalName].getExchange(this.state.exchange);
   }
 
+  @computed
+  get inputButtons() {
+    return this.currentExchange.userInput.options;
+  }
+
+  @computed
+  get inputComponent() {
+    return this.currentExchange.userInput.component;
+  }
+
   handleUserInput(text: string, value: any) {
     this.history.push({ person: "user", text: text });
     this.currentExchange.stateFn(this.state, value);

@@ -3,8 +3,8 @@ const radius = 10;
 const focusColor = "#45BFFE";
 export const vars = {
   smallScreen: 500,
-  fontFamily: '"Open Sans", sans',
-  fontSize: 18,
+  fontFamily: '"Quicksand", sans',
+  fontSize: 16,
   lineHeight: 1.5,
   textTransform: "capitalize",
   spacing: 24,

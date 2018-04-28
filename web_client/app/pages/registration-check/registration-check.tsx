@@ -48,7 +48,9 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
 
     voter.checkRegistration().then(r => {
-      MittensChat.handleUserInput(this.state.firstName, r)
+      console.log("here");
+      console.log(voter.registrationInputData())
+      MittensChat.handleUserInput(voter.registrationInputData(), r)
     }).catch(e => {
       this.setState({errors: e})
     })

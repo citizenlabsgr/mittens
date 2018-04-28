@@ -9,7 +9,7 @@ MittensChat.createGoal("not-registered").exchanges = [
       "Hmm! I wasn't able to find you.",
       "Is this information right?",
       () => {
-        return Voter.currentUser.firstName;
+        return Voter.currentUser.registrationInputData();
       }
     ],
     { options: [{ text: "Yes", value: true }, { text: "No", value: false }] },
