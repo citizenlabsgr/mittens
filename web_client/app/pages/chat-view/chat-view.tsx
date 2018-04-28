@@ -40,7 +40,7 @@ export class ChatView extends React.Component<ChatViewProps, {}> {
               flexDirection: "column",
               justifyContent: "flex-end"
             }}
-            leaveAnimation="accordionHorizontal"
+            leaveAnimation="fade"
             enterAnimation={{
               from: {
                 transformOrigin: 'top center',
@@ -103,7 +103,6 @@ export class ChatView extends React.Component<ChatViewProps, {}> {
 
 const style = styles({
   buttons: {
-    borderTop: `2px solid ${vars.color.blue}`,
     display: "flex"
   },
   scroller: {
