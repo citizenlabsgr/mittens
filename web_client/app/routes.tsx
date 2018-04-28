@@ -27,7 +27,7 @@ function checkLogin() {
   Voter.fetchMe().then(
     goForUserRegistration
   ).catch(
-    () => go('/registration-check', {}, true)
+    () => go('/chat', {}, true)
   );
 }
 
