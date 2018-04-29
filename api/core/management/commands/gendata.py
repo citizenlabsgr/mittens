@@ -10,7 +10,7 @@ from django.db.utils import IntegrityError
 from faker import Faker
 
 from api.elections.models import Election
-from api.voters.models import Voter, Status
+from api.voters.models import Status, Voter
 
 
 User = get_user_model()

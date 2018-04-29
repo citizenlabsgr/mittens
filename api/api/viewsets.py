@@ -1,14 +1,14 @@
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
 import log
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
 from api.core.helpers import send_login_email
-from api.voters.models import Identity, Voter, Status
 from api.voters.helpers import fetch_and_update_registration
+from api.voters.models import Identity, Status, Voter
 
 from . import serializers
 
@@ -85,7 +85,7 @@ class TimelineViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.TimelineSerializer
     http_method_names = ['get']
 
-    def retrieve(self, request, pk=None):
+    def retrieve(self, request, pk=None):  # pylint: disable=arguments-differ
         if request.query_params.get('refresh'):
             status = get_object_or_404(Status, pk=pk)
             status.fetch_and_update_registration()

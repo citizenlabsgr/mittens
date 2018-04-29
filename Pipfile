@@ -1,6 +1,6 @@
 [[source]]
 
-url = "https://pypi.python.org/simple"
+url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
@@ -41,16 +41,16 @@ rollbar = "*"
 [dev-packages]
 
 # Static analysis
-pylint = "~=1.7.5"
-astroid = "~=1.5.3" # temporary to work around apparent regression in 1.6
+isort = "*"
 pycodestyle = "*"
+pylint = "*"
 
 # Testing
-pytest = "< 3.3"
+pytest = "~= 3.3"
 pytest-django = "*"
 pytest-describe = "*"
 pytest-expecter = "*"
-pytest-catchlog = "*"
+pytest-randomly = "*"
 pytest-cov = "*"
 
 # Tooling

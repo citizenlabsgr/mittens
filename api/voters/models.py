@@ -1,9 +1,9 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 import arrow
 
-from api.elections.models import Region, Election
+from api.elections.models import Election, Region
 
 from . import helpers
 

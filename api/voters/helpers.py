@@ -1,5 +1,5 @@
-import requests
 import log
+import requests
 
 from api.core.helpers import prettify
 from api.elections.models import Kind, Region

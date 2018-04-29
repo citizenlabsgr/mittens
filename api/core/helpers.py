@@ -2,9 +2,9 @@ import pprint
 
 from django.core.mail import EmailMessage
 
+import log
 from rest_framework.reverse import reverse
 from sesame.utils import get_query_string
-import log
 
 
 def send_login_email(user, request, *, welcome):

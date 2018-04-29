@@ -2,9 +2,9 @@
 
 from django.forms.models import model_to_dict
 
+import arrow
 import pytest
 from expecter import expect
-import arrow
 
 from api.elections.models import Election
 

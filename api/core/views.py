@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.staticfiles.views import serve
-from django.views.decorators.cache import never_cache
 from django.shortcuts import redirect
+from django.views.decorators.cache import never_cache
 
 import log
 
