@@ -58,3 +58,4 @@ class ElectionAdmin(admin.ModelAdmin):
             url = election.reference_url
             label = urlparse(url).netloc
             return format_html(f'<a href="{url}" target="_blank">{label}</a>')
+        return None

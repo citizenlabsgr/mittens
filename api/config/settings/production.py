@@ -4,6 +4,7 @@ import dj_database_url
 
 from .base import *
 
+
 # BASE_NAME and BASE_DOMAIN are intentionally unset
 # They are only needed to seed data in staging and local
 BASE_URL = "https://vote.citizenlabs.org"
