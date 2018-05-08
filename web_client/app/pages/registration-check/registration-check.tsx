@@ -84,7 +84,9 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
               onChange={this.setter('zipCode')}
               errors={this.state.errors.zip_code}
               value={this.state.zipCode}
-              autoComplete="postal-code" />
+              autoComplete="postal-code" 
+              title="Five-digit ZIP code"
+              pattern="\\d{5}" />
 
             <div {...css(vars.clearFix)}>
               <Button action={() => {}} css={style.button}>Check!</Button>
