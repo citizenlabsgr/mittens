@@ -20,10 +20,12 @@ def send_login_email(user, request, *, welcome):
         to=[user.email],
     )
     if welcome:
-        message.template_id = 'welcome-placeholder'
+        message.template_id = 'voter-engagement-legacy-welcome'
     else:
-        message.template_id = 'greetings-placeholder'
+        message.template_id = 'voter-engagement-legacy-login'
     message.merge_global_data = {
+        'FIRST_NAME': user.first_name,
+        'LAST_NAME': user.last_name,
         'LOGIN_URL': url,
     }
 
