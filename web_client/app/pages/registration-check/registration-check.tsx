@@ -91,7 +91,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
             </div>
 
             <div {...style.note}>
-              <p>You can also use the <Link to="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</Link></p>
+              <p>You can also use the <Link to="https://webapps.sos.state.mi.us/MVIC/" target="_blank">Secretary of State's website</Link></p>
               <p>Already signed up? <Link to="/login">Log in</Link></p>
             </div>
           </form>

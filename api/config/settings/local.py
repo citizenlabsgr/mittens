@@ -4,6 +4,7 @@ import dj_database_url
 
 from .base import *
 
+
 BASE_NAME = BASE_DOMAIN = "localhost"
 BASE_URL = f"http://{BASE_DOMAIN}:8000"
 
@@ -41,6 +42,4 @@ AUTH_PASSWORD_VALIDATORS = []
 # Email
 
 if not os.getenv('MANDRILL_API_KEY'):
-    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-    EMAIL_FILE_PATH = os.path.join(PROJECT_ROOT, 'tmp', 'emails')
-    os.makedirs(EMAIL_FILE_PATH, exist_ok=True)
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

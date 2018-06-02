@@ -21,6 +21,8 @@ export interface ShortInputProps {
   required?: boolean
   type?: string
   value?: string|number
+  min?: number
+  max?: number
   autoComplete?: string
 };
 
@@ -34,7 +36,7 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
   }
 
   render() {
-    const { label, note, type, errors, value, required, flex } = this.props
+    const { label, note, type, errors, value, required, flex, min, max } = this.props
     return (
       <Labelled {...{ errors, label, note, required, flex }}>
         <input {...css(style.input, errors && style.errorInput) }
@@ -46,6 +48,8 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
           aria-required={required}
           type={type}
           value={value || ""}
+          min={min}
+          max={max}
           onChange={this.onChange} />
         <div {...style.icon}>{this.props.children}</div>
       </Labelled>
@@ -59,6 +63,7 @@ let style = styles({
   },
   input: {
     width: '100%',
+    minWidth: '75px',
     display: 'block',
     backgroundColor: vars.color.whiteTransparent,
     color: vars.color.white,
