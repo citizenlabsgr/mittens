@@ -14,21 +14,28 @@ def send_login_email(user, request, *, welcome):
     token = get_query_string(user)
     url = base + token
 
-    # TODO: Convert this to an email template
-    if welcome:
-        subject = "Welcome to Voter Engagement"
-    else:
-        subject = "Greetings from Voter Engagement"
-    body = f"Click here to log in: {url}"
-    email = EmailMessage(
-        subject=subject,
-        body=body,
+    message = EmailMessage(
+        subject=None,
         from_email="Citizen Labs <noreply@citizenlabs.org>",
         to=[user.email],
     )
+    if welcome:
+        message.template_id = 'voter-engagement-welcome'
+    else:
+        message.template_id = 'voter-engagement-login'
+    message.merge_global_data = {
+        'FIRST_NAME': user.first_name,
+        'LAST_NAME': user.last_name,
+        'LOGIN_URL': url,
+        # TODO: Set site URL dynamically
+        'SITE_URL': 'https://alpha-vote.citizenlabs.org/',
+        # TODO: Implement unsubscribe functionality
+        'UNSUBSCRIBE_URL': 'https://citizenlabs.org/contact/',
+        'ABOUT_URL': 'https://citizenlabs.org/about/',
+    }
 
-    log.debug(f"Sending email: {prettify(email.__dict__)}")
-    count = email.send(fail_silently=False)
+    log.debug(f"Sending email: {prettify(message.__dict__)}")
+    count = message.send(fail_silently=False)
 
     return count
 
