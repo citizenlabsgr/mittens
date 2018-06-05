@@ -96,11 +96,11 @@ let style = styles({
     borderColor: vars.color.warn
   },
   select: {
-    width: '100%', 
+    width: '100%',
     display: 'block',
     height: 51,
     backgroundColor: vars.color.whiteTransparent,
-    color: vars.color.white,
+    color: vars.color.font,
     padding: vars.smallSpacing,
     marginTop: vars.smallSpacing / 2,
     marginBottom: vars.smallSpacing / 2,
@@ -108,7 +108,6 @@ let style = styles({
     marginLeft: 6,
     fontSize: vars.fontSize,
     ...vars.border,
-    borderColor: 'transparent',
     boxShadow: 'none',
     ...vars.inputFocus,
 

@@ -11,6 +11,7 @@ import { NotRegistered } from 'pages/not-registered/not-registered';
 import { SpinnerPage } from 'pages/spinner-page/spinner-page';
 
 import API from 'infrastructure/api/api';
+import { ChatView } from 'pages/chat-view/chat-view';
 
 
 function goForUserRegistration(user: Voter) {
@@ -26,7 +27,7 @@ function checkLogin() {
   Voter.fetchMe().then(
     goForUserRegistration
   ).catch(
-    () => go('/registration-check', {}, true)
+    () => go('/chat', {}, true)
   );
 }
 
@@ -49,7 +50,7 @@ export const routes: RouteDeclaration = {
   path: '/',
   children: [
     { path: 'waiting', component: SpinnerPage },
-
+    { path: 'chat', component: ChatView },
     { path: 'registration-check', component: RegistrationCheck },
 
     { path: 'login', component: Login },

@@ -3,8 +3,8 @@ const radius = 10;
 const focusColor = "#45BFFE";
 export const vars = {
   smallScreen: 500,
-  fontFamily: '"Open Sans", sans',
-  fontSize: 18,
+  fontFamily: '"Quicksand", sans',
+  fontSize: 16,
   lineHeight: 1.5,
   textTransform: "capitalize",
   spacing: 24,
@@ -28,6 +28,11 @@ export const vars = {
     warnSecondary: "#F5A623",
     warnTertiaryLight: "#FFBC4D",
     warnTertiaryDark: "#E7731F",
+
+    blue: "#83DAFF",
+    blueDark: "#0F81A3",
+    blueLight: "#F2FAFF",
+    blueLightHover: "#CAE4F1",
 
     lightest: "#f5f5f5",
     white: "#fff",
@@ -58,7 +63,7 @@ export const vars = {
   inputFocus: {
     ':focus': {
       outline: "none",
-      border: `2px solid #fff`,
+      border: `2px solid #83DAFF`,
       zIndex: 1
     }
   },
