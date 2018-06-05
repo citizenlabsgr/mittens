@@ -45,7 +45,9 @@ export class BirthdayInput extends React.Component<BirthdayInputProps, {}> {
 
   render() {
     return (
-      <Labelled label={this.props.label} errors={this.props.errors && ["Your full birthday is required."]}>
+      <div {...style.relabeled}>
+        <Labelled label={this.props.label} errors={this.props.errors && ["Your full birthday is required."]}>
+        </Labelled>
         <div {...style.inline}>
           <select {...css(style.select, this.props.errors && style.errorInput)}
             autoFocus={this.props.autofocus}
@@ -71,7 +73,7 @@ export class BirthdayInput extends React.Component<BirthdayInputProps, {}> {
             min={1900}
             autoComplete="bday-year" />
         </div>
-        </Labelled>
+      </div>
     );
   }
 }
@@ -82,6 +84,12 @@ let style = styles({
     margin: `0px ${-vars.smallSpacing/2}px`,
     ' label': {
       margin: `0px ${vars.smallSpacing/2}px`
+    }
+  },
+  relabeled: {
+    marginBottom: vars.smallSpacing,
+    ' label': {
+      marginBottom: 0
     }
   },
   errorInput: {
@@ -102,6 +110,10 @@ let style = styles({
     ...vars.border,
     boxShadow: 'none',
     ...vars.inputFocus,
+
+    ' option': {
+      backgroundColor: vars.color.theme
+    }
   },
 
 });

@@ -1,28 +1,7 @@
 {
-  "scripts": {
-    "postdeploy": "make data"
-  },
-  "env": {
-    "HEROKU_APP_NAME": {
-      "required": true
-    },
-
-    "DJANGO_SETTINGS_MODULE": {
-      "required": true
-    },
-    "MANDRILL_API_KEY": {
-      "required": true
-    },
-    "ROLLBAR_ENVIRONMENT": {
-      "value": "review"
-    },
-    "ROLLBAR_ACCESS_TOKEN": {
-      "required": true
-    },
-    "SECRET_KEY": {
-      "generator": "secret"
-    }
-  },
+  "addons": [
+    "heroku-postgresql"
+  ],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -31,7 +10,27 @@
       "url": "heroku/python"
     }
   ],
-  "addons": [
-    "heroku-postgresql"
-  ]
+  "env": {
+    "DJANGO_SETTINGS_MODULE": {
+      "required": true
+    },
+    "HEROKU_APP_NAME": {
+      "required": true
+    },
+    "MANDRILL_API_KEY": {
+      "required": true
+    },
+    "ROLLBAR_ACCESS_TOKEN": {
+      "required": true
+    },
+    "ROLLBAR_ENVIRONMENT": {
+      "value": "review"
+    },
+    "SECRET_KEY": {
+      "generator": "secret"
+    }
+  },
+  "scripts": {
+    "postdeploy": "make data"
+  }
 }

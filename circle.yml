@@ -9,7 +9,6 @@ jobs:
         environment:
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: postgres://circleci:@127.0.0.1:5432/voterengagement_test
-          RANDOM_SEED: 0
       - image: circleci/postgres:9.6-alpine-ram
         environment:
           - POSTGRES_USER=circleci
@@ -35,12 +34,10 @@ jobs:
         key: pipenv-{{ checksum "Pipfile.lock" }}
         paths:
           - .venv
-          - tmp
       - type: cache-save
         key: yarn-{{ checksum "yarn.lock" }}
         paths:
           - node_modules
-          - tmp
 
       - run:
           name: Checking backend code

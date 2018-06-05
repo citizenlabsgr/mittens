@@ -80,10 +80,17 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
               onChange={this.setter('zipCode')}
               errors={this.state.errors.zip_code}
               value={this.state.zipCode}
-              autoComplete="postal-code" />
+              autoComplete="postal-code"
+              title="Five-digit ZIP code"
+              pattern="\\d{5}" />
 
             <div {...css(vars.clearFix)}>
               <Button theme="secondary" action={() => {}} css={style.button}>Done!</Button>
+            </div>
+
+            <div {...style.note}>
+              <p>You can also use the <Link to="https://webapps.sos.state.mi.us/MVIC/" target="_blank">Secretary of State's website</Link></p>
+              <p>Already signed up? <Link to="/login">Log in</Link></p>
             </div>
           </form>
     );

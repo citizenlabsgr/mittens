@@ -2,8 +2,8 @@ from django.contrib.auth.models import User
 
 from rest_framework import serializers
 
-from api.voters.models import Voter, Status
 from api.elections.models import Election
+from api.voters.models import Status, Voter
 
 
 class IdentitySerializer(serializers.ModelSerializer):

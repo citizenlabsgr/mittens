@@ -23,6 +23,8 @@ export interface ShortInputProps {
   value?: string|number
   min?: number
   max?: number
+  pattern?: string
+  title?: string
   autoComplete?: string
 };
 
@@ -36,7 +38,7 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
   }
 
   render() {
-    const { label, note, type, errors, value, required, flex, min, max } = this.props
+    const { label, note, type, errors, value, required, flex, min, max, pattern, title } = this.props
     return (
       <Labelled {...{ errors, label, note, required, flex }}>
         <input {...css(style.input, errors && style.errorInput) }
@@ -50,6 +52,8 @@ export class ShortInput extends React.Component<ShortInputProps, {}> {
           value={value || ""}
           min={min}
           max={max}
+          pattern={pattern}
+          title={title} // For describing the `pattern` attribute
           onChange={this.onChange} />
         <div {...style.icon}>{this.props.children}</div>
       </Labelled>

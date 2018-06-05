@@ -1,6 +1,6 @@
 from django.db import models
 
-from api.elections.models import Region, Election
+from api.elections.models import Election, Region
 
 
 class Proposal(models.Model):

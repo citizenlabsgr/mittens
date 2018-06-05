@@ -24,14 +24,17 @@ doctor: ## Check for required system dependencies
 
 # PROJECT DEPENDENCIES ########################################################
 
-BACKEND_DEPENDENCIES := tmp/.pipenv-$(shell bin/checksum Pipfile*)
-FRONTEND_DEPENDENCIES := tmp/.yarn-$(shell bin/checksum yarn.lock)
+export PIPENV_VENV_IN_PROJECT=true
+VENV := .venv
+NODE_MODULES := node_modules
+
+BACKEND_DEPENDENCIES = $(VENV)/.pipenv-$(shell bin/checksum Pipfile*)
+FRONTEND_DEPENDENCIES =$(NODE_MODULES)/.yarn-$(shell bin/checksum yarn.lock)
 
 .PHONY: install
 install: $(BACKEND_DEPENDENCIES) $(FRONTEND_DEPENDENCIES) ## Install project dependencies
 
 $(BACKEND_DEPENDENCIES):
-	mkdir -p tmp
 	pipenv install --dev
 	@ touch $@
 
@@ -41,11 +44,10 @@ $(FRONTEND_DEPENDENCIES):
 
 .PHONY: clean
 clean:
-	rm -rf tmp
 	rm -rf staticfiles
 	rm -rf .coverage htmlcov
-	rm -rf node_modules web_client/build
-	- pipenv --rm
+	rm -rf $(NODE_MODULES) web_client/build
+	rm -rf $(VENV)
 
 # RUNTIME DEPENDENCIES ########################################################
 
@@ -85,6 +87,8 @@ check: check-backend
 
 .PHONY: check-backend
 check-backend: install
+	pipenv run isort --recursive --apply api
+	@ echo
 	pipenv run pycodestyle api
 	@ echo
 	pipenv run pylint api
@@ -133,6 +137,6 @@ run-prod: .envrc install ## Run the application (emulate production)
 
 .PHONY: help
 help: all
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .DEFAULT_GOAL := help
