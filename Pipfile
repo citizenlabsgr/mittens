@@ -23,7 +23,7 @@ psycopg2-binary = "*"
 
 # Email
 django-sesame = "*"
-django-anymail = "*"
+django-anymail = "~=2.2"
 
 # Utilities
 arrow = "*"
@@ -46,7 +46,7 @@ pycodestyle = "*"
 pylint = "*"
 
 # Testing
-pytest = "~= 3.3"
+pytest = "~=3.3"
 pytest-django = "*"
 pytest-describe = "*"
 pytest-expecter = "*"
