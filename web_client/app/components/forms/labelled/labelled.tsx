@@ -42,7 +42,7 @@ let style = styles({
     position: 'relative',
     display: 'block',
     marginBottom: vars.smallSpacing + 2,
-    color: vars.color.white,
+    color: vars.color.font,
     fontSize: vars.fontSize
   },
   flex: {

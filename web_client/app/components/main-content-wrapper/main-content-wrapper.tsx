@@ -23,7 +23,7 @@ export class MainContentWrapper extends React.Component<MainContentWrapperProps,
         <div {...style.wrapper} className={this.props.color + "-container"} style={{backgroundColor: vars.color[this.props.color]}}>
           <main {...style.content}>{this.props.children}</main>
           <div {...style.githubLink}>
-            <Link to="https://github.com/citizenlabsgr/voter-engagement">View On GitHub</Link>
+            <Link to="https://github.com/citizenlabsgr/voter-engagement" target="_blank">View On GitHub</Link>
           </div>
         </div>
       </div>

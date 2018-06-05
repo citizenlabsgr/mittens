@@ -11,6 +11,7 @@ export class Voter {
   @observable registered: boolean
   @observable email: string
   @observable signedUp: boolean = false;
+  @observable votedBefore: boolean;
   static currentUserStore: CurrentUserStore;
 
   @action
@@ -77,6 +78,13 @@ export class Voter {
   @action
   registerSpy() {
     spyOnUser(this.email, { displayName: `${this.firstName} ${this.lastName}`, email: this.email });
+  }
+
+  registrationInputData() {
+    var options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return `${this.firstName} ${this.lastName}
+Born: ${this.birthDate.toLocaleString("en-us", options)}
+Zip: ${this.zipCode}`;
   }
 }
 

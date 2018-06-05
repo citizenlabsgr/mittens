@@ -12,6 +12,7 @@ import { BirthdayInput } from 'components/forms/birthday-input/birthday-input';
 
 // CSS
 import { styles, vars, css } from 'styles/css';
+import { MittensChat } from 'models/mittens-chat/mittens-chat';
 
 
 export type RegistrationCheckProps = {
@@ -47,11 +48,9 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
 
     voter.checkRegistration().then(r => {
-      if (r) {
-        go('/registration-verified');
-      } else {
-        go('/not-registered');
-      }
+      console.log("here");
+      console.log(voter.registrationInputData())
+      MittensChat.handleUserInput(voter.registrationInputData(), r)
     }).catch(e => {
       this.setState({errors: e})
     })
@@ -59,10 +58,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
 
   render() {
     return (
-      <MainContentWrapper>
           <form onSubmit={e => { e.preventDefault(); this.submit(); }}>
-            <h1 {...style.heading}>First, let's check if you&rsquo;re registered to vote.</h1>
-
             <ShortInput label="First Name"
               onChange={this.setter('firstName')}
               errors={this.state.errors.first_name}
@@ -84,18 +80,19 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
               onChange={this.setter('zipCode')}
               errors={this.state.errors.zip_code}
               value={this.state.zipCode}
-              autoComplete="postal-code" />
+              autoComplete="postal-code"
+              title="Five-digit ZIP code"
+              pattern="\\d{5}" />
 
             <div {...css(vars.clearFix)}>
-              <Button action={() => {}} css={style.button}>Check!</Button>
+              <Button theme="secondary" action={() => {}} css={style.button}>Done!</Button>
             </div>
 
             <div {...style.note}>
-              <p>You can also use the <Link to="https://webapps.sos.state.mi.us/MVIC/">Secretary of State's website</Link></p>
+              <p>You can also use the <Link to="https://webapps.sos.state.mi.us/MVIC/" target="_blank">Secretary of State's website</Link></p>
               <p>Already signed up? <Link to="/login">Log in</Link></p>
             </div>
           </form>
-      </MainContentWrapper>
     );
   }
 }
