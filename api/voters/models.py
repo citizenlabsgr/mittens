@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 import arrow
+import log
 
 from api.elections.models import Election, Region
 
@@ -41,12 +42,23 @@ class Voter(Identity):
 
     @property
     def name(self):
-        return f"{self.first_name} {self.last_name}"
+        return f'{self.first_name} {self.last_name}'
+
+    @property
+    def status(self):
+        """Registration status for the current election."""
+        election = Election.objects.current()
+        status, created = Status.objects.get_or_create(
+            voter=self,
+            election=election,
+        )
+        if created:
+            log.info(f'Created status for {self} on {election}')
+        return status
 
     @property
     def registered(self):
-        # TODO concept of 'for current election'
-        return self.statuses[0].registered
+        return self.status.registered
 
     def update_user(self):
         self.user, created = User.objects.get_or_create(email=self.email)
@@ -59,6 +71,7 @@ class Voter(Identity):
 
     def save(self, *args, **kwargs):  # pylint: disable=arguments-differ
         self.update_user()
+        self.status  # pylint: disable=pointless-statement
         super().save(*args, **kwargs)
 
 
