@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Exchange } from "infrastructure/chat";
 import { MittensChat } from "./mittens-chat";
 import { Voter } from "models/voter/voter";
@@ -13,6 +12,13 @@ MittensChat.createGoal("not-registered").exchanges = [
       }
     ],
     { options: [{ text: "Yes", value: true }, { text: "No", value: false }] },
-    (state, val) => {}
+    (state, informationIsCorrect) => {
+      if (informationIsCorrect){
+        console.log("Registration information is correct")
+      }
+      else {
+        MittensChat.changeState({ goalName: "checkRegistrationAgain", exchange: 0 });
+      }
+    }
   )
 ];

@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import { Voter } from 'models';
-import { go } from 'infrastructure/router';
-
 import { Link } from 'components/link/link';
-import { MainContentWrapper } from 'components/main-content-wrapper/main-content-wrapper';
 import { ShortInput } from 'components/forms/short-input/short-input';
 import { Button } from 'components/button/button';
-import { Labelled } from 'components/forms/labelled/labelled';
 import { BirthdayInput } from 'components/forms/birthday-input/birthday-input';
 
 // CSS
@@ -34,6 +30,20 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     }
   }
 
+  constructor(){
+    super();
+    const user: Voter = Voter.currentUser;
+    if (user.firstName){
+      this.state = {
+        ...this.state,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        zipCode: user.zipCode,
+        birthDate: user.birthDate
+      };
+    }
+  }
+
   setter(name: string) {
     return (value: any) => {
       this.setState({[name]: value});
@@ -48,7 +58,6 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
 
     voter.checkRegistration().then(r => {
-      console.log("here");
       console.log(voter.registrationInputData())
       MittensChat.handleUserInput(voter.registrationInputData(), r)
     }).catch(e => {
