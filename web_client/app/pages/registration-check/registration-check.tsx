@@ -67,41 +67,36 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
 
   render() {
     return (
-          <form onSubmit={e => { e.preventDefault(); this.submit(); }}>
-            <ShortInput label="First Name"
-              onChange={this.setter('firstName')}
-              errors={this.state.errors.first_name}
-              value={this.state.firstName}
-              autoComplete="given-name" />
+      <form onSubmit={e => { e.preventDefault(); this.submit(); }}>
+        <ShortInput label="First Name"
+          onChange={this.setter('firstName')}
+          errors={this.state.errors.first_name}
+          value={this.state.firstName}
+          autoComplete="given-name" />
 
-            <ShortInput label="Last Name"
-              onChange={this.setter('lastName')}
-              errors={this.state.errors.last_name}
-              value={this.state.lastName}
-              autoComplete="family-name" />
+        <ShortInput label="Last Name"
+          onChange={this.setter('lastName')}
+          errors={this.state.errors.last_name}
+          value={this.state.lastName}
+          autoComplete="family-name" />
 
-            <BirthdayInput label="Birth Date"
-              onChange={this.setter('birthDate')}
-              errors={this.state.errors.birth_date}
-              value={this.state.birthDate} />
+        <BirthdayInput label="Birth Date"
+          onChange={this.setter('birthDate')}
+          errors={this.state.errors.birth_date}
+          value={this.state.birthDate} />
 
-            <ShortInput label="Zip Code"
-              onChange={this.setter('zipCode')}
-              errors={this.state.errors.zip_code}
-              value={this.state.zipCode}
-              autoComplete="postal-code"
-              title="Five-digit ZIP code"
-              pattern="\d{5}" />
+        <ShortInput label="Zip Code"
+          onChange={this.setter('zipCode')}
+          errors={this.state.errors.zip_code}
+          value={this.state.zipCode}
+          autoComplete="postal-code"
+          title="Five-digit ZIP code"
+          pattern="\d{5}" />
 
-            <div {...css(vars.clearFix)}>
-              <Button theme="secondary" action={() => {}} css={style.button}>Done!</Button>
-            </div>
-
-            <div {...style.note}>
-              <p>You can also use the <Link to="https://webapps.sos.state.mi.us/MVIC/" target="_blank">Secretary of State's website</Link></p>
-              <p>Already signed up? <Link to="/login">Log in</Link></p>
-            </div>
-          </form>
+        <div {...css(vars.clearFix)}>
+          <Button theme="secondary" action={() => {}} css={style.button}>Done!</Button>
+        </div>
+      </form>
     );
   }
 }
