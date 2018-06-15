@@ -14,15 +14,22 @@ def send_login_email(user, request, *, welcome):
     token = get_query_string(user)
     url = base + token
 
+    if welcome:
+        subject = "Welcome to Voter Engagement"
+    else:
+        subject = "Greetings from Voter Engagement"
+
     message = EmailMessage(
-        subject=None,
+        subject=subject,
         from_email="Citizen Labs <noreply@citizenlabs.org>",
         to=[user.email],
     )
+
     if welcome:
         message.template_id = 'voter-engagement-legacy-welcome'
     else:
         message.template_id = 'voter-engagement-legacy-login'
+
     message.merge_global_data = {
         'FIRST_NAME': user.first_name,
         'LAST_NAME': user.last_name,
