@@ -14,10 +14,10 @@ MittensChat.createGoal("not-registered").exchanges = [
     { options: [{ text: "Yes", value: true }, { text: "No", value: false }] },
     (state, informationIsCorrect) => {
       if (informationIsCorrect){
-        console.log("Registration information is correct")
+        MittensChat.changeState({ goalName: "registration-help", exchange: 0})
       }
       else {
-        MittensChat.changeState({ goalName: "checkRegistrationAgain", exchange: 0 });
+        MittensChat.changeState({ goalName: "registration-double-check", exchange: 0 });
       }
     }
   )

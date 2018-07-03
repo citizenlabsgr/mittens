@@ -3,7 +3,7 @@ import { Exchange } from "infrastructure/chat";
 import { MittensChat } from "./mittens-chat";
 import { RegistrationCheck } from "pages/registration-check/registration-check";
 
-MittensChat.createGoal("checkRegistrationAgain").exchanges = [
+MittensChat.createGoal("registration-double-check").exchanges = [
   new Exchange(
     [
       "OK! Please edit the form, and we'll check again"

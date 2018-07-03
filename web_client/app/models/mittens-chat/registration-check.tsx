@@ -4,7 +4,7 @@ import { MittensChat } from "./mittens-chat";
 import { Voter } from "models/voter/voter";
 import { RegistrationCheck } from "pages/registration-check/registration-check";
 
-MittensChat.createGoal("checkRegistration").exchanges = [
+MittensChat.createGoal("registration-check").exchanges = [
   new Exchange(
     [
       "Hi! I'm Mittens, the Citizen Lab.",
