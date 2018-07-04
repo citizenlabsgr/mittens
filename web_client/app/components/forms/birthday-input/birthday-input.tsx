@@ -25,6 +25,18 @@ export class BirthdayInput extends React.Component<BirthdayInputProps, {}> {
     birthYear: undefined as number,
   }
 
+  constructor(props: BirthdayInputProps){
+    super();
+    if (props.value){
+      this.state = {
+        ...this.state,
+        birthDay: props.value.getDate(),
+        birthMonth: props.value.getMonth(),
+        birthYear: props.value.getFullYear()
+      };
+    }
+  }
+
   months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   setter(name: string) {

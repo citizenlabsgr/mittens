@@ -1,17 +1,12 @@
 import * as React from "react";
 import { Exchange } from "infrastructure/chat";
 import { MittensChat } from "./mittens-chat";
-import { Voter } from "models/voter/voter";
 import { RegistrationCheck } from "pages/registration-check/registration-check";
 
-MittensChat.createGoal("registration-check").exchanges = [
+MittensChat.createGoal("registration-double-check").exchanges = [
   new Exchange(
     [
-      "Hi! I'm Mittens, the Citizen Lab.",
-      "I'm just a dog, but I'll do my best to help you vote.",
-      "It's your duty!",
-      "First, let's check if you're registered to vote.",
-      "I'll need a little information about you."
+      "OK! Please edit the form, and we'll check again"
     ],
     {
       component: <RegistrationCheck />

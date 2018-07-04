@@ -17,7 +17,7 @@ export class ChatView extends React.Component<ChatViewProps, {}> {
   scroller: HTMLDivElement;
 
   componentWillMount() {
-    MittensChat.changeState({ goalName: "checkRegistration", exchange: 0 });
+    MittensChat.changeState({ goalName: "registration-check", exchange: 0 });
   }
 
   componentDidUpdate() {

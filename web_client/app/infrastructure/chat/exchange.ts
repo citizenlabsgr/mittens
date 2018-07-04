@@ -6,6 +6,7 @@ export type Dialogue = string | (() => string)
 export interface UserInput {
   options?: { text: string; value: any }[];
   component?: JSX.Element;
+  nextExchange?: string;
   text?: (input: string) => any;
 }
 export type StateFunction = (state: ChatState, value: any) => ChatState | void;

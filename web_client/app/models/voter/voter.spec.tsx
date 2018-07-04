@@ -21,7 +21,7 @@ const mockRegistration: IncomingRegistrationJSON = {
 describe("Voter", () => {
   beforeEach(() => Voter.reset());
 
-  describe("checkRegistration", () => {
+  describe("registration-check", () => {
     beforeEach(() => {
       const voter = Voter.currentUser;
       voter.firstName = "Susan";

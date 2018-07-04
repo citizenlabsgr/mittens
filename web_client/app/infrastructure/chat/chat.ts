@@ -58,9 +58,7 @@ export class Chat {
 
   @action
   incrementDialogue() {
-    if (!this.currentExchange.dialogueFinished) {
-      this.history.push({ person: "mittens", text: this.currentExchange.nextDialogue() });
-    }
+    this.history.push({ person: "mittens", text: this.currentExchange.nextDialogue() });
   }
 
   peekDialogue() {
@@ -76,6 +74,10 @@ export class Chat {
     if (!this.currentExchange.dialogueFinished) {
       setTimeout(this.updateDialogue, this.dialogueDelay);
     } else {
+      const nextExchange = this.currentExchange.userInput.nextExchange
+      if (nextExchange){
+        this.currentExchange.stateFn(this.state, nextExchange);
+      }
       setTimeout(() => {this.dialogueFinished = true}, 500);
     }
   }
