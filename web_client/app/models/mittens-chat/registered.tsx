@@ -4,7 +4,7 @@ import { MittensChat } from "./mittens-chat";
 
 MittensChat.createGoal("registered").exchanges = [
   new Exchange(
-    ["Yipp! It looks like you're registered."],
+    ["Yipp! It looks like you're registered. Good for you!"],
     {},
     (state, val) => {}
   )

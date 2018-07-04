@@ -17,6 +17,7 @@ export class Chat {
   goals: { [id in GoalName]: Goal };
   @observable state: ChatState;
   @observable dialogueFinished: boolean = false;
+  @observable dialogueIncoming: boolean = true;
 
   constructor() {
     this.goals = {};
@@ -33,6 +34,7 @@ export class Chat {
     this.state = state;
     this.currentExchange.reset();
     this.dialogueFinished = false;
+    this.dialogueIncoming = true;
     this.delayNextDialogue();
   }
 
@@ -65,13 +67,18 @@ export class Chat {
     return this.currentExchange.peekDialogue()
   }
 
+  currentDialogue() {
+    return (this.history[this.history.length - 1] || {text: ""}).text
+  }
+
   get dialogueDelay() {
-    return Math.min(5000, Math.max(750, 40*this.peekDialogue().length));
+    return Math.min(5000, Math.max(1000, 40*this.currentDialogue().length));
   }
 
   @action
   delayNextDialogue() {
     if (!this.currentExchange.dialogueFinished) {
+      setTimeout(() => {this.dialogueIncoming = true}, 400);
       setTimeout(this.updateDialogue, this.dialogueDelay);
     } else {
       const nextExchange = this.currentExchange.userInput.nextExchange
@@ -85,6 +92,7 @@ export class Chat {
   @action
   updateDialogue = () => {
     this.incrementDialogue();
+    this.dialogueIncoming = false;
     this.delayNextDialogue();
   };
 }
