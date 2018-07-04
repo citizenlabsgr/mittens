@@ -142,7 +142,7 @@ const style = styles({
     color: vars.color.font,
     display: "flex",
     flexDirection: "column",
-    minHeight: "100vh",
+    minHeight: "calc(100vh - 49px)",
     paddingTop: vars.smallSpacing
   },
   mittensAvatar: {
@@ -186,7 +186,7 @@ const style = styles({
   },
   bubble: {
     display: "inline-block",
-    padding: "12px 22px",
+    padding: "12px 20px",
     margin: `0 ${vars.smallSpacing}px`,
     fontSize: 16,
     borderRadius: 22,
