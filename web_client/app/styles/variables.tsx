@@ -14,7 +14,7 @@ export const vars = {
     font: "#333",
     fontLight: "#777",
 
-    theme: "#F9CC82",
+    theme: "#fbdd93",
     themeSecondary: "#475B6E",
     themeTertiaryLight: "#586C7E",
     themeTertiaryDark: "#334556",

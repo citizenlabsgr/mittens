@@ -72,7 +72,7 @@ export class Chat {
   }
 
   get dialogueDelay() {
-    return Math.min(5000, Math.max(1000, 50*this.currentDialogue().length));
+    return Math.min(5000, Math.max(1000, 100*this.currentDialogue().length));
   }
 
   @action
@@ -85,7 +85,7 @@ export class Chat {
       if (nextExchange){
         this.currentExchange.stateFn(this.state, nextExchange);
       }
-      setTimeout(() => {this.dialogueFinished = true}, 500);
+      setTimeout(() => {this.dialogueFinished = true}, this.dialogueDelay);
     }
   }
 

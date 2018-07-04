@@ -180,7 +180,7 @@ const style = styles({
     whiteSpace: "pre-wrap",
     textAlign: "left",
     backgroundColor: "#eee",
-    fontSize: 16,
+    fontSize: 20,
     lineHeight: 0,
     color: "#aaa"
   },
@@ -188,14 +188,15 @@ const style = styles({
     display: "inline-block",
     padding: "12px 20px",
     margin: `0 ${vars.smallSpacing}px`,
-    fontSize: 16,
+    fontSize: 20,
     borderRadius: 22,
     backgroundColor: "#eee",
     maxWidth: "70%",
     whiteSpace: "pre-wrap"
   },
   mittens: {
-    backgroundColor: vars.color.theme
+    backgroundColor: vars.color.theme,
+    color: "#3d2e13"
   }
 });
 
