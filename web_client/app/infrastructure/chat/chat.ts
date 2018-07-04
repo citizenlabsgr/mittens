@@ -72,7 +72,7 @@ export class Chat {
   }
 
   get dialogueDelay() {
-    return Math.min(5000, Math.max(1000, 40*this.currentDialogue().length));
+    return Math.min(5000, Math.max(1000, 50*this.currentDialogue().length));
   }
 
   @action
