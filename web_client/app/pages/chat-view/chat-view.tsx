@@ -33,7 +33,7 @@ export class ChatView extends React.Component<ChatViewProps, {}> {
     return (
       <div>
         <div {...style.header}>
-        <a href="https://citizenlabs.org" style={{textDecoration: 'none'}}>Citizen Labs</a>
+        <a href="https://citizenlabs.org" {...style.headerLink}>Citizen Labs</a>
         <span style={{float: 'right', fontWeight: 'bold'}}>Vote!</span></div>
         <div {...style.scroller} ref={this.setScroller}>
           <div className="chat" {...style.chat}>
@@ -93,7 +93,7 @@ export class ChatView extends React.Component<ChatViewProps, {}> {
                         <Button
                           flex
                           css={{ margin: vars.smallSpacing }}
-                          theme="secondary"
+                          theme="primary"
                           key={o.value}
                           action={() =>
                             MittensChat.handleUserInput(o.text, o.value)
@@ -127,6 +127,13 @@ const style = styles({
     padding: vars.smallSpacing,
     fontSize: 20,
     fontFamily: "helvetica neue,helvetica,sans-serif"
+  },
+  headerLink: {
+    textDecoration: 'none',
+    color: vars.color.white,
+    ':hover':{
+      color: "#fff2d3",
+    }
   },
   buttons: {
     display: "flex"
@@ -192,7 +199,13 @@ const style = styles({
     borderRadius: 22,
     backgroundColor: "#eee",
     maxWidth: "70%",
-    whiteSpace: "pre-wrap"
+    whiteSpace: "pre-wrap",
+    ' a': {
+      color: "#012a38",
+      ':hover': {
+        color: "#32647a"
+      }
+    }
   },
   mittens: {
     backgroundColor: vars.color.theme,

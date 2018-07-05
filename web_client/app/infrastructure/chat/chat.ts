@@ -13,7 +13,7 @@ export interface ChatState {
 }
 
 export class Chat {
-  @observable history: { person: string, text: string }[] = [];
+  @observable history: { person: string, text: string | JSX.Element }[] = [];
   goals: { [id in GoalName]: Goal };
   @observable state: ChatState;
   @observable dialogueFinished: boolean = false;
@@ -71,8 +71,16 @@ export class Chat {
     return (this.history[this.history.length - 1] || {text: ""}).text
   }
 
+  currentDialogueLength() {
+    const text = this.currentDialogue()
+    if (typeof text === 'string') {
+      return text.length;
+    }
+    return 75;
+  }
+
   get dialogueDelay() {
-    return Math.min(5000, Math.max(1000, 100*this.currentDialogue().length));
+    return Math.min(5000, Math.max(1000, 80*this.currentDialogueLength()));
   }
 
   @action
@@ -81,11 +89,13 @@ export class Chat {
       setTimeout(() => {this.dialogueIncoming = true}, 400);
       setTimeout(this.updateDialogue, this.dialogueDelay);
     } else {
-      const nextExchange = this.currentExchange.userInput.nextExchange
-      if (nextExchange){
-        this.currentExchange.stateFn(this.state, nextExchange);
-      }
-      setTimeout(() => {this.dialogueFinished = true}, this.dialogueDelay);
+      setTimeout(() => {
+        this.dialogueFinished = true
+        const nextExchange = this.currentExchange.userInput.nextExchange
+        if (nextExchange){
+          this.currentExchange.stateFn(this.state, nextExchange);
+        }
+      }, this.dialogueDelay / 2);
     }
   }
 

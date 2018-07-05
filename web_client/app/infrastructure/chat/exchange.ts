@@ -2,7 +2,7 @@ import { observable, computed, action } from "mobx";
 import { ChatState } from "infrastructure/chat/chat";
 
 
-export type Dialogue = string | (() => string)
+export type Dialogue = string | (() => string) | JSX.Element
 export interface UserInput {
   options?: { text: string; value: any }[];
   component?: JSX.Element;
