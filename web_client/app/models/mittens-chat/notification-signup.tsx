@@ -23,5 +23,5 @@ MittensChat.createGoal("notification-signup").exchanges = [
         exchange: 0
       });
     }
-  )
+  })
 ];
