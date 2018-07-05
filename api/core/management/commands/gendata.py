@@ -86,6 +86,15 @@ class Command(BaseCommand):
                 )
                 self.stdout.write(f"Created user: {user}")
 
+        while Election.objects.count() < 5:
+            with suppress(IntegrityError):
+                name, date = self.fake_election()
+                election = Election.objects.create(
+                    name=name,
+                    date=date,
+                )
+                self.stdout.write(f"Created election: {election}")
+
         while Voter.objects.count() < 50:
             with suppress(IntegrityError):
                 voter = Voter.objects.create(
@@ -97,15 +106,6 @@ class Command(BaseCommand):
                     email=fake.email(),
                 )
                 self.stdout.write(f"Created voter: {voter}")
-
-        while Election.objects.count() < 5:
-            with suppress(IntegrityError):
-                name, date = self.fake_election()
-                election = Election.objects.create(
-                    name=name,
-                    date=date,
-                )
-                self.stdout.write(f"Created election: {election}")
 
         while Status.objects.count() < 50:
             with suppress(IntegrityError):

@@ -47,6 +47,13 @@ class Voter(Identity):
     @property
     def status(self):
         """Registration status for the current election."""
+        return self.get_status()
+
+    @property
+    def registered(self):
+        return self.status.registered
+
+    def get_status(self):
         election = Election.objects.current()
         status, created = Status.objects.get_or_create(
             voter=self,
@@ -55,10 +62,6 @@ class Voter(Identity):
         if created:
             log.info(f'Created status for {self} on {election}')
         return status
-
-    @property
-    def registered(self):
-        return self.status.registered
 
     def update_user(self):
         self.user, created = User.objects.get_or_create(email=self.email)
@@ -71,8 +74,8 @@ class Voter(Identity):
 
     def save(self, *args, **kwargs):  # pylint: disable=arguments-differ
         self.update_user()
-        self.status  # pylint: disable=pointless-statement
         super().save(*args, **kwargs)
+        self.get_status()
 
 
 class Status(models.Model):
