@@ -25,13 +25,8 @@ class VoterViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
+        if serializer.is_valid(raise_exception=True):
             voter = serializer.save()
-        else:
-            log.warning(serializer.errors)
-            email = serializer.data.get('email')
-            log.info(f"Getting voter with email: {email}")
-            voter = get_object_or_404(Voter, email=email)
 
         send_login_email(voter.user, self.request, welcome=True)
 
