@@ -32,7 +32,7 @@ describe("Route", () => {
     });
 
     it("Matches when there are children", () => {
-      const route = new Route('/aPath', MyComponent, [], () => { }, [
+      const route = new Route('/aPath', MyComponent, [], () => false, [
         new Route('morePath', MyComponent)
       ]);
       const match = route.match(['', 'aPath', 'morePath']);
@@ -53,7 +53,7 @@ describe("Route", () => {
     });
 
     it("Matches when there are nested route params", () => {
-      const route = new Route('/aPath/:figID', MyComponent, [], () => { }, [
+      const route = new Route('/aPath/:figID', MyComponent, [], () => false, [
         new Route('morePath/:moreID/:yoreID', MyComponent)
       ]);
       const match = route.match(['', 'aPath', '5', 'morePath', '3', '7']);
