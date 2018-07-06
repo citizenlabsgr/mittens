@@ -5,58 +5,38 @@ import { Voter } from 'models';
 // Components
 import { Login } from 'pages/login/login';
 import { RegistrationVerified } from 'pages/registration-verified/registration-verified';
-import { AwaitingConfirmation } from 'pages/awaiting-confirmation/awaiting-confirmation';
 import { NotRegistered } from 'pages/not-registered/not-registered';
 import { SpinnerPage } from 'pages/spinner-page/spinner-page';
 
 import API from 'infrastructure/api/api';
 import { ChatView } from 'pages/chat-view/chat-view';
+import { MittensChat } from 'models/mittens-chat/mittens-chat';
 
 
-function goForUserRegistration(user: Voter) {
-  if (user.registered) {
-    go('/registration-verified', {}, true)
-  } else {
-    go('/not-registered', {}, true)
-  }
-}
-
-function checkLogin() {
-  go('waiting', {}, true);
-  Voter.fetchMe().then(
-    goForUserRegistration
-  ).catch(
-    () => go('/chat', {}, true)
-  );
-}
-
-function redirect(path: string) {
+function chatRedirect(state: string) {
   return () => {
-    go(path, {} , true);
+    MittensChat.changeState({ goalName: state, exchange: 0 });
+    go('/chat', {}, true)
+    return true;
   }
 }
 
-function requireLogin() {
-  Voter.fetchMe().catch(
-    () => {
-      console.warn("Unknown user. Redirecting to login.")
-      go('/login', {}, true)
+function maybeSetChatState(state: string) {
+  return () => {
+    console.log(MittensChat.state.goalName)
+    if (!MittensChat.state.goalName) {
+      MittensChat.changeState({ goalName: state, exchange: 0 });
     }
-  );
+    return false;
+  }
 }
 
 export const routes: RouteDeclaration = {
   path: '/',
   children: [
     { path: 'waiting', component: SpinnerPage },
-    { path: 'chat', component: ChatView },
-
-    { path: 'login', component: Login },
-    { path: 'awaiting-confirmation', component: AwaitingConfirmation },
-
-    { path: '/', preFilter: redirect("chat"), component: ChatView}
+    { path: 'chat', preFilter: maybeSetChatState("registration-check"), component: ChatView },
+    { path: 'login', preFilter: chatRedirect("email-confirmation"), component: SpinnerPage},
+    { path: '/', preFilter: chatRedirect("registration-check"), component: SpinnerPage}
   ],
 };
-
-
-

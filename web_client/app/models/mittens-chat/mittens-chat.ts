@@ -10,4 +10,5 @@ require("./registered");
 require("./notification-signup");
 require("./signed-up");
 require("./declined-signup");
+require("./email-confirmation");
 
