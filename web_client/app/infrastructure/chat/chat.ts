@@ -13,10 +13,11 @@ export interface ChatState {
 }
 
 export class Chat {
-  @observable history: { person: string, text: string }[] = [];
+  @observable history: { person: string, text: string | JSX.Element }[] = [];
   goals: { [id in GoalName]: Goal };
   @observable state: ChatState;
   @observable dialogueFinished: boolean = false;
+  @observable dialogueIncoming: boolean = true;
 
   constructor() {
     this.goals = {};
@@ -33,6 +34,7 @@ export class Chat {
     this.state = state;
     this.currentExchange.reset();
     this.dialogueFinished = false;
+    this.dialogueIncoming = true;
     this.delayNextDialogue();
   }
 
@@ -65,26 +67,42 @@ export class Chat {
     return this.currentExchange.peekDialogue()
   }
 
+  currentDialogue() {
+    return (this.history[this.history.length - 1] || {text: ""}).text
+  }
+
+  currentDialogueLength() {
+    const text = this.currentDialogue()
+    if (typeof text === 'string') {
+      return text.length;
+    }
+    return 75;
+  }
+
   get dialogueDelay() {
-    return Math.min(5000, Math.max(750, 40*this.peekDialogue().length));
+    return Math.min(5000, Math.max(1000, 80*this.currentDialogueLength()));
   }
 
   @action
   delayNextDialogue() {
     if (!this.currentExchange.dialogueFinished) {
+      setTimeout(() => {this.dialogueIncoming = true}, 400);
       setTimeout(this.updateDialogue, this.dialogueDelay);
     } else {
-      const nextExchange = this.currentExchange.userInput.nextExchange
-      if (nextExchange){
-        this.currentExchange.stateFn(this.state, nextExchange);
-      }
-      setTimeout(() => {this.dialogueFinished = true}, 500);
+      setTimeout(() => {
+        this.dialogueFinished = true
+        const nextExchange = this.currentExchange.userInput.nextExchange
+        if (nextExchange){
+          this.currentExchange.stateFn(this.state, nextExchange);
+        }
+      }, this.dialogueDelay / 2);
     }
   }
 
   @action
   updateDialogue = () => {
     this.incrementDialogue();
+    this.dialogueIncoming = false;
     this.delayNextDialogue();
   };
 }

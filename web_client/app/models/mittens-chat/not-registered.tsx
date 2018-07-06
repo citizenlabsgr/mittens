@@ -6,7 +6,7 @@ MittensChat.createGoal("not-registered").exchanges = [
   new Exchange(
     [
       "Hmm! I wasn't able to find you.",
-      "Is this information right?",
+      "Is this information correct? Did you use your legal name?",
       () => {
         return Voter.currentUser.registrationInputData();
       }

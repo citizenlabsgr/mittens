@@ -85,67 +85,33 @@ const buttonStyle = {
   border: 0,
   fontSize: 16,
   cursor: 'pointer',
-  display: 'inline-block',
+  display: 'block',
   fontFamily: vars.fontFamily
 };
 
-const primaryStyle = {
+const secondaryStyle = {
   ...buttonStyle,
-  '.theme-container &': {
-    backgroundColor: vars.color.themeSecondary,
-    ':hover': {
-      backgroundColor: vars.color.themeTertiaryLight,
-    },
-    ':active': {
-      backgroundColor: vars.color.themeTertiaryDark,
-    },
-  },
-  '.success-container &': {
-    backgroundColor: vars.color.successSecondary,
-    ':hover': {
-      backgroundColor: vars.color.successTertiaryLight,
-    },
-    ':active': {
-      backgroundColor: vars.color.successTertiaryDark,
-    },
-  },
-  '.warn-container &': {
-    backgroundColor: vars.color.warnSecondary,
-    ':hover': {
-      backgroundColor: vars.color.warnTertiaryLight,
-    },
-    ':active': {
-      backgroundColor: vars.color.warnTertiaryDark,
-    }
-  }
-}
-
-const secondaryStyle = css({
-  ...buttonStyle,
-  label: 'transparent-button-style',
-  backgroundColor: 'transparent',
-  color: vars.color.whiteLight,
-  border: `2px solid rgba(255, 255, 255, .8)`,
-
+  backgroundColor: "#aaa",
   ':hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)'
+    backgroundColor: "#999",
   },
   ':active': {
-    backgroundColor: 'rgba(0, 0, 0, 0.1)'
+    backgroundColor: "#aaa",
   },
-  ':focus': {
-    ...vars.focus[':focus'],
+}
+
+const primaryStyle = css({
+  ...buttonStyle,
+  label: 'transparent-button-style',
+  border: `2px solid rgba(255, 255, 255, .8)`,
+  color: vars.color.blueDark,
+  borderColor: vars.color.blue,
+  backgroundColor: vars.color.blueLight,
+  ':hover': {
+    backgroundColor: vars.color.blueLightHover,
   },
-  '.chat &': {
-    color: vars.color.blueDark,
-    borderColor: vars.color.blue,
-    backgroundColor: vars.color.blueLight,
-    ':hover': {
-      backgroundColor: vars.color.blueLightHover,
-    },
-    ':active': {
-      backgroundColor: vars.color.blueLightHover,
-    }
+  ':active': {
+    backgroundColor: vars.color.blueLightHover,
   }
 });
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Exchange } from "infrastructure/chat";
 import { MittensChat } from "./mittens-chat";
-import { RegistrationCheck } from "pages/registration-check/registration-check";
+import { RegistrationCheck } from "components/registration-check/registration-check";
 
 MittensChat.createGoal("registration-double-check").exchanges = [
   new Exchange(

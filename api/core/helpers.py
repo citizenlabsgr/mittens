@@ -14,8 +14,13 @@ def send_login_email(user, request, *, welcome):
     token = get_query_string(user)
     url = base + token
 
+    if welcome:
+        subject = "Vote with Mittens"
+    else:
+        subject = "Greetings from Mittens"
+
     message = EmailMessage(
-        subject=None,
+        subject=subject,
         from_email="Citizen Labs <noreply@citizenlabs.org>",
         to=[user.email],
     )
@@ -23,12 +28,13 @@ def send_login_email(user, request, *, welcome):
         message.template_id = 'voter-engagement-welcome'
     else:
         message.template_id = 'voter-engagement-login'
+
     message.merge_global_data = {
         'FIRST_NAME': user.first_name,
         'LAST_NAME': user.last_name,
         'LOGIN_URL': url,
         # TODO: Set site URL dynamically
-        'SITE_URL': 'https://alpha-vote.citizenlabs.org/',
+        'SITE_URL': 'https://vote.citizenlabs.org/',
         # TODO: Implement unsubscribe functionality
         'UNSUBSCRIBE_URL': 'https://citizenlabs.org/contact/',
         'ABOUT_URL': 'https://citizenlabs.org/about/',

@@ -58,7 +58,6 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
     Object.assign(voter, { firstName, lastName, birthDate, zipCode });
 
     voter.checkRegistration().then(r => {
-      console.log(voter.registrationInputData())
       MittensChat.handleUserInput(voter.registrationInputData(), r)
     }).catch(e => {
       this.setState({errors: e})
@@ -94,7 +93,7 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
           pattern="\d{5}" />
 
         <div {...css(vars.clearFix)}>
-          <Button theme="secondary" action={() => {}} css={style.button}>Done!</Button>
+          <Button theme="primary" action={() => {}} css={style.button}>Done!</Button>
         </div>
       </form>
     );

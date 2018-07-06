@@ -14,10 +14,12 @@ export const vars = {
     font: "#333",
     fontLight: "#777",
 
-    theme: "#788595",
+    theme: "#fbdd93",
     themeSecondary: "#475B6E",
     themeTertiaryLight: "#586C7E",
     themeTertiaryDark: "#334556",
+
+    brandOrange: "#ff6300",
 
     success: "#6EB047",
     successSecondary: "#87CC60",

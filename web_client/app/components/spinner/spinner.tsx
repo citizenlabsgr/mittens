@@ -39,25 +39,25 @@ const anim = keyframes({
     left: 0,
   },
   '37.5%': {
-    left: 70,
+    left: 35,
   },
   '50%': {
-    left: 70,
+    left: 35,
   },
   '62.5%': {
-    left: 140,
+    left: 70,
   },
   '75%': {
-    left: 140,
+    left: 70,
     transform: 'scale(1)',
   },
   '87.5%': {
-    left: 140,
+    left: 70,
     transform: 'scale(0)',
     opacity: 1
   },
   '100%': {
-    left: 140,
+    left: 70,
     opacity: 0
   }
 });
@@ -66,9 +66,8 @@ let style = styles({
   uilEllipsis: {
     background: 'none',
     position: 'relative',
-    width: 200,
-    height: 200,
-    margin: '0 auto',
+    width: 50,
+    height: 70
   },
   ib: {
     width: '100%',
@@ -76,25 +75,25 @@ let style = styles({
     transform: 'rotate(0deg)'
   },
   circle: {
-    width: 60,
-    height: 60,
+    width: 30,
+    height: 30,
     position: 'absolute',
-    top: 70,
+    top: 35,
     opacity: 0,
     textAlign: 'center',
     animation: `${anim} 4s linear infinite`,
 
     '> div': {
-      width: 60,
-      height: 60,
-      borderRadius: 30,
+      width: 30,
+      height: 30,
+      borderRadius: 15,
       margin: 0,
     },
   },
   first: {
     animationDelay: '0s',
     '> div': {
-      background: vars.color.success
+      background: vars.color.themeSecondary
     }
   },
   second: {
@@ -106,13 +105,13 @@ let style = styles({
   third: {
     animationDelay: '2s',
     '> div': {
-      background: vars.color.success
+      background: vars.color.themeSecondary
     }
   },
   fourth: {
     animationDelay: '3s',
     '> div': {
-      background: vars.color.warn
+      background: vars.color.themeSecondary
     },
   },
   dark: {

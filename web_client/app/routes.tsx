@@ -4,7 +4,6 @@ import { Voter } from 'models';
 
 // Components
 import { Login } from 'pages/login/login';
-import { RegistrationCheck } from 'pages/registration-check/registration-check';
 import { RegistrationVerified } from 'pages/registration-verified/registration-verified';
 import { AwaitingConfirmation } from 'pages/awaiting-confirmation/awaiting-confirmation';
 import { NotRegistered } from 'pages/not-registered/not-registered';
@@ -51,14 +50,11 @@ export const routes: RouteDeclaration = {
   children: [
     { path: 'waiting', component: SpinnerPage },
     { path: 'chat', component: ChatView },
-    { path: 'registration-check', component: RegistrationCheck },
 
     { path: 'login', component: Login },
     { path: 'awaiting-confirmation', component: AwaitingConfirmation },
 
-    { path: 'registration-verified', preFilter: requireLogin, component: RegistrationVerified },
-    { path: 'not-registered', preFilter: requireLogin, component: NotRegistered },
-    { path: '/', preFilter: checkLogin, component: RegistrationCheck}
+    { path: '/', preFilter: redirect("chat"), component: ChatView}
   ],
 };
 
