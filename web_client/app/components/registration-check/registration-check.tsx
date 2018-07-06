@@ -71,7 +71,8 @@ export class RegistrationCheck extends React.Component<RegistrationCheckProps, {
           onChange={this.setter('firstName')}
           errors={this.state.errors.first_name}
           value={this.state.firstName}
-          autoComplete="given-name" />
+          autoComplete="given-name"
+          note="Your legal name, please!" />
 
         <ShortInput label="Last Name"
           onChange={this.setter('lastName')}

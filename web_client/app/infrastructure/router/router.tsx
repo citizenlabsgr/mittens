@@ -15,7 +15,7 @@ export interface RouteDeclaration {
   component?: React.ComponentClass<any>
   queryParams?: string[]
   children?: RouteDeclaration[]
-  preFilter?: (r: Route) => void
+  preFilter?: (r: Route) => boolean
 }
 
 export interface RouterProps {
@@ -28,6 +28,7 @@ export class Router extends React.Component<RouterProps, {}> {
     currentRoute?: MatchedRoute[]
     routes: Route
   }
+
   stopListening: () => void
 
   buildRoutes(route: RouteDeclaration): Route {
@@ -44,10 +45,14 @@ export class Router extends React.Component<RouterProps, {}> {
     );
   }
 
-  componentWillMount() {
+  constructor(props: RouterProps, context: any) {
+    super(props, context)
     // Initial set hasta be synchronous or matchedRoute won't know what routes
     // there are.
-    this.state = { routes: this.buildRoutes(this.props.routes) };
+    this.state = { routes: this.buildRoutes(props.routes) };
+  }
+
+  componentWillMount() {
     this.stopListening = history.listen(this.updateRoute);
     this.updateRoutes(this.props.routes);
   }
@@ -62,7 +67,8 @@ export class Router extends React.Component<RouterProps, {}> {
     if (!matches) {
       this.setState({ currentRoute: null })
     } else {
-      matches.forEach(m => m.route.preFilter(m.route));
+      const redirect = matches.find(m => m.route.preFilter(m.route));
+      if (redirect) return;
       this.setState({ currentRoute: matches });
     }
   };

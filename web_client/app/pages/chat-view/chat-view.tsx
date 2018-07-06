@@ -17,10 +17,6 @@ export class ChatView extends React.Component<ChatViewProps, {}> {
   oldHistoryLength = 0;
   scroller: HTMLDivElement;
 
-  componentWillMount() {
-    MittensChat.changeState({ goalName: "registration-check", exchange: 0 });
-  }
-
   componentDidUpdate() {
     smoothScrollToBottom(this.scroller);
   }

@@ -12,7 +12,7 @@ export class Route {
     public path: string,
     public component: React.ComponentClass<any>,
     public queryParams: string[] = [],
-    public preFilter: (r: Route) => void = () => false,
+    public preFilter: (r: Route) => boolean = () => false,
     public children: Route[] = []
   ) { }
 
