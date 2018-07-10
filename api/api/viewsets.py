@@ -66,7 +66,10 @@ class RegistrationViewSet(viewsets.ViewSet):
         # TODO: We shouldn't getting email here at all
         serializer.validated_data.pop('email')
 
-        identity = Identity(**serializer.validated_data)
+        identity = Identity(first_name=serializer.validated_data['first_name'],
+                            last_name=serializer.validated_data['last_name'],
+                            birth_date=serializer.validated_data['birth_date'],
+                            zip_code=serializer.validated_data['zip_code'])
         status = Status()
 
         fetch_and_update_registration(identity, status)

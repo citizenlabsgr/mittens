@@ -10,10 +10,6 @@ from sesame.utils import get_query_string
 def send_login_email(user, request, *, welcome):
     assert user.email, f"User has no email: {user}"
 
-    base = reverse('redirector', args=["login"], request=request)
-    token = get_query_string(user)
-    url = base + token
-
     if welcome:
         subject = "Vote with Mittens"
     else:
@@ -32,11 +28,9 @@ def send_login_email(user, request, *, welcome):
     message.merge_global_data = {
         'FIRST_NAME': user.first_name,
         'LAST_NAME': user.last_name,
-        'LOGIN_URL': url,
-        # TODO: Set site URL dynamically
-        'SITE_URL': 'https://vote.citizenlabs.org/',
-        # TODO: Implement unsubscribe functionality
-        'UNSUBSCRIBE_URL': 'https://citizenlabs.org/contact/',
+        'LOGIN_URL': get_login_url(request, user),
+        'SITE_URL': get_site_url(request),
+        'UNSUBSCRIBE_URL': get_unsubscribe_url(request, user),
         'ABOUT_URL': 'https://citizenlabs.org/about/',
     }
 
@@ -44,6 +38,23 @@ def send_login_email(user, request, *, welcome):
     count = message.send(fail_silently=False)
 
     return count
+
+
+def get_login_url(request, user):
+    base = reverse('redirector', args=["login"], request=request)
+    token = get_query_string(user)
+    return base + token
+
+
+def get_site_url(request):
+    return reverse('index', request=request)
+
+
+def get_unsubscribe_url(request, user):
+    # TODO: Change "login" to a new frontend path
+    base = reverse('redirector', args=["login"], request=request)
+    token = get_query_string(user)
+    return base + token + "&unsubscribe=true"
 
 
 def prettify(data: dict):

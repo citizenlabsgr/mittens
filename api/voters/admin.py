@@ -21,10 +21,14 @@ class VoterAdmin(admin.ModelAdmin):
         'email',
         'birth_date',
         'zip_code',
+        'email_confirmed',
+        'email_subscribed',
     ]
 
     list_filter = [
         'regions',
+        'email_confirmed',
+        'email_subscribed',
     ]
 
     filter_horizontal = [
