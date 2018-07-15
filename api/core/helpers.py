@@ -51,7 +51,6 @@ def get_site_url(request):
 
 
 def get_unsubscribe_url(request, user):
-    # TODO: Change "login" to a new frontend path
     base = reverse('redirector', args=["unsubscribed"], request=request)
     token = get_query_string(user)
     return base + token + "&unsubscribe=true"
