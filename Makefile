@@ -123,6 +123,7 @@ uml: install
 .PHONY: run
 run: install ## Run the applicaiton
 	yarn build
+	cp web_client/app/index.html web_client/build/index.html
 	pipenv run honcho start --procfile=Procfile.dev
 
 .PHONY: run-prod
