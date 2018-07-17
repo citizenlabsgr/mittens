@@ -1,3 +1,5 @@
+import bugsnag
+
 from .base import *
 
 
@@ -28,3 +30,8 @@ DATABASES = {
 # Logging
 
 LOGGING['loggers']['api']['level'] = 'DEBUG'
+
+###############################################################################
+# Bugsnag
+
+bugsnag.configure(release_stage='test')

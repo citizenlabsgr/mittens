@@ -11,6 +11,9 @@
     }
   ],
   "env": {
+    "BUGSNAG_API_KEY": {
+      "required": true
+    },
     "DJANGO_SETTINGS_MODULE": {
       "required": true
     },
@@ -19,12 +22,6 @@
     },
     "MANDRILL_API_KEY": {
       "required": true
-    },
-    "ROLLBAR_ACCESS_TOKEN": {
-      "required": true
-    },
-    "ROLLBAR_ENVIRONMENT": {
-      "value": "review"
     },
     "SECRET_KEY": {
       "generator": "secret"

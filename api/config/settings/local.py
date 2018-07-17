@@ -1,5 +1,6 @@
 import os
 
+import bugsnag
 import dj_database_url
 
 from .base import *
@@ -43,3 +44,8 @@ AUTH_PASSWORD_VALIDATORS = []
 
 if not os.getenv('MANDRILL_API_KEY'):
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+###############################################################################
+# Bugsnag
+
+bugsnag.configure(release_stage='local')

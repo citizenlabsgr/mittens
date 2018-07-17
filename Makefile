@@ -16,8 +16,7 @@ doctor: ## Check for required system dependencies
 	echo >> $@
 	echo export MANDRILL_API_KEY=copy-from-staging >> $@
 	echo >> $@
-	echo export ROLLBAR_ENVIRONMENT=local >> $@
-	echo export ROLLBAR_ACCESS_TOKEN=copy-from-staging >> $@
+	echo export BUGSNAG_API_KEY=copy-from-staging >> $@
 	echo >> $@
 	echo export LOG_LEVEL=DEBUG >> $@
 	direnv allow
