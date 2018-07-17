@@ -16,27 +16,17 @@ import { MittensChat } from 'models/mittens-chat/mittens-chat';
 function chatRedirect(state: string) {
   return () => {
     MittensChat.changeState({ goalName: state, exchange: 0 });
-    go('/chat', {}, true)
-    return true;
-  }
-}
-
-function maybeSetChatState(state: string) {
-  return () => {
-    console.log(MittensChat.state.goalName)
-    if (!MittensChat.state.goalName) {
-      MittensChat.changeState({ goalName: state, exchange: 0 });
-    }
     return false;
   }
 }
 
+
 export const routes: RouteDeclaration = {
   path: '/',
   children: [
-    { path: 'waiting', component: SpinnerPage },
-    { path: 'chat', preFilter: maybeSetChatState("registration-check"), component: ChatView },
-    { path: 'login', preFilter: chatRedirect("email-confirmation"), component: SpinnerPage},
-    { path: '/', preFilter: chatRedirect("registration-check"), component: SpinnerPage}
+    { path: 'chat', preFilter: chatRedirect("registration-check"), component: ChatView },
+    { path: 'login', preFilter: chatRedirect("email-confirmation"), component: ChatView},
+    { path: 'unsubscribed', preFilter: chatRedirect("unsubscribed"), component: ChatView},
+    { path: '/', preFilter: chatRedirect("registration-check"), component: ChatView}
   ],
 };

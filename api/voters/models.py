@@ -6,7 +6,7 @@ import log
 
 from api.elections.models import Election, Region
 
-from . import helpers
+from . import helpers, managers
 
 
 class Identity(models.Model):
@@ -36,6 +36,11 @@ class Voter(Identity):
     user = models.OneToOneField(User, blank=True, null=True,
                                 on_delete=models.CASCADE)
     regions = models.ManyToManyField(Region, blank=True)
+
+    email_confirmed = models.BooleanField(default=False)
+    email_subscribed = models.BooleanField(default=True)
+
+    objects = managers.ApprovedEmailManager()
 
     def __str__(self):
         return self.name

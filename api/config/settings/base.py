@@ -98,7 +98,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'level': 'INFO',
+            'level': 'WARNING',
         },
         'api': {
             'handlers': ['console'],

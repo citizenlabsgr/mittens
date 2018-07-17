@@ -8,6 +8,7 @@ from . import views
 
 urlpatterns = static('/compiled/', document_root=settings.BUILD_ROOT) + [
     path('go/<path:path>', views.redirector, name='redirector'),
+    path('logout', logout, {'next_page': '/'}),
     path('logout/', logout, {'next_page': '/'}),
     re_path('^', views.index, name='index'),
 ]

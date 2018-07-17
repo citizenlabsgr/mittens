@@ -2,7 +2,6 @@
 
 ignore=migrations
 
-
 [MESSAGES CONTROL]
 
 disable=
@@ -18,3 +17,11 @@ disable=
     no-member,
     # Just noise during the early stages:
     duplicate-code,
+
+[REPORTS]
+
+score=no
+
+[SIMILARITIES]
+
+ignore-imports=yes
