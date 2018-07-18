@@ -34,7 +34,7 @@ whitenoise = "*"
 gunicorn = "*"
 
 # Tracking
-rollbar = "*"
+bugsnag = "*"
 
 [dev-packages]
 

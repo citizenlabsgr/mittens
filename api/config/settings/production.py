@@ -30,21 +30,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config()
-
-###############################################################################
-# Rollbar
-
-ROLLBAR = {
-    'access_token': os.environ['ROLLBAR_ACCESS_TOKEN'],
-    'environment': os.getenv('ROLLBAR_ENVIRONMENT', 'production'),
-    'root': PROJECT_ROOT,
-    'patch_debugview': False,
-}
-
-LOGGING['handlers']['rollbar'] = {
-    'level': 'ERROR',
-    'access_token': os.environ['ROLLBAR_ACCESS_TOKEN'],
-    'environment': os.getenv('ROLLBAR_ENVIRONMENT', 'production'),
-    'class': 'rollbar.logger.RollbarHandler'
-}
-LOGGING['loggers']['api']['handlers'].append('rollbar')

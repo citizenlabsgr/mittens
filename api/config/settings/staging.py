@@ -1,5 +1,7 @@
 import os
 
+import bugsnag
+
 from .production import *
 
 
@@ -15,11 +17,6 @@ ALLOWED_HOSTS += [
 ]
 
 ###############################################################################
-# Logging
+# Bugsnag
 
-LOGGING['handlers']['rollbar']['environment'] = os.getenv('ROLLBAR_ENVIRONMENT', 'staging')
-
-###############################################################################
-# Rollbar
-
-ROLLBAR['environment'] = os.getenv('ROLLBAR_ENVIRONMENT', 'staging')
+bugsnag.configure(release_stage='staging')
