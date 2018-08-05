@@ -19,7 +19,11 @@ class API {
     if (method != 'GET' && body) {
       request.body = JSON.stringify(body);
     }
-    return (fetch as any)(this.apiURL + url, request);
+    if (url.includes('://')) {
+      return (fetch as any)(url, request)
+    } else {
+      return (fetch as any)(this.apiURL + url, request);
+    }
   }
 
   authFetch(method: string, url: string, body?: {}): Promise<any> {
