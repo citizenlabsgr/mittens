@@ -1,12 +1,15 @@
 import { apiPath } from 'infrastructure/environments/current';
 import { go } from 'infrastructure/router';
 
-class API {
+export class API {
   // Need to set which api url we're going for
-  apiURL = apiPath
   consumerMemo: ActionCable.Cable
   defaultHeaders = {
     'Content-Type': 'application/json'
+  }
+
+  constructor(public apiURL: string) {
+
   }
 
   fetch(method: string, url: string, body?: {}, headers = {}) {
@@ -19,11 +22,7 @@ class API {
     if (method != 'GET' && body) {
       request.body = JSON.stringify(body);
     }
-    if (url.includes('://')) {
-      return (fetch as any)(url, request)
-    } else {
-      return (fetch as any)(this.apiURL + url, request);
-    }
+    return (fetch as any)(this.apiURL + url, request);
   }
 
   authFetch(method: string, url: string, body?: {}): Promise<any> {
@@ -64,4 +63,4 @@ class API {
   }
 }
 
-export default new API();
+export default new API(apiPath);
