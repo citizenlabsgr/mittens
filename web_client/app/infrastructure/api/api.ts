@@ -1,4 +1,4 @@
-import { apiPath } from 'infrastructure/environments/current';
+import { apiPath, michiganElectionsApiPath } from 'infrastructure/environments/current';
 import { go } from 'infrastructure/router';
 
 export class API {
@@ -64,3 +64,4 @@ export class API {
 }
 
 export default new API(apiPath);
+export const MichiganElectionsAPI = new API(michiganElectionsApiPath);

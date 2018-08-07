@@ -6,6 +6,9 @@ if (PRODUCTION) {
   var { apiPath } = require('../environments/dev');
 }
 
+var michiganElectionsApiPath = "http://michiganelections.io/api/";
+
 export {
-  apiPath
+  apiPath,
+  michiganElectionsApiPath
 }

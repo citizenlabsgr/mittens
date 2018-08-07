@@ -1,6 +1,4 @@
-import { default as API, API as APIClass } from 'infrastructure/api/api';
-
-const MichiganElectionsAPI = new APIClass("http://michiganelections.io/api/");
+import { default as API, MichiganElectionsAPI } from 'infrastructure/api/api';
 
 export interface IncomingRegistrationJSON {
   registered: boolean
