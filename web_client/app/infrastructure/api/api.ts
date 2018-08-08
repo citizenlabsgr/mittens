@@ -8,15 +8,17 @@ export class API {
     'Content-Type': 'application/json'
   }
 
-  constructor(public apiURL: string) {
-
+  authHeaders = {
+    credentials: 'include'
   }
 
+  constructor(public apiURL: string, public useAuth=false) { }
+
   fetch(method: string, url: string, body?: {}, headers = {}) {
-    let request: {method: string, headers: {}, credentials: string, body?: string} = {
+    let request: {method: string, headers: {}, credentials?: string, body?: string} = {
       method,
       headers: Object.assign({}, this.defaultHeaders, headers),
-      credentials: 'include'
+      ...(this.useAuth && this.authHeaders)
     };
 
     if (method != 'GET' && body) {
@@ -63,5 +65,5 @@ export class API {
   }
 }
 
-export default new API(apiPath);
+export default new API(apiPath, true);
 export const MichiganElectionsAPI = new API(michiganElectionsApiPath);
