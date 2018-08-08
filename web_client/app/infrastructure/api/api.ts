@@ -1,19 +1,24 @@
-import { apiPath } from 'infrastructure/environments/current';
+import { apiPath, michiganElectionsApiPath } from 'infrastructure/environments/current';
 import { go } from 'infrastructure/router';
 
-class API {
+export class API {
   // Need to set which api url we're going for
-  apiURL = apiPath
   consumerMemo: ActionCable.Cable
   defaultHeaders = {
     'Content-Type': 'application/json'
   }
 
+  authHeaders = {
+    credentials: 'include'
+  }
+
+  constructor(public apiURL: string, public useAuth=false) { }
+
   fetch(method: string, url: string, body?: {}, headers = {}) {
-    let request: {method: string, headers: {}, credentials: string, body?: string} = {
+    let request: {method: string, headers: {}, credentials?: string, body?: string} = {
       method,
       headers: Object.assign({}, this.defaultHeaders, headers),
-      credentials: 'include'
+      ...(this.useAuth && this.authHeaders)
     };
 
     if (method != 'GET' && body) {
@@ -60,4 +65,5 @@ class API {
   }
 }
 
-export default new API();
+export default new API(apiPath, true);
+export const MichiganElectionsAPI = new API(michiganElectionsApiPath);
