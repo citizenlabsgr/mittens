@@ -69,9 +69,11 @@ class Voter(Identity):
         return status
 
     def update_user(self):
-        self.user, created = User.objects.get_or_create(email=self.email)
+        self.user, created = User.objects.update_or_create(
+            email=self.email,
+            defaults=dict(username=self.email),
+        )
         if created:
-            self.user.username = self.email
             self.user.set_unusable_password()
         self.user.first_name = self.first_name
         self.user.last_name = self.last_name
