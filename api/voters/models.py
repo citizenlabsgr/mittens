@@ -69,7 +69,7 @@ class Voter(Identity):
         return status
 
     def update_user(self):
-        self.user, created = User.objects.update_or_create(
+        self.user, created = User.objects.get_or_create(
             email=self.email,
             defaults=dict(username=self.email),
         )
