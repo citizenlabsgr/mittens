@@ -1,7 +1,5 @@
 from django.db import models
 
-import arrow
-
 
 class Kind(models.Model):
 
@@ -26,22 +24,11 @@ class Region(models.Model):
         return f"{self.kind}: {self.name}"
 
 
-class ElectionManager(models.Manager):
-
-    def current(self):
-        next_focus_date = arrow.utcnow().shift(weeks=+3)
-        return self.filter(
-            date__gt=next_focus_date.datetime,
-        ).first()
-
-
 class Election(models.Model):
 
     name = models.CharField(max_length=100)
     date = models.DateField()
     reference_url = models.URLField(blank=True, null=True)
-
-    objects = ElectionManager()
 
     class Meta:
         unique_together = ['name', 'date']
