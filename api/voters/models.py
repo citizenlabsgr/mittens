@@ -59,7 +59,7 @@ class Voter(Identity):
         return self.status.registered
 
     def get_status(self):
-        election = Election.objects.current()
+        election = Election.objects.order_by('-date').first()
         status, created = Status.objects.get_or_create(
             voter=self,
             election=election,
