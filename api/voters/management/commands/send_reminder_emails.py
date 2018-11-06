@@ -22,13 +22,13 @@ class Command(BaseCommand):
 
             message = EmailMessage(
                 # TODO: Use the election name from the database
-                subject="Reminder to Vote in the Michigan Primary",
+                subject="Reminder to Vote",
                 from_email="Citizen Labs <noreply@citizenlabs.org>",
                 to=[voter.user.email],
             )
             message.template_id = 'voter-engagement-election_reminder'
             message.merge_global_data = {
-                # TODO: Pass election information from the database
+                # TODO: Use the election information from the database
                 'FIRST_NAME': voter.user.first_name,
                 'LAST_NAME': voter.user.last_name,
                 'SITE_URL': site_url,
