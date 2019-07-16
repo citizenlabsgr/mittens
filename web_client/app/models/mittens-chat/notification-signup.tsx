@@ -6,7 +6,7 @@ import { Signup } from "components/signup/signup";
 MittensChat.createGoal("notification-signup").exchanges = [
   new Exchange(
     [
-      "If you'd like me to remind you about upcoming elections, let me know your email address (I'll keep it secret and safe!)"
+      "If you'd like to stay in touch, let me know your email address (I'll keep it secret and safe!)"
     ],
     {
       component: <Signup />
