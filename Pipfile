@@ -9,7 +9,7 @@ python_version = "3.6"
 [packages]
 
 # Django
-django = "==2.0.8"
+django = "==2.0.12"
 django-grappelli = "*"
 
 # Django REST Framework
@@ -41,7 +41,7 @@ bugsnag = "*"
 # Static analysis
 isort = "*"
 pycodestyle = "*"
-pylint = "==2.0.0.dev2"
+pylint = "==2.4.4"
 
 # Testing
 pytest = "~=3.3"
