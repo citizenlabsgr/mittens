@@ -9,7 +9,7 @@ python_version = "3.6"
 [packages]
 
 # Django
-django = "==2.0.8"
+django = "==2.0.12"
 django-grappelli = "*"
 
 # Django REST Framework
