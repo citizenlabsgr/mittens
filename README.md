@@ -1,8 +1,8 @@
-# Voter Engagement
+# Michigan Voter Engagement
 
 [![CircleCI](https://circleci.com/gh/citizenlabsgr/mittens.svg?style=svg)](https://circleci.com/gh/citizenlabsgr/mittens)
 
-**Slack channel:** #project-voter_engage
+**Slack channel:** #project-mittens
 
 **Project Description:**
 
