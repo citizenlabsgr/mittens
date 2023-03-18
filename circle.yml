@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/voter-engagement
 
     docker:
-      - image: circleci/python:3.8
+      - image: circleci/python:3.9
         environment:
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: postgres://circleci:@127.0.0.1:5432/voterengagement_test

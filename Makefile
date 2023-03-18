@@ -1,8 +1,5 @@
 .PHONY: all
-all: install
-
-.PHONY: ci
-ci: check test ## CI | Run all validation targets
+all: doctor check test ## CI | Run all validation targets
 
 # SYSTEM DEPENDENCIES #########################################################
 
@@ -106,7 +103,7 @@ test-frontend: install
 
 .PHONY: watch
 watch: install
-	@ sleep 2 && make ci &
+	@ sleep 2 && make all &
 	pipenv run watchmedo tricks .watchdog.yml
 
 # DOCUMENTATION ###############################################################
@@ -135,7 +132,7 @@ run-prod: .envrc install ## Run the application (emulate production)
 # HELP ########################################################################
 
 .PHONY: help
-help: all
+help: install
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .DEFAULT_GOAL := help
