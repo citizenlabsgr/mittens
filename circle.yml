@@ -5,7 +5,7 @@ jobs:
     working_directory: ~/voter-engagement
 
     docker:
-      - image: maketested/python-node:latest
+      - image: circleci/python:3.8
         environment:
           PIPENV_VENV_IN_PROJECT: true
           DATABASE_URL: postgres://circleci:@127.0.0.1:5432/voterengagement_test
@@ -16,6 +16,12 @@ jobs:
 
     steps:
       - checkout
+
+      - run:
+          name: Installing Node 16
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+            sudo apt-get install -y nodejs
 
       - run:
           name: Checking system dependencies
