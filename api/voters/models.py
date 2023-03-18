@@ -1,8 +1,10 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
 import arrow
 import log
+import requests
 
 from api.elections.models import Election, Region
 
@@ -78,6 +80,22 @@ class Voter(Identity):
         self.user.first_name = self.first_name
         self.user.last_name = self.last_name
         self.user.save()
+
+    def provision(self):
+        log.info(f"Provisioning voter: {self}")
+        payload = {
+            "email": self.email,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "birth_date": self.birth_date,
+            "zip_code": self.zip_code,
+            "referrer": settings.PROVISION_VOTER_REFERRER}
+        response = requests.post(settings.PROVISION_VOTER_API, data=payload)
+        try:
+            data = response.json()
+        except ValueError:
+            data = {}
+        log.info(f"{response.status_code} response from API: {data}")
 
     def save(self, *args, **kwargs):  # pylint: disable=arguments-differ
         self.update_user()

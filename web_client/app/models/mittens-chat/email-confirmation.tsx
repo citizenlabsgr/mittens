@@ -6,8 +6,9 @@ import { Signup } from "components/signup/signup";
 MittensChat.createGoal("email-confirmation").exchanges = [
   new Exchange(
     [
-      "Thanks for confirming your email! I'll be sure to remind you each time it's time to vote.",
-      "Bye!"
+      "Thanks for confirming your email! I added you to Ballot Buddies so we'll get a reminder each time there's an election.",
+      "If you share this with more of my friends' humans I'd be so happy.",
+      "Rrraarf! Bye!"
     ],
     {
     },

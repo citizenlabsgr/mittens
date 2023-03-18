@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
+import log
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -24,12 +25,19 @@ class VoterViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
+
+        voter = Voter.objects.filter_email(request.data.get('email'))
+        if voter:
+            log.info(f"Found voter: {voter}")
+            response = Response(serializer.initial_data, status=200)
+        elif serializer.is_valid(raise_exception=True):
             voter = serializer.save()
+            log.info(f"Created voter: {voter}")
+            response = Response(serializer.data, status=201)
 
         send_login_email(voter.user, self.request, welcome=True)
 
-        return Response(serializer.data, status=201)
+        return response
 
 
 class RegistrationViewSet(viewsets.ViewSet):

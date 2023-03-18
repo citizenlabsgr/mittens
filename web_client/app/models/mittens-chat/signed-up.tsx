@@ -6,7 +6,7 @@ import { Signup } from "components/signup/signup";
 MittensChat.createGoal("signed-up").exchanges = [
   new Exchange(
     [
-      "Great! I'll try to let you know when you've got an election coming. Thanks for chatting!",
+      "Great! I just sent you an email with a confirmation link.",
       "Rrraarf! Bye!"
     ],
     {
