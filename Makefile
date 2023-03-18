@@ -8,7 +8,7 @@ ci: check test ## CI | Run all validation targets
 
 .PHONY: doctor
 doctor: ## Check for required system dependencies
-	bin/verchew
+	bin/verchew --exit-code
 
 .envrc:
 	echo export SECRET_KEY=local >> $@
