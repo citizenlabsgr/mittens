@@ -20,3 +20,9 @@ ALLOWED_HOSTS += [
 # Bugsnag
 
 bugsnag.configure(release_stage='staging')
+
+###############################################################################
+# Ballot Buddies
+
+PROVISION_VOTER_API = "https://staging-app.michiganelections.io/api/provision-voter/"
+PROVISION_VOTER_REFERRER = "SmFjZUJyb3duaW5nNDk1MDM"

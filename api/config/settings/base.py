@@ -155,3 +155,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.LimitOffsetPagination',
 }
+
+###############################################################################
+# Ballot Buddies
+
+PROVISION_VOTER_API = "https://app.michiganelections.io/api/provision-voter/"
+PROVISION_VOTER_REFERRER = "SmFjZUJyb3duaW5nNDk1MDM"
