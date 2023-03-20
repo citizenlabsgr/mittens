@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "BUGSNAG",
+        "hoomans",
         "maketested",
         "PIPENV",
         "Pipfile",
@@ -8,7 +9,7 @@
         "Rrraarf",
         "signedup",
         "signup",
-        "voterengagement",
-        "viewsets"
+        "viewsets",
+        "voterengagement"
     ]
 }

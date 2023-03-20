@@ -72,7 +72,7 @@ export class Signup extends React.Component<SignupProps, {}> {
               e.preventDefault();
             }}
           >
-            Remind me!
+            Send!
           </Button>
           <Button
             theme="secondary"
