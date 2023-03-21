@@ -29,8 +29,11 @@ export class ChatView extends React.Component<ChatViewProps, {}> {
     return (
       <div>
         <div {...style.header}>
-        <a href="https://citizenlabs.org" {...style.headerLink}>Citizen Labs</a>
-        <span style={{float: 'right', fontWeight: 'bold'}}>Vote!</span></div>
+          <a href="https://citizenlabs.org" {...style.headerLink}>Citizen Labs</a>
+          <span style={{float: 'right'}}>
+            <a href="https://app.michiganelections.io/about/" {...style.headerLink}>Ballot Buddies</a>
+          </span>
+        </div>
         <div {...style.scroller} ref={this.setScroller}>
           <div className="chat" {...style.chat}>
             <FlipMove
@@ -129,7 +132,8 @@ const style = styles({
     color: vars.color.white,
     ':hover':{
       color: "#fff2d3",
-    }
+    },
+    fontWeight: 'bold'
   },
   buttons: {
     display: "flex"
