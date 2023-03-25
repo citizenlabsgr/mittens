@@ -1,8 +1,13 @@
 {
     "cSpell.words": [
+        "anymail",
         "BUGSNAG",
+        "csrftoken",
+        "grappelli",
         "hoomans",
+        "levelname",
         "maketested",
+        "nostatic",
         "PIPENV",
         "Pipfile",
         "postdeploy",
@@ -10,6 +15,7 @@
         "signedup",
         "signup",
         "viewsets",
-        "voterengagement"
+        "voterengagement",
+        "whitenoise"
     ]
 }

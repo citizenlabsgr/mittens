@@ -1,11 +1,15 @@
 import { apiPath, michiganElectionsApiPath } from 'infrastructure/environments/current';
 import { go } from 'infrastructure/router';
+import * as Cookies from 'js-cookie';
+
+const csrfToken = Cookies.get('csrftoken');
 
 export class API {
   // Need to set which api url we're going for
   consumerMemo: ActionCable.Cable
   defaultHeaders = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'X-CSRFToken': csrfToken
   }
 
   authHeaders = {
