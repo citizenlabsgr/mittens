@@ -11,11 +11,11 @@ python_version = "3.9"
 [packages]
 
 # Django
-django = "==3.1.8"
+django = "==3.1.14"
 django-grappelli = "*"
 
 # Django REST Framework
-djangorestframework = "*"
+djangorestframework = "==3.12.2"
 
 # Database
 dj_database_url = "*"
