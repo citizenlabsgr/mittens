@@ -31,7 +31,7 @@ export class ChatView extends React.Component<ChatViewProps, {}> {
         <div {...style.header}>
           <a href="https://citizenlabs.org" {...style.headerLink}>Citizen Labs</a>
           <span style={{float: 'right'}}>
-            <a href="https://app.michiganelections.io/about/" {...style.headerLink}>Ballot Buddies</a>
+            <a href="https://app.michiganelections.io" {...style.headerLink}>Ballot Buddies</a>
           </span>
         </div>
         <div {...style.scroller} ref={this.setScroller}>
